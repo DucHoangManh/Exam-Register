@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('home', function () {
     return view('user.home');
 });
+
+Route::get('registration', function () {
+    return view('user.registration');
+});

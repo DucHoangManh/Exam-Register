@@ -51,7 +51,7 @@
 					@yield('content-head')
 					<!-- end:: Content Head -->					
 					<!-- begin:: Content -->
-					<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid" style="margin-top: 25px;">
+					<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-25 mb-25">
 						@yield('content')
 					</div>
 					<!-- end:: Content -->	
