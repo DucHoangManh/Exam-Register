@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.home');
 });
 
 Route::get('home', function () {
@@ -21,4 +21,8 @@ Route::get('home', function () {
 
 Route::get('registration', function () {
     return view('user.registration');
+});
+
+Route::get('calendar', function () {
+    return view('user.calendar');
 });

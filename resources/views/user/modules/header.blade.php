@@ -76,32 +76,6 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" class="kt-notification__item">
-                            <div class="kt-notification__item-icon">
-                                <i class="flaticon2-favourite kt-font-danger"></i>
-                            </div>
-                            <div class="kt-notification__item-details">
-                                <div class="kt-notification__item-title">
-                                    New order has been placed
-                                </div>
-                                <div class="kt-notification__item-time">
-                                    15 hrs ago
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="kt-notification__item kt-notification__item--read">
-                            <div class="kt-notification__item-icon">
-                                <i class="flaticon2-safe kt-font-primary"></i>
-                            </div>
-                            <div class="kt-notification__item-details">
-                                <div class="kt-notification__item-title">
-                                    Company meeting canceled
-                                </div>
-                                <div class="kt-notification__item-time">
-                                    19 hrs ago
-                                </div>
-                            </div>
-                        </a>
                         <a href="#" class="kt-notification__item kt-notification__item--read">
                             <div class="kt-notification__item-icon">
                                 <i class="flaticon2-safe kt-font-primary"></i>
@@ -182,46 +156,6 @@
                     </div>
                     <div class="kt-notification__item-time">
                         Inbox and tasks
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="kt-notification__item">
-                <div class="kt-notification__item-icon">
-                    <i class="flaticon2-rocket-1 kt-font-danger"></i>
-                </div>
-                <div class="kt-notification__item-details">
-                    <div class="kt-notification__item-title kt-font-bold">
-                        My Activities
-                    </div>
-                    <div class="kt-notification__item-time">
-                        Logs and notifications
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="kt-notification__item">
-                <div class="kt-notification__item-icon">
-                    <i class="flaticon2-hourglass kt-font-brand"></i>
-                </div>
-                <div class="kt-notification__item-details">
-                    <div class="kt-notification__item-title kt-font-bold">
-                        My Tasks
-                    </div>
-                    <div class="kt-notification__item-time">
-                        latest tasks and projects
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="kt-notification__item">
-                <div class="kt-notification__item-icon">
-                    <i class="flaticon2-cardiogram kt-font-warning"></i>
-                </div>
-                <div class="kt-notification__item-details">
-                    <div class="kt-notification__item-title kt-font-bold">
-                        Billing
-                    </div>
-                    <div class="kt-notification__item-time">
-                        billing &amp; statements <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill kt-badge--rounded">2 pending</span>
                     </div>
                 </div>
             </a>
