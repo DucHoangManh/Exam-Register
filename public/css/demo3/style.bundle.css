@@ -42,7 +42,8 @@
 }
 
 html {
-	font-family: sans-serif;
+	/*font-family: sans-serif;*/
+	font-family: 'Source Sans Pro', sans-serif;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: transparent
@@ -54,7 +55,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
 	margin: 0;
-	font-family: Poppins;
+	/*font-family: Poppins;*/
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
@@ -47793,4 +47795,8 @@ body, html {
 
 .table td, .table th {
 	vertical-align: middle;
+}
+
+body, html {
+	font-family: 'Source Sans Pro', sans-serif;
 }
