@@ -23,12 +23,12 @@ class CreateTableShiftsTable extends Migration
             $table->timestamps();
 
             $table->foreign('room_id')
-                ->references('rooms')
-                ->on('id')
+                ->references('id')
+                ->on('rooms')
                 ->delete('cascade');
             $table->foreign('subject_id')
-                ->references('subjects')
-                ->on('id')
+                ->references('id')
+                ->on('subjects')
                 ->delete('cascade');
         });
     }

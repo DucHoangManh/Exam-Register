@@ -21,12 +21,12 @@ class CreateClassesTable extends Migration
             $table->timestamps();
 
             $table->foreign('teacher_id')
-                ->references('teachers')
-                ->on('id')
+                ->references('id')
+                ->on('teachers')
                 ->delete('cascade');
             $table->foreign('subject_id')
-                ->references('subjects')
-                ->on('id')
+                ->references('id')
+                ->on('subjects')
                 ->delete('cascade');
         });
 
@@ -37,31 +37,29 @@ class CreateClassesTable extends Migration
             $table->timestamps();
 
             $table->foreign('class_id')
-                ->references('classes')
-                ->on('id')
+                ->references('id')
+                ->on('classes')
                 ->delete('cascade');
             $table->foreign('student_id')
-                ->references('students')
-                ->on('id')
+                ->references('id')
+                ->on('students')
                 ->delete('cascade');
-            $table->primary(['class_id', 'student_id']);
         });
 
-        Shema::create('student_shift', function (Blueprint $table) {
+        Schema::create('student_shift', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('shift_id');
             $table->timestamps();
 
             $table->foreign('student_id')
-                ->references('students')
-                ->on('id')
+                ->references('id')
+                ->on('students')
                 ->delete('cascade');
             $table->foreign('shift_id')
                 ->references('id')
-                ->on('id')
+                ->on('shifts')
                 ->delete('cascade');
-            $table->primary(['student_id', 'shift_id']);
         });
 
         Schema::create('student_room', function (Blueprint $table) {
@@ -72,14 +70,13 @@ class CreateClassesTable extends Migration
             $table->timestamps();
 
             $table->foreign('student_id')
-                ->references('students')
-                ->on('id')
+                ->references('id')
+                ->on('students')
                 ->delete('cascade');
             $table->foreign('room_id')
-                ->references('rooms')
-                ->on('id')
+                ->references('id')
+                ->on('rooms')
                 ->delete('cascade');
-            $table->primary(['student_id', 'room_id']);
         });
 
         Schema::create('shift_room', function (Blueprint $table) {
@@ -89,30 +86,28 @@ class CreateClassesTable extends Migration
             $table->timestamps();
 
             $table->foreign('shift_id')
-                ->references('shifts')
-                ->on('id')
+                ->references('id')
+                ->on('shifts')
                 ->delete('cascade');
             $table->foreign('room_id')
-                ->references('rooms')
-                ->on('id')
+                ->references('id')
+                ->on('rooms')
                 ->delete('cascade');
-            $table->primary(['shift_id', 'room_id']);
         });
 
         Schema::create('exam_subject', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('exam_id');
-            $table->unsignedInteger('subjects_id');
+            $table->unsignedInteger('subject_id');
 
             $table->foreign('exam_id')
-                ->references('exams')
-                ->on('id')
+                ->references('id')
+                ->on('exams')
                 ->delete('cascade');
             $table->foreign('subject_id')
-                ->references('subjects')
-                ->on('id')
+                ->references('id')
+                ->on('subjects')
                 ->delete('cascade');
-            $table->primary(['exam_id', 'subject_id']);
         });
     }
 
