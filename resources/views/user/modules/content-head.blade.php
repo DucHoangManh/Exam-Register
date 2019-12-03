@@ -6,7 +6,7 @@
 
 			<span class="kt-subheader__separator kt-subheader__separator--v"></span>
 
-			<span class="kt-subheader__desc">#17020907</span>
+			<span class="kt-subheader__desc">#{{Auth::user()->username}}</span>
 
 			<a href="#" class="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10">
 				Add New
