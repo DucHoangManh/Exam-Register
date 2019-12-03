@@ -26,3 +26,7 @@ Route::get('registration', function () {
 Route::get('calendar', function () {
     return view('user.calendar');
 });
+
+Route::get('loginn', function () {
+	return view('login');
+});
