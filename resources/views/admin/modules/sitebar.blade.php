@@ -32,44 +32,136 @@
                     </li>
                 </ul>
             </li>
-            <!-- <li class="heading">
+
+            <li class="heading">
                 <h3 class="uppercase">Kỳ thi</h3>
             </li>
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-diamond"></i>
-                    <span class="title">UI Features</span>
+                    <i class="icon-calendar"></i>
+                    <span class="title">Ca thi</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
                         <a href="ui_tiles.html" class="nav-link ">
-                            <span class="title">Tiles</span>
+                            <span class="title">Show</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
                         <a href="ui_datepaginator.html" class="nav-link ">
-                            <span class="title">Date Paginator</span>
-                        </a>
-                    </li>
-                    <li class="nav-item  ">
-                        <a href="ui_nestable.html" class="nav-link ">
-                            <span class="title">Nestable List</span>
+                            <span class="title">Create</span>
                         </a>
                     </li>
                 </ul>
-            </li> -->
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-flag"></i>
+                    <span class="title">Phòng thi</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li class="nav-item  ">
+                        <a href="ui_tiles.html" class="nav-link ">
+                            <span class="title">Show</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="ui_datepaginator.html" class="nav-link ">
+                            <span class="title">Create</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-pointer"></i>
+                    <span class="title">Điểm thi</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li class="nav-item  ">
+                        <a href="ui_tiles.html" class="nav-link ">
+                            <span class="title">Show</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="ui_datepaginator.html" class="nav-link ">
+                            <span class="title">Create</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             
             
             <li class="heading">
-                <h3 class="uppercase">Sinh viên</h3>
+                <h3 class="uppercase">Quản lý</h3>
             </li>
             
             
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class=" icon-wrench"></i>
-                    <span class="title">Quản lý</span>
+                    <i class="icon-briefcase"></i>
+                    <span class="title">Sinh viên</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li class="nav-item  ">
+                        <a href="{{URL::to('admin/student')}}" class="nav-link ">
+                            <span class="title">Show</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{URL::to('admin/student/create')}}" class="nav-link ">
+                            <span class="title">Create</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-users"></i>
+                    <span class="title">Giảng viên</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li class="nav-item  ">
+                        <a href="{{URL::to('admin/student')}}" class="nav-link ">
+                            <span class="title">Show</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{URL::to('admin/student/create')}}" class="nav-link ">
+                            <span class="title">Create</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-graduation"></i>
+                    <span class="title">Lớp</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li class="nav-item  ">
+                        <a href="{{URL::to('admin/student')}}" class="nav-link ">
+                            <span class="title">Show</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{URL::to('admin/student/create')}}" class="nav-link ">
+                            <span class="title">Create</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-book-open"></i>
+                    <span class="title">Môn học</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu" style="display: none;">
@@ -86,6 +178,25 @@
                 </ul>
             </li>
             
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Tài khoản</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li class="nav-item  ">
+                        <a href="{{URL::to('admin/user')}}" class="nav-link ">
+                            <span class="title">Show</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{URL::to('admin/user/create')}}" class="nav-link ">
+                            <span class="title">Create</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

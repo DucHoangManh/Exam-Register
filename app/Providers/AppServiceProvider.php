@@ -3,9 +3,20 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $repositories = [
+        'User',
+        'Student', 
+        'Class', 
+        'Exam', 
+        'Room', 
+        'Shift', 
+        'Subject',
+        'Teacher'
+    ];
     /**
      * Bootstrap any application services.
      *
@@ -13,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->setFacadesRepositories();
+        Schema::defaultStringLength(191);
     }
 
     /**
@@ -23,6 +35,28 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerRepositories();
+    }
+
+     private function registerRepositories()
+    {
+        foreach ($this->repositories as $repository) {
+            $this->app->bindIf(
+                "App\\Repositories\\Contracts\\${repository}Interface",
+                "App\\Repositories\\${repository}Repository"
+            );
+        }
+    }
+    /**
+     * set Facade for repositories without implement instants container.
+     */
+    private function setFacadesRepositories()
+    {
+        foreach ($this->repositories as $repository) {
+            $this->app->alias(
+                "${repository}Repository",
+                "App\\Repositories\\Facades\\${repository}Repository"
+            );
+        }
     }
 }

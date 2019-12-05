@@ -48,4 +48,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	});
 
 	Route::resource('student', 'StudentController');
+	Route::post('student/import', 'StudentController@import');
+	Route::get('student/delete/{student}', 'StudentController@destroy');
+
+	Route::resource('user', 'UserController');
 });

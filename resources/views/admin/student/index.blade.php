@@ -9,52 +9,22 @@
 			<div class="portlet-title">
 				<div class="caption font-dark">
 					<i class="icon-settings font-dark"></i>
-					<span class="caption-subject bold uppercase"> Managed Table</span>
+					<span class="caption-subject bold uppercase">Quản lý sinh viên</span>
 				</div>
 				<div class="actions">
-					<div class="btn-group btn-group-devided" data-toggle="buttons">
-						<label class="btn btn-transparent dark btn-outline btn-circle btn-sm active">
-							<input type="radio" name="options" class="toggle" id="option1">Actions
-						</label>
-						<label class="btn btn-transparent dark btn-outline btn-circle btn-sm">
-							<input type="radio" name="options" class="toggle" id="option2">Settings
-						</label>
+					<div class="btn-group">
+						<a href="{{URL::to('admin/student/create')}}">
+							<button id="sample_editable_1_new" class="btn sbold green"> Add New
+							<i class="fa fa-plus"></i>
+							</button>
+						</a>
 					</div>
 				</div>
 			</div>
 			<div class="portlet-body">
 				<div class="table-toolbar">
 					<div class="row">
-						<div class="col-md-6">
-							<div class="btn-group">
-								<a href="{{URL::to('admin/student/create')}}">
-									<button id="sample_editable_1_new" class="btn sbold green"> Add New
-									<i class="fa fa-plus"></i>
-									</button>
-								</a>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="btn-group pull-right">
-								<button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-								<i class="fa fa-angle-down"></i>
-								</button>
-								<ul class="dropdown-menu pull-right">
-									<li>
-										<a href="javascript:;">
-										<i class="fa fa-print"></i> Print </a>
-									</li>
-									<li>
-										<a href="javascript:;">
-										<i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-									</li>
-									<li>
-										<a href="javascript:;">
-										<i class="fa fa-file-excel-o"></i> Export to Excel </a>
-									</li>
-								</ul>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<div class="table-scrollable">
@@ -64,11 +34,13 @@
 								<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 110px;">#
 								</th>
 								<th class="sorting_asc" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 225px;"> MSSV </th>
-								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 431px;"> Tên </th>
+								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 431px;">Họ và tên </th>
+								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 200px;">Username</th>
+								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 200px;">Email</th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 242px;"> Giới tính </th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 242px;"> Ngày sinh </th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 171px;"> Số môn thi </th>
-								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 171px;"> Thao tác </th>
+								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 115px;"> Thao tác </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -82,6 +54,20 @@
 									{{$student->name}}
 								</td>
 								<td>
+									@if($student->user != null)
+									{{$student->user->username}}
+									@else
+									null
+									@endif
+								</td>
+								<td>
+									@if($student->user != null)
+									{{$student->user->email}}
+									@else
+									null
+									@endif
+								</td>
+								<td>
 									@if($student->gender == 1)
 									Nam
 									@else
@@ -89,36 +75,16 @@
 									@endif
 								</td>
 								<td class="center"> {{$student->birthday}} </td>
-								<td class="center"> {{$student}} </td>
+								<td class="center"> {{$student->subject}} </td>
 								<td>
 									<div class="btn-group">
-										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-										<i class="fa fa-angle-down"></i>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li>
-												<a href="javascript:;">
-													<i class="icon-docs"></i> New Post
-												</a>
-											</li>
-											<li>
-												<a href="javascript:;">
-													<i class="icon-tag"></i> New Comment
-												</a>
-											</li>
-											<li>
-												<a href="javascript:;">
-													<i class="icon-user"></i> New User
-												</a>
-											</li>
-											<li class="divider"> </li>
-											<li>
-												<a href="javascript:;">
-													<i class="icon-flag"></i> Comments
-													<span class="badge badge-success">4</span>
-												</a>
-											</li>
-										</ul>
+										<a href="{{URL::to('admin/student/'.$student->id.'/edit')}}" class="btn btn-icon-only blue">
+											<i class="icon-pencil"></i>
+										</a>
+										<a href="{{URL::to('admin/student/delete/'.$student->id)}}" class="btn btn-icon-only red ml-10">
+											<i class="icon-ban"></i>
+										</a>
+										
 									</div>
 								</td>
 							</tr>
@@ -126,6 +92,10 @@
 						</tbody>
 					</table>
 				</div>
+				<div class="paginate" style="text-align: center;">
+					{{ $students->links() }}
+				</div>
+				
 			</div>
 		</div>
 	</div>

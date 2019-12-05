@@ -25,4 +25,8 @@ class Student extends Model
     public function shift() {
     	return $this->belongsToMany('App\Models\Shift', 'student_shift', 'student_id', 'shift_id');
     }
+
+    public function user() {
+        return $this->hasOne('App\Models\User', 'username', 'code');
+    }
 }
