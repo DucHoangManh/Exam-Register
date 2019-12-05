@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-return [
+return array(
     'year' => ':count aasta|:count aastat',
     'y' => ':count aasta|:count aastat',
     'month' => ':count kuu|:count kuud',
@@ -35,6 +35,4 @@ return [
     'hour_from_now' => ':count tunni',
     'minute_from_now' => ':count minuti',
     'second_from_now' => ':count sekundi',
-    'first_day_of_week' => 1,
-    'day_of_first_week_of_year' => 4,
-];
+);

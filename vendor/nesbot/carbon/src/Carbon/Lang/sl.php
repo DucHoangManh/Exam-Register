@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-return [
+return array(
     'year' => ':count leto|:count leti|:count leta|:count let',
     'y' => ':count leto|:count leti|:count leta|:count let',
     'month' => ':count mesec|:count meseca|:count mesece|:count mesecev',
@@ -40,6 +40,4 @@ return [
     'diff_tomorrow' => 'jutri',
     'diff_before_yesterday' => 'predvčerajšnjim',
     'diff_after_tomorrow' => 'pojutrišnjem',
-    'first_day_of_week' => 1,
-    'day_of_first_week_of_year' => 1,
-];
+);

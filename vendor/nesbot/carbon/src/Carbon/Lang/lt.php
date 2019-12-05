@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-return [
+return array(
     'year' => ':count metus|:count metus|:count metų',
     'y' => ':count metus|:count metus|:count metų',
     'month' => ':count mėnesį|:count mėnesius|:count mėnesių',
@@ -35,6 +35,4 @@ return [
     'from_now' => 'už :time',
     'after' => 'po :time',
     'before' => ':time nuo dabar',
-    'first_day_of_week' => 1,
-    'day_of_first_week_of_year' => 4,
-];
+);

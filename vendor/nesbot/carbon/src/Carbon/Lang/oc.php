@@ -13,7 +13,7 @@
     return $number == 1 ? 0 : 1;
 }, 'oc');
 
-return [
+return array(
     'year' => ':count an|:count ans',
     'y' => ':count an|:count ans',
     'month' => ':count mes|:count meses',
@@ -29,7 +29,7 @@ return [
     'second' => ':count segonda|:count segondas',
     's' => ':count segonda|:count segondas',
     'ago' => 'fa :time',
-    'from_now' => 'd\'aquí :time',
+    'from_now' => 'dins :time',
     'after' => ':time aprèp',
     'before' => ':time abans',
     'diff_now' => 'ara meteis',
@@ -41,4 +41,4 @@ return [
     'period_interval' => 'cada :interval',
     'period_start_date' => 'de :date',
     'period_end_date' => 'fins a :date',
-];
+);

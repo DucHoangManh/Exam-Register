@@ -648,18 +648,65 @@
         "description": "Highlight PHP code in terminal"
     },
     {
-        "name": "laravel/framework",
-        "version": "v5.5.44",
-        "version_normalized": "5.5.44.0",
+        "name": "kylekatarnls/update-helper",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/laravel/framework.git",
-            "reference": "00615aa27eb98f0ee6fb9f2160c6c60ae04abd1b"
+            "url": "https://github.com/kylekatarnls/update-helper.git",
+            "reference": "5786fa188e0361b9adf9e8199d7280d1b2db165e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/00615aa27eb98f0ee6fb9f2160c6c60ae04abd1b",
-            "reference": "00615aa27eb98f0ee6fb9f2160c6c60ae04abd1b",
+            "url": "https://api.github.com/repos/kylekatarnls/update-helper/zipball/5786fa188e0361b9adf9e8199d7280d1b2db165e",
+            "reference": "5786fa188e0361b9adf9e8199d7280d1b2db165e",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.1.0 || ^2.0.0",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "dev-master",
+            "composer/composer": "2.0.x-dev || ^2.0.0-dev",
+            "phpunit/phpunit": ">=4.8.35 <6.0"
+        },
+        "time": "2019-07-29T11:03:54+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "UpdateHelper\\ComposerPlugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "UpdateHelper\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle",
+                "email": "kylekatarnls@gmail.com"
+            }
+        ],
+        "description": "Update helper"
+    },
+    {
+        "name": "laravel/framework",
+        "version": "v5.5.48",
+        "version_normalized": "5.5.48.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laravel/framework.git",
+            "reference": "e3e8d585dcfab5abe6261b060f4df0d48f9924bf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/e3e8d585dcfab5abe6261b060f4df0d48f9924bf",
+            "reference": "e3e8d585dcfab5abe6261b060f4df0d48f9924bf",
             "shasum": ""
         },
         "require": {
@@ -670,7 +717,7 @@
             "league/flysystem": "^1.0.8",
             "monolog/monolog": "~1.12",
             "mtdowling/cron-expression": "~1.0",
-            "nesbot/carbon": "^1.24.1",
+            "nesbot/carbon": "^1.26.0",
             "php": ">=7.0",
             "psr/container": "~1.0",
             "psr/simple-cache": "^1.0",
@@ -749,7 +796,7 @@
             "symfony/dom-crawler": "Required to use most of the crawler integration testing tools (~3.3).",
             "symfony/psr-http-message-bridge": "Required to psr7 bridging features (~1.0)."
         },
-        "time": "2018-10-04T14:51:24+00:00",
+        "time": "2019-08-20T15:46:40+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1418,30 +1465,36 @@
     },
     {
         "name": "nesbot/carbon",
-        "version": "2.0.0-beta.2",
-        "version_normalized": "2.0.0.0-beta2",
+        "version": "1.39.1",
+        "version_normalized": "1.39.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "0a3aecf9625436cd7c440a52f80280d34f1e6c77"
+            "reference": "4be0c005164249208ce1b5ca633cd57bdd42ff33"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/0a3aecf9625436cd7c440a52f80280d34f1e6c77",
-            "reference": "0a3aecf9625436cd7c440a52f80280d34f1e6c77",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4be0c005164249208ce1b5ca633cd57bdd42ff33",
+            "reference": "4be0c005164249208ce1b5ca633cd57bdd42ff33",
             "shasum": ""
         },
         "require": {
-            "php": "^7.1.8",
-            "symfony/translation": "^4.0"
+            "kylekatarnls/update-helper": "^1.1",
+            "php": ">=5.3.9",
+            "symfony/translation": "~2.6 || ~3.0 || ~4.0"
         },
         "require-dev": {
-            "friendsofphp/php-cs-fixer": "^2.11",
-            "phpunit/phpunit": "^7.1.5"
+            "composer/composer": "^1.2",
+            "friendsofphp/php-cs-fixer": "~2",
+            "phpunit/phpunit": "^4.8.35 || ^5.7"
         },
-        "time": "2018-08-13T11:25:28+00:00",
+        "time": "2019-10-14T05:51:36+00:00",
+        "bin": [
+            "bin/upgrade-carbon"
+        ],
         "type": "library",
         "extra": {
+            "update-helper": "Carbon\\Upgrade",
             "laravel": {
                 "providers": [
                     "Carbon\\Laravel\\ServiceProvider"
