@@ -8,8 +8,8 @@ class StackTest extends TestCase
         $stack = [];
         $this->assertCount(0, $stack);
 
-        $stack[] = 'foo';
-        $this->assertEquals('foo', end($stack));
+        array_push($stack, 'foo');
+        $this->assertEquals('foo', $stack[count($stack)-1]);
         $this->assertCount(1, $stack);
 
         return $stack;

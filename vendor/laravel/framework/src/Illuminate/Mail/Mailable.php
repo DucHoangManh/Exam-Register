@@ -167,7 +167,7 @@ class Mailable implements MailableContract, Renderable
     /**
      * Render the mailable into a view.
      *
-     * @return string
+     * @return \Illuminate\View\View
      */
     public function render()
     {

@@ -12,6 +12,8 @@ namespace PHPUnit\Framework\Constraint;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\ExpectationFailedException;
 
+/**
+ */
 class Attribute extends Composite
 {
     /**

@@ -12,6 +12,7 @@ namespace PHPUnit\Framework\Constraint;
 
 use Countable;
 use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\SebastianBergmann;
 use PHPUnit\Framework\SelfDescribing;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\Exporter\Exporter;
@@ -91,15 +92,15 @@ abstract class Constraint implements Countable, SelfDescribing
     /**
      * Throws an exception for the given compared value and test description
      *
-     * @param mixed             $other             Evaluated value or object.
-     * @param string            $description       Additional information about the test
-     * @param ComparisonFailure $comparisonFailure
+     * @param mixed                                          $other             Evaluated value or object.
+     * @param string                                         $description       Additional information about the test
+     * @param SebastianBergmann\Comparator\ComparisonFailure $comparisonFailure
      *
      * @throws ExpectationFailedException
      */
     protected function fail($other, $description, ComparisonFailure $comparisonFailure = null)
     {
-        $failureDescription = \sprintf(
+        $failureDescription = sprintf(
             'Failed asserting that %s.',
             $this->failureDescription($other)
         );
