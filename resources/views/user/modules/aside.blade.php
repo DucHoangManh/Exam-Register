@@ -23,17 +23,17 @@
 				</li>
 				<li class="kt-menu__item " aria-haspopup="true">
 					<a href="{{URL::to('registration')}}" class="kt-menu__link ">
-						<i class="kt-menu__link-icon flaticon2-protected"></i><span class="kt-menu__link-text">Đăng ký thi</span>
+						<i class="kt-menu__link-icon flaticon-edit-1"></i><span class="kt-menu__link-text">Đăng ký thi</span>
 					</a>
 				</li>
 				<li class="kt-menu__item " aria-haspopup="true">
 					<a href="{{URL::to('calendar')}}" class="kt-menu__link ">
-						<i class="kt-menu__link-icon flaticon2-mail-1"></i><span class="kt-menu__link-text">Lịch thi</span>
+						<i class="kt-menu__link-icon flaticon-clock-2"></i><span class="kt-menu__link-text">Lịch thi</span>
 					</a>
 				</li>
 				<li class="kt-menu__item " aria-haspopup="true">
 					<a href="#" class="kt-menu__link ">
-						<i class="kt-menu__link-icon flaticon2-mail-1"></i><span class="kt-menu__link-text">Kết quả</span>
+						<i class="kt-menu__link-icon flaticon-interface-3"></i><span class="kt-menu__link-text">Kết quả</span>
 					</a>
 				</li>
 			</ul>

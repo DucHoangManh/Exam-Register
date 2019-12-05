@@ -13,10 +13,10 @@ namespace PHPUnit\Util\PHP;
 use __PHP_Incomplete_Class;
 use ErrorException;
 use PHPUnit\Framework\Exception;
-use PHPUnit\Framework\SyntheticError;
-use PHPUnit\Framework\Test;
-use PHPUnit\Framework\TestFailure;
 use PHPUnit\Framework\TestResult;
+use PHPUnit\Framework\TestFailure;
+use PHPUnit\Framework\Test;
+use PHPUnit\Framework\SyntheticError;
 use PHPUnit\Util\InvalidArgumentHelper;
 use SebastianBergmann\Environment\Runtime;
 
@@ -46,7 +46,7 @@ abstract class AbstractPhpProcess
     protected $args = '';
 
     /**
-     * @var array<string, string>
+     * @var array
      */
     protected $env = [];
 
@@ -74,7 +74,7 @@ abstract class AbstractPhpProcess
      */
     public function setUseStderrRedirection($stderrRedirection)
     {
-        if (!\is_bool($stderrRedirection)) {
+        if (!is_bool($stderrRedirection)) {
             throw InvalidArgumentHelper::factory(1, 'boolean');
         }
 
@@ -134,7 +134,7 @@ abstract class AbstractPhpProcess
     /**
      * Sets the array of environment variables to start the child process with
      *
-     * @param array<string, string> $env
+     * @param array $env
      */
     public function setEnv(array $env)
     {
@@ -144,7 +144,7 @@ abstract class AbstractPhpProcess
     /**
      * Returns the array of environment variables to start the child process with
      *
-     * @return array<string, string>
+     * @return array
      */
     public function getEnv()
     {
@@ -223,12 +223,12 @@ abstract class AbstractPhpProcess
             $command .= ' -qrr ';
 
             if ($file) {
-                $command .= '-e ' . \escapeshellarg($file);
+                $command .= '-e ' . escapeshellarg($file);
             } else {
-                $command .= \escapeshellarg(__DIR__ . '/eval-stdin.php');
+                $command .= escapeshellarg(__DIR__ . '/PHP/eval-stdin.php');
             }
         } elseif ($file) {
-            $command .= ' -f ' . \escapeshellarg($file);
+            $command .= ' -f ' . escapeshellarg($file);
         }
 
         if ($this->args) {
@@ -264,7 +264,7 @@ abstract class AbstractPhpProcess
         $buffer = '';
 
         foreach ($settings as $setting) {
-            $buffer .= ' -d ' . \escapeshellarg($setting);
+            $buffer .= ' -d ' . $setting;
         }
 
         return $buffer;
@@ -285,28 +285,27 @@ abstract class AbstractPhpProcess
         if (!empty($stderr)) {
             $result->addError(
                 $test,
-                new Exception(\trim($stderr)),
+                new Exception(trim($stderr)),
                 $time
             );
         } else {
-            \set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+            set_error_handler(function ($errno, $errstr, $errfile, $errline) {
                 throw new ErrorException($errstr, $errno, $errno, $errfile, $errline);
             });
-
             try {
-                if (\strpos($stdout, "#!/usr/bin/env php\n") === 0) {
-                    $stdout = \substr($stdout, 19);
+                if (strpos($stdout, "#!/usr/bin/env php\n") === 0) {
+                    $stdout = substr($stdout, 19);
                 }
 
-                $childResult = \unserialize(\str_replace("#!/usr/bin/env php\n", '', $stdout));
-                \restore_error_handler();
+                $childResult = unserialize(str_replace("#!/usr/bin/env php\n", '', $stdout));
+                restore_error_handler();
             } catch (ErrorException $e) {
-                \restore_error_handler();
+                restore_error_handler();
                 $childResult = false;
 
                 $result->addError(
                     $test,
-                    new Exception(\trim($stdout), 0, $e),
+                    new Exception(trim($stdout), 0, $e),
                     $time
                 );
             }
@@ -319,8 +318,8 @@ abstract class AbstractPhpProcess
                 $test->setResult($childResult['testResult']);
                 $test->addToAssertionCount($childResult['numAssertions']);
 
-                /** @var TestResult $childResult */
                 $childResult = $childResult['result'];
+                /* @var $childResult TestResult */
 
                 if ($result->getCollectCodeCoverageInformation()) {
                     $result->getCodeCoverage()->merge(
@@ -384,7 +383,7 @@ abstract class AbstractPhpProcess
     }
 
     /**
-     * Gets the thrown exception from a PHPUnit\Framework\TestFailure.
+     * Gets the thrown exception from a PHPUnit_Framework_TestFailure.
      *
      * @param TestFailure $error
      *
@@ -399,12 +398,12 @@ abstract class AbstractPhpProcess
         if ($exception instanceof __PHP_Incomplete_Class) {
             $exceptionArray = [];
             foreach ((array) $exception as $key => $value) {
-                $key                  = \substr($key, \strrpos($key, "\0") + 1);
+                $key                  = substr($key, strrpos($key, "\0") + 1);
                 $exceptionArray[$key] = $value;
             }
 
             $exception = new SyntheticError(
-                \sprintf(
+                sprintf(
                     '%s: %s',
                     $exceptionArray['_PHP_Incomplete_Class_Name'],
                     $exceptionArray['message']

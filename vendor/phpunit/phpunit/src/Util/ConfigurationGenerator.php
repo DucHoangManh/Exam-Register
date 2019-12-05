@@ -10,6 +10,8 @@
 
 namespace PHPUnit\Util;
 
+/**
+ */
 class ConfigurationGenerator
 {
     /**
@@ -25,7 +27,7 @@ class ConfigurationGenerator
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
          verbose="true">
-    <testsuite name="default">
+    <testsuite>
         <directory suffix="Test.php">{tests_directory}</directory>
     </testsuite>
 
@@ -48,7 +50,7 @@ EOT;
      */
     public function generateDefaultConfiguration($phpunitVersion, $bootstrapScript, $testsDirectory, $srcDirectory)
     {
-        return \str_replace(
+        return str_replace(
             [
                 '{phpunit_version}',
                 '{bootstrap_script}',

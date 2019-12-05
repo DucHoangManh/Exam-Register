@@ -11,6 +11,8 @@ namespace PHPUnit\Framework\Constraint;
 
 use PHPUnit\Framework\ExpectationFailedException;
 
+/**
+ */
 abstract class Composite extends Constraint
 {
     /**
@@ -54,7 +56,7 @@ abstract class Composite extends Constraint
                 $returnResult
             );
         } catch (ExpectationFailedException $e) {
-            $this->fail($other, $description, $e->getComparisonFailure());
+            $this->fail($other, $description);
         }
     }
 
@@ -65,6 +67,6 @@ abstract class Composite extends Constraint
      */
     public function count()
     {
-        return \count($this->innerConstraint);
+        return count($this->innerConstraint);
     }
 }
