@@ -13,6 +13,6 @@ class Teacher extends Model
     protected $hidden = [];
 
     public function class() {
-    	return $this->hasMany('App\Models\Class');
+    	return $this->hasMany('App\Models\ClassSubject');
     }
 }

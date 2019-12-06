@@ -52,4 +52,16 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::get('student/delete/{student}', 'StudentController@destroy');
 
 	Route::resource('user', 'UserController');
+
+	Route::resource('teacher', 'TeacherController');
+	Route::post('teacher/import', 'TeacherController@import');
+	Route::get('teacher/delete/{teacher}', 'TeacherController@destroy');
+
+	Route::resource('class', 'ClassController');
+	Route::post('class/import', 'ClassController@import');
+	Route::get('class/delete/{class}', 'ClassController@destroy');
+
+	Route::get('search/teacher/{name}', 'SearchController@teacher');
+
 });
+
