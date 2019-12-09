@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('user.home');
-})->name('home')->middleware('student');
 
 Route::get('home', function () {
     return view('user.home');
@@ -47,9 +44,55 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		return view('admin.home');
 	});
 
+	/*
+	*	Resource
+	*/
 	Route::resource('student', 'StudentController');
-	Route::post('student/import', 'StudentController@import');
-	Route::get('student/delete/{student}', 'StudentController@destroy');
-
 	Route::resource('user', 'UserController');
+	Route::resource('teacher', 'TeacherController');
+	Route::resource('class', 'ClassController');
+	Route::resource('subject', 'SubjectController');
+	Route::resource('location', 'LocationController');
+	Route::resource('room', 'RoomController');
+
+	/*
+	*	Import
+	*/
+	Route::group(['prefix'=>'import'], function() {
+		Route::post('student', 'StudentController@import');
+		Route::post('user', 'UserController@import');
+		Route::post('teacher', 'TeacherController@import');
+		Route::post('class', 'ClassController@import');
+		Route::post('subject', 'SubjectController@import');
+		Route::post('location', 'LocationController@import');
+		Route::post('room', 'RoomController@import');
+	});
+	
+
+
+	Route::get('student/delete/{student}', 'StudentController@destroy');
+	Route::get('user/delete/{user}', 'UserController@destroy');
+	Route::get('teacher/delete/{teacher}', 'TeacherController@destroy');
+	Route::get('class/delete/{class}', 'ClassController@destroy');
+	Route::get('subject/delete/{class}', 'SubjectController@destroy');
+	Route::get('location/delete/{location}', 'LocationController@destroy');
+	Route::get('room/delete/{room}', 'RoomController@destroy');
+
+	
+
+	Route::get('search/teacher/{name}', 'SearchController@teacher');
+	Route::get('search/subject/{name}', 'SearchController@subject');
+	Route::get('search/student/{name}', 'SearchController@student');
+	Route::get('search/location/{name}', 'SearchController@location');
+
+	Route::group(['prefix' => 'export'], function() {
+		Route::get('student', 'StudentController@export')->name('export.student');
+		Route::get('user', 'UserController@export')->name('export.user');
+		Route::get('teacher', 'TeacherController@export')->name('export.teacher');
+		Route::get('subject', 'SubjectController@export')->name('export.subject');
+		Route::get('location', 'LocationController@export')->name('export.location');
+		Route::get('room', 'RoomController@export')->name('export.room');
+	});
+
 });
+

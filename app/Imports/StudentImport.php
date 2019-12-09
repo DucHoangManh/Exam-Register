@@ -16,11 +16,11 @@ class StudentImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {   
         return new Student([
-            'name' => $row['name'] ?? $row['ten'] ?? null,
+            'name' => $row['name'] ?? $row['ho_va_ten'] ?? null,
             'code' => $row['code'] ?? $row['mssv'] ?? null,
-            'gender' => $row['gender'] ?? $row['gioi tinh'] ?? null,
+            'gender' => $row['gender'] ?? $row['gioi_tinh'] ?? null,
             // 'birthday' => $row['birthday'] ?? $row['ngay sinh'] ?? null,
-            'birthday' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['birthday'] ?? $row['ngay sinh'] ?? null)->format('Y-m-d')
+            'birthday' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['birthday'] ?? $row['ngay_sinh'] ?? null)->format('Y-m-d')
             
         ]);
     }

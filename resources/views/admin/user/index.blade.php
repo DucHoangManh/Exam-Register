@@ -13,9 +13,14 @@
 				</div>
 				<div class="actions">
 					<div class="btn-group">
-						<a href="{{URL::to('admin/user/create')}}">
+						<a href="{{route('user.create')}}">
 							<button id="sample_editable_1_new" class="btn sbold green"> Add New
 							<i class="fa fa-plus"></i>
+							</button>
+						</a>
+						<a href="{{route('export.user')}}">
+							<button id="sample_editable_1_new" class="btn sbold blue-madison"> Export
+							<i class="fa fa-cloud-download"></i>
 							</button>
 						</a>
 					</div>
@@ -76,7 +81,9 @@
 				<div class="paginate" style="text-align: center;">
 					{{ $users->links() }}
 				</div>
-				
+				<p class="text-left">
+					Tổng số tài khoản: <strong>{{$users->count()}}</strong>
+				</p>
 			</div>
 		</div>
 	</div>

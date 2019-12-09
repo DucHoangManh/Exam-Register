@@ -63,12 +63,12 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
-                        <a href="ui_tiles.html" class="nav-link ">
+                        <a href="{{route('room.index')}}" class="nav-link ">
                             <span class="title">Show</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="ui_datepaginator.html" class="nav-link ">
+                        <a href="{{route('room.create')}}" class="nav-link ">
                             <span class="title">Create</span>
                         </a>
                     </li>
@@ -82,12 +82,12 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
-                        <a href="ui_tiles.html" class="nav-link ">
+                        <a href="{{route('location.index')}}" class="nav-link ">
                             <span class="title">Show</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="ui_datepaginator.html" class="nav-link ">
+                        <a href="{{route('location.create')}}" class="nav-link ">
                             <span class="title">Create</span>
                         </a>
                     </li>
@@ -108,7 +108,7 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
-                        <a href="{{URL::to('admin/student')}}" class="nav-link ">
+                        <a href="{{route('student.index')}}" class="nav-link ">
                             <span class="title">Show</span>
                         </a>
                     </li>
@@ -127,12 +127,12 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
-                        <a href="{{URL::to('admin/student')}}" class="nav-link ">
+                        <a href="{{URL::to('admin/teacher')}}" class="nav-link ">
                             <span class="title">Show</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="{{URL::to('admin/student/create')}}" class="nav-link ">
+                        <a href="{{URL::to('admin/teacher/create')}}" class="nav-link ">
                             <span class="title">Create</span>
                         </a>
                     </li>
@@ -146,12 +146,12 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
-                        <a href="{{URL::to('admin/student')}}" class="nav-link ">
+                        <a href="{{URL::to('admin/class')}}" class="nav-link ">
                             <span class="title">Show</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="{{URL::to('admin/student/create')}}" class="nav-link ">
+                        <a href="{{URL::to('admin/class/create')}}" class="nav-link ">
                             <span class="title">Create</span>
                         </a>
                     </li>
@@ -166,12 +166,12 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
-                        <a href="{{URL::to('admin/student')}}" class="nav-link ">
+                        <a href="{{URL::to('admin/subject')}}" class="nav-link ">
                             <span class="title">Show</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="{{URL::to('admin/student/create')}}" class="nav-link ">
+                        <a href="{{URL::to('admin/subject/create')}}" class="nav-link ">
                             <span class="title">Create</span>
                         </a>
                     </li>
