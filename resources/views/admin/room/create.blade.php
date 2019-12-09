@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Giảng viên')
-@section('page-title', 'Giảng viên')
+@section('title', 'Phòng thi')
+@section('page-title', 'Phòng thi')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <style>
@@ -16,49 +16,47 @@
 			<div class="portlet-title">
 				<div class="caption font-dark">
 					<i class="icon-settings font-dark"></i>
-					<span class="caption-subject bold uppercase"> Quản lý giảng viên </span>
+					<span class="caption-subject bold uppercase"> Quản lý phòng thi </span>
 				</div>
 				<div class="actions">
 					<div class="btn-group">
-						<form action="{{URL::to('admin/import/teacher')}}" method="POST" enctype="multipart/form-data">
+						<form action="{{URL::to('admin/import/room')}}" method="POST" enctype="multipart/form-data">
 							{{ csrf_field() }}
-							<label for="teacher-file">
+							<label for="room-file">
 								<div id="sample_editable_1_new" class="btn sbold green"> Add
 									<i class="fa fa-plus"></i>
 								</div>
 							</label>
-							<input id="teacher-file" type="file" name="teacher_file" class="hidden" accept=".xlsx, .xls, .csv, .ods">
+							<input id="room-file" type="file" name="room_file" class="hidden" accept=".xlsx, .xls, .csv, .ods">
 							<button type="submit" class="btn green btn-outline">
-							submit
+							Import
 							</button>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="portlet-body form">
-				<form action="{{URL::to('admin/teacher')}}" method="POST" class="form-horizontal" role="form">
+			<div id="form" class="portlet-body form">
+				<form action="{{URL::to('admin/room')}}" method="POST" class="form-horizontal" role="form">
 					{{ csrf_field() }}
 					<div class="form-body">
 						<div class="form-group">
-							<label class="col-md-4 control-label">Họ và tên</label>
+							<label class="col-md-4 control-label">Tên phòng thi</label>
 							<div class="col-md-8">
 								<input type="text" name="name" class="form-control input-inline input-medium" placeholder="Enter text">
 							</div>
-						</div>
+						</div>	
 						<div class="form-group">
-							<label class="col-md-4 control-label">Email</label>
+							<label class="col-md-4 control-label">Tên điểm thi</label>
 							<div class="col-md-8">
-								<input type="text" name="email" class="form-control input-inline input-medium" placeholder="Enter text">
-								<span class="help-inline"> Duy nhất </span>
+								<input type="text" name="location_id" class="form-control input-inline input-medium location" placeholder="Enter text">
 							</div>
-						</div>
-						
+						</div>					
 					</div>
 					<div class="form-actions">
 						<div class="row">
 							<div class="col-md-offset-4 col-md-8">
 								<button type="submit" class="btn green">Submit</button>
-								<a href="{{URL::to('admin/teacher')}}" type="button" class="btn default">Cancel</a>
+								<a href="{{URL::to('admin/room')}}" type="button" class="btn default">Cancel</a>
 							</div>
 						</div>
 					</div>
@@ -67,4 +65,8 @@
 		</div>
 	</div>
 </div>
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/typeahead.bundle.js"></script>
+<script src="assets/js/room/create.js"></script>
 @endsection

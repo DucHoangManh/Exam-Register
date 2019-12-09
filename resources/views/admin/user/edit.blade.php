@@ -41,7 +41,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Email</label>
 							<div class="col-md-8">
-								<input type="text" name="code" class="form-control input-inline input-medium" placeholder="Enter text" value="{{$user->email}}">
+								<input type="text" name="email" class="form-control input-inline input-medium" placeholder="Enter text" value="{{$user->email}}">
 								<span class="help-inline"> Duy nhất </span>
 							</div>
 						</div>

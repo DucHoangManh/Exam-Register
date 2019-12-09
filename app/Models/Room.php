@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $fillable = [
-    	'name', 'code'
+    	'name', 'location_id'
     ];
 
     protected $hidden = [];
@@ -18,5 +18,9 @@ class Room extends Model
 
     public function shift() {
     	return $this->belongsToMany('App\Models\Shift', 'shift_room', 'room_id', 'shift_id');
+    }
+
+    public function location() {
+        return $this->belongsTo('App\Models\Location');
     }
 }

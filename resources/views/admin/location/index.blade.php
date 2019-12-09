@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Tài khoản')
-@section('page-title', 'Tài khoản')
+@section('title', 'Điểm thi')
+@section('page-title', 'Điểm thi')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <div class="row">
@@ -9,16 +9,16 @@
 			<div class="portlet-title">
 				<div class="caption font-dark">
 					<i class="icon-settings font-dark"></i>
-					<span class="caption-subject bold uppercase">Quản lý giáo viên</span>
+					<span class="caption-subject bold uppercase">Quản lý điểm thi</span>
 				</div>
 				<div class="actions">
 					<div class="btn-group">
-						<a href="{{route('teacher.create')}}">
+						<a href="{{route('location.create')}}">
 							<button id="sample_editable_1_new" class="btn sbold green"> Add New
 							<i class="fa fa-plus"></i>
 							</button>
 						</a>
-						<a href="{{route('export.teacher')}}">
+						<a href="{{route('export.location')}}">
 							<button id="sample_editable_1_new" class="btn sbold blue-madison"> Export
 							<i class="fa fa-cloud-download"></i>
 							</button>
@@ -38,36 +38,34 @@
 							<tr role="row">
 								<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 110px;">#
 								</th>
-								<th class="sorting_asc" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 225px;"> Tên giảng viên </th>
-								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 431px;">Số lớp đang dạy</th>
-								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 200px;">Mã lớp</th>
+								<th class="sorting_asc" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 225px;"> Tên điểm thi </th>
+								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 431px;">Số phòng thi</th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 115px;"> Thao tác </th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($teachers as $teacher)
+							@foreach($locations as $location)
 							<tr class="gradeX odd" role="row">
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td> {{$teacher->name}} </td>
 								<td>
-									{{$teacher->class}}
+									<a href="{{route('location.show', $location->id)}}">{{$location->name}}</a>
 								</td>
 								<td>
-									@if($teacher->class != null)
-									{{$teacher->class->count()}}
+									@if($location->room != null)
+									{{$location->room->count()}}
 									@else
-									null
+									0
 									@endif
 								</td>
 
 								<td>
 									<div class="btn-group">
-										<a href="{{URL::to('admin/teacher/'.$teacher->id.'/edit')}}" class="btn btn-icon-only blue">
+										<a href="{{URL::to('admin/location/'.$location->id.'/edit')}}" class="btn btn-icon-only blue">
 											<i class="icon-pencil"></i>
 										</a>
-										<a href="{{URL::to('admin/teacher/delete/'.$teacher->id)}}" class="btn btn-icon-only red ml-10">
+										<a href="{{URL::to('admin/location/delete/'.$location->id)}}" class="btn btn-icon-only red ml-10">
 											<i class="icon-ban"></i>
 										</a>
 										
@@ -79,10 +77,10 @@
 					</table>
 				</div>
 				<div class="paginate" style="text-align: center;">
-					{{ $teachers->links() }}
+					{{ $locations->links() }}
 				</div>
 				<p class="text-left">
-					Tổng số giáo viên: <strong>{{$teachers->count()}}</strong>
+					Tổng số điểm thi: <strong>{{$locations->count()}}</strong>
 				</p>
 			</div>
 		</div>

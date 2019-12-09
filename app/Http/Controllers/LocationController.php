@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Room;
 use App\Models\Location;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\RoomImport;
-use App\Exports\RoomExport;
-use App\Repositories\RoomRepository;
+use App\Imports\LocationImport;
+use App\Exports\LocationExport;
+use App\Repositories\LocationRepository;
 
-class RoomController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +18,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::orderBy('name')->paginate(10);
-        return view('admin.room.index', compact('rooms'));
+        $locations = Location::orderBy('name')->paginate(10);
+        return view('admin.location.index', compact('locations'));
     }
 
     /**
@@ -30,7 +29,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('admin.room.create');
+        return view('admin.location.create');
     }
 
     /**
@@ -41,8 +40,8 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $room = Room::create(request()->only('name', 'location_id'));
-        return redirect()->route('room.index');
+        $location = Location::create(request()->only('name'));
+        return redirect()->route('location.index');
     }
 
     /**
@@ -53,8 +52,8 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $rooms = Room::orderBy('name')->paginate(10);
-        return redirect()->route('room.index')->compact('rooms');
+        $location = Location::findOrFail($id);
+        return view('admin.location.show', ['location' => $location]);
     }
 
     /**
@@ -65,8 +64,8 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        $room = Room::findOrFail($id);
-        return view('admin.room.edit', compact('room'));
+        $location = Location::findOrFail($id);
+        return view('admin.location.edit', compact('location'));
     }
 
     /**
@@ -78,12 +77,10 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $location = Location::where('name', '=' , $request['location_name'])->first();
-        $room = Room::findOrFail($id);
-        $room->name = $request['name'];
-        $room->location_id = $location->id;
-        $room->save();
-        return redirect()->route('room.index');
+        $location = Location::findOrFail($id);
+        $location->name = $request['name'];
+        $location->save();
+        return redirect()->route('location.index');
     }
 
     /**
@@ -94,18 +91,18 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        $room = Room::findOrFail($id);
-        $room->delete();
-        return redirect()->route('room.index');
+        $location = Location::findOrFail($id);
+        $location->delete();
+        return redirect()->route('location.index');
     }
 
     public function import() {
-        $import = Excel::import(new RoomImport, request()->file('room_file'));
-        return redirect()->route('room.index');
+        $import = Excel::import(new LocationImport, request()->file('location_file'));
+        return redirect()->route('location.index');
     }
 
     public function export() {
-        $export = Excel::download(new RoomExport, 'room.xlsx');
+        $export = Excel::download(new LocationExport, 'location.xlsx');
         return $export;
     }
 }

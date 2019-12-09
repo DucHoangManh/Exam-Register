@@ -2,17 +2,12 @@
 
 namespace App\Imports;
 
-use App\Models\Teacher;
+use App\Models\Subject;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TeacherImport implements ToModel, WithHeadingRow
+class SubjectImport implements ToModel, WithHeadingRow
 {
-    /**
-    * Number of rows skip in import file
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
     public function headingRow() : int {
         return 1;
     }
@@ -24,9 +19,10 @@ class TeacherImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new Teacher([
-            'name' => $row['name'] ?? $row['ho_va_ten'] ?? null,
-            'email' => $row['email'] ?? null
+        return new Subject([
+            'name' => $row['name'] ?? $row["ten_mon_hoc"] ?? null,
+            'credit' => $row['credit'] ?? $row['so_tin_chi'] ?? null,
+            'code' => $row['code'] ?? $row['ma_mon_hoc'] ?? null
         ]);
     }
 }

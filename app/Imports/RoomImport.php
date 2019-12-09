@@ -2,11 +2,12 @@
 
 namespace App\Imports;
 
-use App\Models\Teacher;
+use App\Models\Room;
+use App\Models\Location;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TeacherImport implements ToModel, WithHeadingRow
+class RoomImport implements ToModel, WithHeadingRow
 {
     /**
     * Number of rows skip in import file
@@ -24,9 +25,10 @@ class TeacherImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new Teacher([
-            'name' => $row['name'] ?? $row['ho_va_ten'] ?? null,
-            'email' => $row['email'] ?? null
+        // dd(($row['name'] ?? $row['ten_diem_thi'] ?? null));
+        return new Room([
+            'name' => $row['name'] ?? $row['ten_phong_thi'] ?? null,
+            'location_id' => Location::where('name', 'like', '%'.($row['name'] ?? $row['ten_diem_thi'] ?? null).'%')->first()->id
         ]);
     }
 }
