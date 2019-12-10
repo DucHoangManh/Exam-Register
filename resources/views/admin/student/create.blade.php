@@ -73,22 +73,7 @@
 									</label>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="col-md-4 control-label">Ngày thêm</label>
-							<div class="col-md-8">
-								<p class="form-control-static">  </p>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="col-md-4 control-label">Ngày sửa</label>
-							<div class="col-md-8">
-								<p class="form-control-static">  </p>
-							</div>
-						</div>
-						
+						</div>						
 					</div>
 					<div class="form-actions">
 						<div class="row">

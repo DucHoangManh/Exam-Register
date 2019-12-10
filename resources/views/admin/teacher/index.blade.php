@@ -52,13 +52,13 @@
 								</td>
 								<td> {{$teacher->name}} </td>
 								<td>
-									{{$teacher->class}}
+									{{$teacher->class->count()}}
 								</td>
 								<td>
-									@if($teacher->class != null)
+									@if($teacher->class->count() != 0)
 									{{$teacher->class->count()}}
 									@else
-									null
+									Trống
 									@endif
 								</td>
 
