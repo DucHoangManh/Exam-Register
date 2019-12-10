@@ -30,10 +30,25 @@ class CreateClassesTable extends Migration
                 ->delete('cascade');
         });
 
+        Schema::create('shifts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('class_id');
+            $table->date('date');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->timestamps();
+
+            $table->foreign('class_id')
+                ->references('id')
+                ->on('classes')
+                ->delete('cascade');
+        });
+
         Schema::create('student_class', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('class_id');
             $table->unsignedInteger('student_id');
+            $table->smallInteger('is_baned')->default(0);
             $table->timestamps();
 
             $table->foreign('class_id')
@@ -118,11 +133,14 @@ class CreateClassesTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('classes');
+        Schema::dropIfExists('shifts');
         Schema::dropIfExists('student_class');
         Schema::dropIfExists('student_room');
         Schema::dropIfExists('student_shift');
         Schema::dropIfExists('shift_room');
         Schema::dropIfExists('exam_subject');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

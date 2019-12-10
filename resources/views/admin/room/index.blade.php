@@ -49,9 +49,11 @@
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td> {{$room->name}} </td>
 								<td>
-									{{$room->location->name}}
+									<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
+								</td>
+								<td>
+									<a href="{{route('location.show', $room->location->id)}}">{{$room->location->name}}</a>
 								</td>
 
 								<td>

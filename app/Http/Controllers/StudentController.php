@@ -34,18 +34,14 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     '' => 'required|max:100',
-        //     ''  => 'required',
-        // ]);
         $student = Student::create($request->only('name', 'code', 'gender', 'birthday'));
         return redirect()->route('student.index');
     }
 
     public function show($id)
     {
-        $students = Student::findOrFail($id);
-        return view('admin.student.edit', compact('student'));
+        $student = Student::findOrFail($id);
+        return view('admin.student.show', compact('student'));
     }
 
     public function edit($id)

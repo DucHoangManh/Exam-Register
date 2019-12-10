@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Tài khoản')
-@section('page-title', 'Tài khoản')
+@section('title', 'Giáo viên')
+@section('page-title', 'Giáo viên')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <div class="row">
@@ -50,7 +50,9 @@
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td> {{$teacher->name}} </td>
+								<td>
+									<a href="{{route('teacher.show', $teacher->id)}}">{{$teacher->name}}</a>
+								</td>
 								<td>
 									{{$teacher->class->count()}}
 								</td>

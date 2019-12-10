@@ -16,6 +16,7 @@ class CreateTableSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('code');
             $table->smallInteger('credit');
             $table->timestamps();
         });
@@ -28,6 +29,8 @@ class CreateTableSubjectsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('subjects');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Môn học')
-@section('page-title', 'Môn học')
+@section('title', 'Ca thi')
+@section('page-title', 'Ca thi')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <div class="row">
@@ -9,7 +9,7 @@
 			<div class="portlet-title">
 				<div class="caption font-dark">
 					<i class="icon-settings font-dark"></i>
-					<span class="caption-subject bold uppercase">Danh sách môn học</span>
+					<span class="caption-subject bold uppercase">Danh sách ca thi</span>
 				</div>
 				<div class="actions">
 					<div class="btn-group">
@@ -36,40 +36,49 @@
 					<table class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer" id="sample_1" role="grid" aria-describedby="sample_1_info">
 						<thead>
 							<tr role="row">
-								<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 110px;">#
-								</th>
-								<th class="sorting_asc" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 225px;"> Tên môn học</th>
-								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 200px;">Mã môn học</th>
-								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 200px;">Số tín chỉ</th>
-								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 115px;"> Số lớp </th>
-								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 115px;"> Thao tác </th>
+								<th rowspan="1" colspan="1" style="width: 110px;">#</th>
+								<th rowspan="1" colspan="1" style="width: 225px;">Môn thi</th>
+								<th rowspan="1" colspan="1" style="width: 115px;">Mã lớp</th>
+								<th rowspan="1" colspan="1" style="width: 200px;">Giảng viên</th>
+								<th rowspan="1" colspan="1" style="width: 115px;">Ngày thi</th>
+								<th rowspan="1" colspan="1" style="width: 115px;">Thời gian</th>
+								<th rowspan="1" colspan="1" style="width: 115px;">Phòng thi</th>
+								<th rowspan="1" colspan="1" style="width: 115px;">Thao tác</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($subjects as $subject)
+							@foreach($shifts as $shift)
 							<tr class="gradeX odd" role="row">
 								<td>
 									{{$loop->index+1}}
 								</td>
 								<td>
-									<a href="{{route('subject.show', $subject->id)}}">{{$subject->name}}</a>
+									<a href="{{route('subject.show', $shift->class->subject->id)}}">{{$shift->class->subject->name}}</a>
 								</td>
 								<td>
-									{{$subject->code}}
+									<a href="{{route('class.show', $shift->class->id)}}">{{$shift->class->code}}</a>
 								</td>
 								<td>
-									{{$subject->credit}}
+									<a href="{{route('teacher.show', $shift->class->teacher->id)}}">{{$shift->class->teacher->name}}</a>
 								</td>
 								<td>
-									{{$subject->class->count()}}
+									{{$shift->date}}
+								</td>
+								<td>
+									{{$shift->start.' - '.$shift->end}}
+								</td>
+								<td>
+									@foreach($shift->room as $room)
+									{{$room->name.' - '.$room->location->name}}
+									@endforeach
 								</td>
 
 								<td>
 									<div class="btn-group">
-										<a href="{{URL::to('admin/subject/'.$subject->id.'/edit')}}" class="btn btn-icon-only blue">
+										<a href="{{route('shift.edit', $shift->id)}}" class="btn btn-icon-only blue">
 											<i class="icon-pencil"></i>
 										</a>
-										<a href="{{URL::to('admin/subject/delete/'.$subject->id)}}" class="btn btn-icon-only red ml-10">
+										<a href="{{URL::to('admin/shift/delete/'.$shift->id)}}" class="btn btn-icon-only red ml-10">
 											<i class="icon-ban"></i>
 										</a>
 										
@@ -81,11 +90,8 @@
 					</table>
 				</div>
 				<div class="paginate" style="text-align: center;">
-					{{ $subjects->links() }}
+					{{ $shifts->links() }}
 				</div>
-				<p class="text-left">
-					Tổng số môn học: <strong>{{$subjects->count()}}</strong>
-				</p>
 			</div>
 		</div>
 	</div>

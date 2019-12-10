@@ -44,12 +44,12 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
-                        <a href="ui_tiles.html" class="nav-link ">
+                        <a href="{{route('shift.index')}}" class="nav-link ">
                             <span class="title">Show</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="ui_datepaginator.html" class="nav-link ">
+                        <a href="{{route('shift.create')}}" class="nav-link ">
                             <span class="title">Create</span>
                         </a>
                     </li>

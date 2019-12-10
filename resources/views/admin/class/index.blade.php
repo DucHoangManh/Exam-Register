@@ -47,15 +47,17 @@
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td> {{$class->code}} </td>
 								<td>
-									{{$class->subject->name}}
+									<a href="{{route('class.show', $class->id)}}">{{$class->code}}</a>
+								</td>
+								<td>
+									<a href="{{route('subject.show', $class->subject->id)}}">{{$class->subject->name}}</a>
 								</td>
 								<td>
 									{{$class->subject->credit}}
 								</td>
 								<td>
-									{{$class->teacher->name}}
+									<a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a>
 								</td>
 								<td>
 									{{$class->student->count()}}
@@ -63,7 +65,7 @@
 
 								<td>
 									<div class="btn-group">
-										<a href="{{URL::to('admin/class/'.$class->id.'/edit')}}" class="btn btn-icon-only blue">
+										<a href="{{route('class.edit', $class->id)}}" class="btn btn-icon-only blue">
 											<i class="icon-pencil"></i>
 										</a>
 										<a href="{{URL::to('admin/class/delete/'.$class->id)}}" class="btn btn-icon-only red ml-10">

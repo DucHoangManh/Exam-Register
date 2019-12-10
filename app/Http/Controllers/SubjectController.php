@@ -33,10 +33,6 @@ class SubjectController extends Controller
 
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     '' => 'required|max:100',
-        //     ''  => 'required',
-        // ]);
         $subject = Subject::create($request->only('name', 'code', 'credit'));
         return redirect()->route('subject.index');
     }
@@ -44,7 +40,7 @@ class SubjectController extends Controller
     public function show($id)
     {
         $subject = Subject::findOrFail($id);
-        return view('admin.subject.edit', compact('subject'));
+        return view('admin.subject.show', compact('subject'));
     }
 
     public function edit($id)

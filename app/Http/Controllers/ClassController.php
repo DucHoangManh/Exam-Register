@@ -13,7 +13,7 @@ class ClassController extends Controller
 {
     public function index()
     {
-        $classes = ClassSubject::orderBy('name')->paginate(10); 
+        $classes = ClassSubject::orderBy('code')->paginate(10); 
         return view('admin.class.index', compact('classes'));
     }
 
@@ -36,7 +36,7 @@ class ClassController extends Controller
     public function show($id)
     {
         $class = ClassSubject::findOrFail($id);
-        return view('admin.class.edit', compact('class'));
+        return view('admin.class.show', compact('class'));
     }
 
     public function edit($id)

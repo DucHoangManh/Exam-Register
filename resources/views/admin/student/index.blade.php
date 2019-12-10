@@ -56,7 +56,7 @@
 								</td>
 								<td class="sorting_1"> {{$student->code}} </td>
 								<td>
-									{{$student->name}}
+									<a href="{{route('student.show', $student->id)}}">{{$student->name}}</a>
 								</td>
 								<td>
 									@if($student->user != null)
@@ -80,7 +80,7 @@
 									@endif
 								</td>
 								<td class="center"> {{$student->birthday}} </td>
-								<td class="center"> {{$student->subject}} </td>
+								<td class="center"> {{$student->class->count()}} </td>
 								<td>
 									<div class="btn-group">
 										<a href="{{URL::to('admin/student/'.$student->id.'/edit')}}" class="btn btn-icon-only blue">

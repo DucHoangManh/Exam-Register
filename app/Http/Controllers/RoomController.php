@@ -53,8 +53,8 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $rooms = Room::orderBy('name')->paginate(10);
-        return redirect()->route('room.index')->compact('rooms');
+        $room = Room::findOrFail($id);
+        return view('admin.room.show', ['room' => $room]);
     }
 
     /**

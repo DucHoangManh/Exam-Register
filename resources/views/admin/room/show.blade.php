@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Điểm thi')
-@section('page-title', 'Điểm thi')
+@section('title', 'Phòng thi')
+@section('page-title', 'Phòng thi')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <div class="row">
@@ -9,34 +9,44 @@
 			<div class="portlet-title">
 				<div class="caption">
 					<i class="icon-pointer font-blue"></i>
-					<span class="caption-subject font-blue bold uppercase">Điểm thi</span>
+					<span class="caption-subject font-blue bold uppercase">Phòng thi</span>
 				</div>
 			</div>
 			<div class="portlet-body">
-				<h4>Tên điểm thi: <strong>{{$location->name}}</strong></h4>
+				<div class="row m-b-15">
+					<div class="col-md-6">
+						<h4>Tên phòng thi: <strong>{{$room->name}}</strong></h4>
+					</div>
+					<div class="col-md-6">
+						<h4>Điểm thi: <strong>{{$room->location->name}}</strong></h4>
+					</div>
+				</div>
+				
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Tên phòng thi</th>
-							<th scope="col">Số ca thi</th>
+							<th scope="col">Môn thi</th>
+							<th scope="col">Ngày thi</th>
+							<th scope="col">Bắt đầu</th>
+							<th scope="col">Kết thúc</th>
 							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($location->room as $room)
+						@foreach($room->shift as $shift)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
-							<td>
-								<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
-							</td>
-							<td>{{$room->shift()->count()}}</td>
+							<td>{{$shift->subject->name}}</td>
+							<td>{{$shift->date}}</td>
+							<td>{{$shift->start}}</td>
+							<td>{{$shift->end}}</td>
 							<td></td>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
-				<p>Tổng số phòng: <strong>{{$location->room->count()}}</strong></p>
+				<p>Tổng số ca thi: <strong>{{$room->shift->count()}}</strong></p>
 			</div>
 		</div>
 	</div>
@@ -45,7 +55,7 @@
 			<div class="portlet-title">
 				<div class="caption">
 					<i class="fa fa-plus font-blue"></i>
-					<span class="caption-subject font-blue bold uppercase">Thêm phòng thi</span>
+					<span class="caption-subject font-blue bold uppercase">Thêm ca thi</span>
 				</div>
 			</div>
 			<div class="portlet-body">
@@ -71,5 +81,6 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 @endsection

@@ -14,7 +14,7 @@ class ClassSubject extends Model
     protected $hidden = [];
 
     public function shift() {
-    	return $this->hasMany('App\Models\Shift');
+    	return $this->hasMany('App\Models\Shift', 'class_id');
     }
 
     public function teacher() {

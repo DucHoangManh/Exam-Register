@@ -50,7 +50,9 @@
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td> {{$user->username}} </td>
+								<td>
+									<a href="{{route('user.show', $user->id)}}">{{$user->username}}</a>
+								</td>
 								<td>
 									{{$user->email}}
 								</td>

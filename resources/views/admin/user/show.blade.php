@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Điểm thi')
-@section('page-title', 'Điểm thi')
+@section('title', 'Tài khoản')
+@section('page-title', 'Thông tin tài khoản')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <div class="row">
@@ -9,34 +9,21 @@
 			<div class="portlet-title">
 				<div class="caption">
 					<i class="icon-pointer font-blue"></i>
-					<span class="caption-subject font-blue bold uppercase">Điểm thi</span>
+					<span class="caption-subject font-blue bold uppercase">Tài khoản</span>
 				</div>
 			</div>
 			<div class="portlet-body">
-				<h4>Tên điểm thi: <strong>{{$location->name}}</strong></h4>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Tên phòng thi</th>
-							<th scope="col">Số ca thi</th>
-							<th scope="col">Xóa</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($location->room as $room)
-						<tr>
-							<th scope="row">{{$loop->index+1}}</th>
-							<td>
-								<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
-							</td>
-							<td>{{$room->shift()->count()}}</td>
-							<td></td>
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-				<p>Tổng số phòng: <strong>{{$location->room->count()}}</strong></p>
+				<div class="row">
+					<div class="col-md-6">
+						<p>Chủ tài khoản: <strong><a href="{{route('student.show', $user->student->id)}}">{{$user->student->name}}</a></strong></p>
+						<p>Email: <strong>{{$user->email}}</strong></p>
+					</div>
+					<div class="col-md-6">
+						<p>Tên TK: <strong>{{$user->username}}</strong></p>
+						<p>Loại TK: <strong>@if ($user->type == 0) Sinh viên @endif</strong></p>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -44,8 +31,8 @@
 		<div class="portlet light bordered">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-plus font-blue"></i>
-					<span class="caption-subject font-blue bold uppercase">Thêm phòng thi</span>
+					<i class="fa fa-refresh font-blue"></i>
+					<span class="caption-subject font-blue bold uppercase">Reset mật khẩu</span>
 				</div>
 			</div>
 			<div class="portlet-body">
@@ -53,9 +40,15 @@
 					{{ csrf_field() }}
 					<div class="form-body">
 						<div class="form-group">
-							<label class="col-md-4 control-label">Tên phòng thi</label>
+							<label class="col-md-4 control-label">Mật khẩu mới</label>
 							<div class="col-md-8">
 								<input type="text" name="name" class="form-control input-inline input-medium" placeholder="Enter text">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nhập lại mật khẩu</label>
+							<div class="col-md-8">
+								<input type="text" name="location_id" class="form-control input-inline input-medium location" placeholder="Enter text">
 							</div>
 						</div>
 					</div>
