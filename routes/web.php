@@ -85,6 +85,13 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::get('search/student/{name}', 'SearchController@student');
 	Route::get('search/location/{name}', 'SearchController@location');
 
+	Route::group(['prefix'=>'search'], function() {
+		Route::get('teacher/{name}', 'SearchController@teacher');
+		Route::get('subject/{name}', 'SearchController@subject');
+		Route::get('student/{name}', 'SearchController@student');
+		Route::get('location/{name}', 'SearchController@location');
+	});
+
 	Route::group(['prefix' => 'export'], function() {
 		Route::get('student', 'StudentController@export')->name('export.student');
 		Route::get('user', 'UserController@export')->name('export.user');
