@@ -13,9 +13,14 @@
 				</div>
 				<div class="actions">
 					<div class="btn-group">
-						<a href="{{URL::to('admin/student/create')}}">
+						<a href="{{route('student.create')}}">
 							<button id="sample_editable_1_new" class="btn sbold green"> Add New
 							<i class="fa fa-plus"></i>
+							</button>
+						</a>
+						<a href="{{route('export.student')}}">
+							<button id="sample_editable_1_new" class="btn sbold blue-madison"> Export
+							<i class="fa fa-cloud-download"></i>
 							</button>
 						</a>
 					</div>
@@ -95,7 +100,9 @@
 				<div class="paginate" style="text-align: center;">
 					{{ $students->links() }}
 				</div>
-				
+				<p class="text-left">
+					Tổng số sinh viên: <strong>{{$students->count()}}</strong>
+				</p>
 			</div>
 		</div>
 	</div>

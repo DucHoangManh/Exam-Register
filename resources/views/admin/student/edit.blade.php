@@ -57,7 +57,7 @@
 							<div class="col-md-8">
 								<p class="form-control-static">
 									{{$student->user->username}}
-									<a href="{{URL::to('admin/user/'.$student->user->username.'/edit')}}"> edit</a>
+									<a href="{{URL::to('admin/user/'.$student->user->id.'/edit')}}"> edit</a>
 								</p>
 							</div>
 						</div>

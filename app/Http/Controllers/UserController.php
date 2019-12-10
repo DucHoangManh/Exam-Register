@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Imports\UserImport;
+use App\Exports\UserExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -22,16 +24,20 @@ class UserController extends Controller
     }
 
     public function import() {
-        $import = Excel::import(new UserImport, request('user_file'));
+        $import = Excel::import(new UserImport, request()->file('user_file'));
         return redirect('admin/user');
+    }
+
+    public function export() {
+        $export = Excel::download(new UserExport, 'user.xlsx');
+        return $export;
     }
 
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     '' => 'required|max:100',
-        //     ''  => 'required',
-        // ]);
+        $request->merge([
+            'password' => Hash::make($request->password)
+        ]);
         $user = User::create($request->only('username', 'email', 'password'));
         return redirect()->route('user.index');
     }
@@ -51,8 +57,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->name = $request['username'];
-        $user->code  = $request['email'];
+        $user->username = $request['username'];
+        $user->email  = $request['email'];
         $user->save();
         return redirect()->route('user.index');
     }

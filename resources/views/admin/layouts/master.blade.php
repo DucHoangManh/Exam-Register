@@ -50,7 +50,7 @@
                     <!-- BEGIN PAGE BREADCRUMB -->
                     <ul class="page-breadcrumb breadcrumb">
                         <li>
-                            <a href="index-2.html">Home</a>
+                            <a href="{{URL::to('admin/home')}}">Home</a>
                             <i class="fa fa-circle"></i>
                         </li>
                         <li>

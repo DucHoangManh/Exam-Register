@@ -20,7 +20,7 @@
 				</div>
 				<div class="actions">
 					<div class="btn-group">
-						<form action="{{URL::to('admin/student/import')}}" method="POST">
+						<form action="{{URL::to('admin/student/import')}}" method="POST" enctype="multipart/form-data">
 							{{ csrf_field() }}
 							<label for="student-file">
 								<div id="sample_editable_1_new" class="btn sbold green"> Add

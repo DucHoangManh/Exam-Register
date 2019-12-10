@@ -13,7 +13,7 @@ class Shift extends Model
     protected $hidden = [];
 
     public function class() {
-    	return $this->belongsTo('App\Models\Class');
+    	return $this->belongsTo('App\Models\ClassSubject');
     }
 
     public function student() {

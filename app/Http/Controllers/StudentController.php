@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Repositories\StudentRepository;
 use App\Imports\StudentImport;
+use App\Exports\StudentExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
@@ -22,8 +23,13 @@ class StudentController extends Controller
     }
 
     public function import() {
-        $import = Excel::import(new StudentImport, request('student_file'));
+        $import = Excel::import(new StudentImport, request()->file('student_file'));
         return redirect('admin/student');
+    }
+
+    public function export() {
+        $export = Excel::download(new StudentExport, 'student.xlsx');
+        return $export;
     }
 
     public function store(Request $request)
