@@ -7,6 +7,10 @@ use App\Models\Teacher;
 use App\Models\Subject;
 use App\Models\Student;
 use App\Models\Location;
+use App\Models\ClassSubject;
+use App\Models\Room;
+use App\Models\Shift;
+use App\Models\User;
 
 class SearchController extends Controller
 {
@@ -27,9 +31,34 @@ class SearchController extends Controller
     	$student = Student::where('name', 'LIKE', '%'.$name.'%')->get();
     	return $student->toJson();
     }
+
     public function location() {
         $name = request('name');
         $location = Location::where('name', 'LIKE', '%'.$name.'%')->get();
         return $location->toJson();
+    }
+
+    public function user() {
+        $username = request('username');
+        $user = User::where('username', 'like', '%'.$username.'%')->get();
+        return $user->toJson();
+    }
+
+    public function class() {
+        $code = request('code');
+        $class = ClassSubject::where('code', 'like', '%'.$code.'%')->get();
+        return $class->toJson();
+    }
+
+    public function room() {
+        $name = request('name');
+        $room = Room::where('name', 'like', '%'.$name.'%')->get();
+        return $room->toJson();
+    }
+
+    public function shift() {
+        $code = request('code');
+        $shift = Shift::where('code', 'like', '%'.$code.'%')->get();
+        return $shift->toJson();
     }
 }

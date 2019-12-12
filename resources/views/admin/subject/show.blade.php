@@ -47,6 +47,13 @@
 							<td></td>
 						</tr>
 						@endforeach
+						<tr>
+							<th scope="row"></th>
+							<td></td>
+							<td></td>
+							<td><strong>90</strong></td>
+							<td></td>
+						</tr>
 					</tbody>
 				</table>
 				<p>Tổng số sinh viên đang học: <strong></strong></p>

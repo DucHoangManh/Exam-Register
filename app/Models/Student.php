@@ -18,10 +18,6 @@ class Student extends Model
     	return $this->belongsToMany('App\Models\ClassSubject', 'student_class', 'student_id', 'class_id');
     }
 
-    public function room() {
-    	return $this->belongsToMany('App\Models\Room', 'student_room', 'student_id', 'room_id');
-    }
-
     public function shift() {
     	return $this->belongsToMany('App\Models\Shift', 'student_shift', 'student_id', 'shift_id');
     }

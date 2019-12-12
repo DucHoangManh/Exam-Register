@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Môn học')
-@section('page-title', 'Môn học')
+@section('title', 'Thêm ca thi')
+@section('page-title', 'Ca thi')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <style>
@@ -16,7 +16,7 @@
 			<div class="portlet-title">
 				<div class="caption font-dark">
 					<i class="icon-settings font-dark"></i>
-					<span class="caption-subject bold uppercase"> Thêm môn học </span>
+					<span class="caption-subject bold uppercase"> Thêm ca thi </span>
 				</div>
 				<div class="actions">
 					<div class="btn-group">
@@ -40,26 +40,29 @@
 					{{ csrf_field() }}
 					<div class="form-body">
 						<div class="form-group">
-							<label class="col-md-4 control-label">Tên môn học</label>
+							<label class="col-md-4 control-label">Mã ca thi</label>
 							<div class="col-md-8">
-								<input type="text" name="name" class="form-control input-inline input-medium" placeholder="Enter text" value="">
+								<input type="text" name="name" class="form-control input-inline input-medium" readonly="readonly">
 								<span class="help-inline"> Duy nhất </span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Mã môn học</label>
+							<label class="col-md-4 control-label">Ngày thi</label>
 							<div class="col-md-8">
-								<input type="text" name="code" class="form-control input-inline input-medium" placeholder="Enter text" value="">
-								<span class="help-inline"> Duy nhất </span>
+								<input class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">Số tín chỉ</label>
+							<label class="col-md-4 control-label">Thời gian</label>
 							<div class="col-md-8">
-								<input name="credit" class="form-control form-control-inline input-medium date-picker" size="16" type="number" value="">
+								<div class="input-group input-medium date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+									<input type="text" class="form-control timepicker timepicker-24">
+									<span class="input-group-addon"> to </span>
+									<input type="text" class="form-control timepicker timepicker-24">
+								</div>
 							</div>
 						</div>
-						
+
 					</div>
 					<div class="form-actions">
 						<div class="row">
@@ -74,4 +77,7 @@
 		</div>
 	</div>
 </div>
+
+
+<script src="assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script> 
 @endsection

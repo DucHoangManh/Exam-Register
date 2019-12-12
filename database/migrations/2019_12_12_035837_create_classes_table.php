@@ -33,9 +33,10 @@ class CreateClassesTable extends Migration
         Schema::create('shifts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('class_id');
+            $table->string('code');
             $table->date('date');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->time('start');
+            $table->time('end');
             $table->timestamps();
 
             $table->foreign('class_id')

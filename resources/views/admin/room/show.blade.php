@@ -27,6 +27,9 @@
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Môn thi</th>
+							<th scope="col">Mã lớp</th>
+							<th scope="col">Tên giảng viên</th>
+							<th scope="col">Sĩ số</th>
 							<th scope="col">Ngày thi</th>
 							<th scope="col">Bắt đầu</th>
 							<th scope="col">Kết thúc</th>
@@ -37,7 +40,10 @@
 						@foreach($room->shift as $shift)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
-							<td>{{$shift->subject->name}}</td>
+							<td>{{$shift->class->subject->name}}</td>
+							<td>{{$shift->class->code}}</td>
+							<td>{{$shift->class->teacher->name}}</td>
+							<td>{{$shift->class->student->count()}}</td>
 							<td>{{$shift->date}}</td>
 							<td>{{$shift->start}}</td>
 							<td>{{$shift->end}}</td>

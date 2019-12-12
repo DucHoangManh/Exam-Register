@@ -45,6 +45,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		return view('admin.home');
 	});
 
+
 	/*
 	*	Resource
 	*/
@@ -88,6 +89,10 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		Route::get('subject/{name}', 'SearchController@subject');
 		Route::get('student/{name}', 'SearchController@student');
 		Route::get('location/{name}', 'SearchController@location');
+		Route::get('class/{code}', 'SearchController@class');
+		Route::get('room/{name}', 'SearchController@room');
+		Route::get('shift/{code}', 'SearchController@shift');
+		Route::get('user/{username}', 'SearchController@user');
 	});
 
 	Route::group(['prefix' => 'export'], function() {

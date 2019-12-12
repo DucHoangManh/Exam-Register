@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Thông tin môn học')
-@section('page-title', 'Thông tin môn học')
+@section('title', 'Thông tin ca thi')
+@section('page-title', 'Thông tin ca thi')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <div class="row">
@@ -9,44 +9,48 @@
 			<div class="portlet-title">
 				<div class="caption">
 					<i class="icon-pointer font-blue"></i>
-					<span class="caption-subject font-blue bold uppercase">Môn học</span>
+					<span class="caption-subject font-blue bold uppercase">Ca thi</span>
 				</div>
 			</div>
 			<div class="portlet-body">
 				<div class="row">
 					<div class="col-md-6">
-						<p>Tên môn học: <strong>{{$subject->name}}</strong></p>
-						<p>Số tín chỉ: <strong>{{$subject->credit}}</strong></p>
+						<p>Ngày thi: <strong>{{$shift->date}}</strong></p>
+						<p>Số lớp thi: <strong>{{$shift->class->count()}}</strong></p>
+						<p>Số phòng thi: <strong>{{$shift->room->count()}}</strong></p>
 					</div>
 					<div class="col-md-6">
-						<p>Mã: <strong>{{$subject->code}}</strong></p>
-						<p>Số lớp: <strong>{{$subject->class->count()}}</strong></p>
+						<p>Thời gian: <strong>{{$shift->start.' - '.$shift->end}}</strong></p>
+						<p>Số sinh viên đăng ký: <strong>{{$shift->student->count()}}</strong></p>
+						<p>Số sinh viên chưa đăng ký: <strong>{{rand(10, 25)}}</strong></p>
 					</div>
 				</div>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Mã lớp</th>
-							<th scope="col">Giảng viên</th>
+							<th scope="col">Tên phòng thi</th>
+							<th scope="col">Điểm thi</th>
+							<th scope="col">Môn thi</th>
+							<th scope="col">Tên lớp</th>
+							<th scope="col">Giáo viên</th>
 							<th scope="col">Sĩ số</th>
 							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($subject->class as $class)
+						@for($i = 0; $i < 10; $i++)
 						<tr>
-							<th scope="row">{{$loop->index+1}}</th>
-							<td>
-								<a href="{{route('class.show', $class->id)}}">{{$class->code}}</a>
-							</td>
-							<td>
-								<a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a>
-							</td>
-							<td>{{$class->student->count()}}</td>
+							<th scope="row">{{$i+1}}</th>
+							<td>Chưa làm</td>
+							<td>Chưa làm</td>
+							<td>Chưa làm</td>
+							<td>Chưa làm</td>
+							<td>Chưa làm</td>
+							<td>Chưa làm</td>
 							<td></td>
 						</tr>
-						@endforeach
+						@endfor
 					</tbody>
 				</table>
 				<p>Tổng số sinh viên đang học: <strong></strong></p>

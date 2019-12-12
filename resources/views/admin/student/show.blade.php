@@ -3,6 +3,7 @@
 @section('page-title', 'Thông tin sinh viên')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
+
 <div class="row">
 	<div class="col-md-8">
 		<div class="portlet light bordered">
@@ -16,13 +17,15 @@
 				<div class="row">
 					<div class="col-md-6">
 						<p>Họ và tên: <strong>{{$student->name}}</strong></p>
-						<p>Ngày sinh: <strong>{{$student->birthday}}</strong></p>	
+						<p>Ngày sinh: <strong>{{$student->birthday}}</strong></p>
+						<p>Email: <strong>{{$student->user->email}}</strong></p>
 					</div>
 					<div class="col-md-6">
 						<p>Mã sinh viên: <strong>{{$student->code}}</strong></p>
 						<p>Giới tính: <strong>@if($student->gender == 0) Nam @else Nữ @endif</strong></p>
 					</div>
-				</div>				
+				</div>
+
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -31,6 +34,10 @@
 							<th scope="col">Mã lớp</th>
 							<th scope="col">Giáo viên</th>
 							<th scope="col">Số tín chỉ</th>
+							<th scope="col">Điều kiện dự thi</th>
+							<th scope="col">Ngày thi</th>
+							<th scope="col">Thời gian</th>
+							<th scope="col">Địa điểm</th>
 							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
@@ -42,12 +49,15 @@
 							<td>{{$class->code}}</td>
 							<td>{{$class->teacher->name}}</td>
 							<td>{{$class->subject->credit}}</td>
+							<td>Đủ dk</td>
+							<td>Chưa làm</td>
+							<td>Chưa làm</td>
+							<td>Chưa làm</td>
 							<td></td>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
-				<p>Tổng số lớp: <strong>{{$student->class->count()}}</strong></p>
 			</div>
 		</div>
 	</div>

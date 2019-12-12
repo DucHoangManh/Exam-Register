@@ -2,6 +2,7 @@
 
 @section('header')
 @include('admin.modules.header')
+@include('sweet::alert')
 @endsection
 
 @section('sitebar')
@@ -15,4 +16,5 @@
 @section('input-js')
 @include('admin.modules.input-js')
 @endsection
+
 
