@@ -11,6 +11,30 @@
 					<i class="icon-pointer font-blue"></i>
 					<span class="caption-subject font-blue bold uppercase">Lớp học phần</span>
 				</div>
+				<div class="actions">
+					<div class="btn-group">
+						<form id="ban-form" action="{{URL::to('admin/import/studentBaned')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
+							{{ csrf_field() }}
+							<div id="sample_editable_1_new" class="btn sbold green btn-sm"> Import Ban
+								<i class="fa fa-plus"></i>
+							</div>
+							<input id="class-file" type="file" name="ban_file" class="hidden" accept=".xlsx, .xls, .csv, .ods">
+						</form>
+					</div>
+					<div class="btn-group">
+						<button id="sample_editable_1_new" class="btn sbold blue-madison" data-toggle="dropdown" aria-expanded="false"> Export
+						<i class="fa fa-angle-down"></i>
+						</button>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="{{route('export.classDetailExcel', $class->id)}}"> Excel </a>
+							</li>
+							<li>
+								<a href="{{route('export.classDetailPdf', $class->id)}}"> PDF </a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<div class="portlet-body">
 				<div class="row">
@@ -34,6 +58,7 @@
 							<th scope="col">Email</th>
 							<th scope="col">Giới tính</th>
 							<th scope="col">Ngày sinh</th>
+							<th scope="col">Chú thích</th>
 							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
@@ -50,6 +75,7 @@
 								@if ($student->gender == 0) Nam @else Nữ @endif
 							</td>
 							<td>{{$student->birthday}}</td>
+							<td>@if($student->is_baned == 1) Cấm thi @endif</td>
 							<td></td>
 						</tr>
 						@endforeach
@@ -93,4 +119,9 @@
 		</div>
 	</div>
 </div>
+<script src="assets/js/class/show.js"></script>
+<script src="assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+<script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<script src="assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+<script src="assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
 @endsection

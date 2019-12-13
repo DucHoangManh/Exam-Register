@@ -37,6 +37,7 @@
 						<thead>
 							<tr role="row">
 								<th rowspan="1" colspan="1" style="width: 110px;">#</th>
+								<th rowspan="1" colspan="1" style="width: 225px;">Mã ca thi</th>
 								<th rowspan="1" colspan="1" style="width: 225px;">Môn thi</th>
 								<th rowspan="1" colspan="1" style="width: 115px;">Mã lớp</th>
 								<th rowspan="1" colspan="1" style="width: 200px;">Giảng viên</th>
@@ -51,6 +52,9 @@
 							<tr class="gradeX odd" role="row">
 								<td>
 									{{$loop->index+1}}
+								</td>
+								<td>
+									<a href="{{route('shift.show', $shift->id)}}">{{$shift->code}}</a>
 								</td>
 								<td>
 									<a href="{{route('subject.show', $shift->class->subject->id)}}">{{$shift->class->subject->name}}</a>

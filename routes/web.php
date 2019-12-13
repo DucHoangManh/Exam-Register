@@ -70,6 +70,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		Route::post('location', 'LocationController@import');
 		Route::post('room', 'RoomController@import');
 		Route::post('shift', 'ShiftController@import');
+		Route::post('studentBaned', 'StudentController@importBan');
 	});
 	
 
@@ -103,7 +104,18 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		Route::get('location', 'LocationController@export')->name('export.location');
 		Route::get('room', 'RoomController@export')->name('export.room');
 		Route::get('shift', 'ShiftController@export')->name('export.shift');
+
+		Route::group(['prefix' => 'excel'], function() {
+			Route::get('class/{class}', 'ClassController@exportDetailExcel')->name('export.classDetailExcel');
+		});
+
+		Route::group(['prefix' => 'pdf'], function() {
+			Route::get('class/{class}', 'ClassController@exportDetailPdf')->name('export.classDetailPdf');
+		});
+		
 	});
 
 });
+
+Route::get('test', 'ClassController@test');
 

@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\User;
 use App\Repositories\StudentRepository;
 use App\Imports\StudentImport;
+use App\Imports\StudentBanedImport;
 use App\Exports\StudentExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Alert;
@@ -27,6 +28,11 @@ class StudentController extends Controller
     public function import() {
         $import = Excel::import(new StudentImport, request()->file('student_file'));
         return redirect('admin/student');
+    }
+
+    public function importBan() {
+        $import = Excel::import(new StudentBanedImport, request()->file('ban_file'));
+        return redirect()->back();
     }
 
     public function export() {

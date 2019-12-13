@@ -7,7 +7,9 @@ use App\Models\ClassSubject;
 use App\Repositories\ClassRepository;
 use App\Imports\ClassImport;
 use App\Imports\ClassStudentImport;
+use App\Exports\ClassDetailExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class ClassController extends Controller
 {
@@ -25,6 +27,23 @@ class ClassController extends Controller
     public function import() {
         $import = Excel::import(new ClassImport, request('class_file'));
         return redirect('admin/class');
+    }
+
+    public function exportDetailExcel($id) {
+        $class = ClassSubject::findOrFail($id);
+        $file = Excel::download(new ClassDetailExport($id), $class->code.'.xlsx');
+        return $file;
+    }
+
+    public function exportDetailPdf($id) {
+        $class = ClassSubject::findOrFail($id); 
+        $pdf = PDF::loadView('admin.class.details.pdf', compact('class'));
+        return $pdf->download($class->code.'.pdf');
+    }
+
+    public function test() {
+        $class = ClassSubject::findOrFail(1); 
+        return view('admin.class.details.pdf', compact('class'));
     }
 
     public function store(Request $request)
