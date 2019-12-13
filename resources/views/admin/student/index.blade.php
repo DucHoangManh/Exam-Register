@@ -29,7 +29,15 @@
 			<div class="portlet-body">
 				<div class="table-toolbar">
 					<div class="row">
-						
+						<div class="col-md-8">
+							Tổng số sinh viên: <strong>{{$students->count()}}</strong>
+						</div>
+						<div class="col-md-4" style="float: right; width: 270px">
+							<div class="input-icon right">
+								<i class="fa fa-search tooltips" data-original-title="Search" data-container="body"></i>
+								<input type="text" class="form-control search" placeholder="Search...">
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="table-scrollable">
@@ -56,7 +64,7 @@
 								</td>
 								<td class="sorting_1"> {{$student->code}} </td>
 								<td>
-									{{$student->name}}
+									<a href="{{route('student.show', $student->id)}}">{{$student->name}}</a>
 								</td>
 								<td>
 									@if($student->user != null)
@@ -73,14 +81,14 @@
 									@endif
 								</td>
 								<td>
-									@if($student->gender == 1)
+									@if($student->gender == 0)
 									Nam
 									@else
 									Nữ
 									@endif
 								</td>
 								<td class="center"> {{$student->birthday}} </td>
-								<td class="center"> {{$student->subject}} </td>
+								<td class="center"> {{$student->class->count()}} </td>
 								<td>
 									<div class="btn-group">
 										<a href="{{URL::to('admin/student/'.$student->id.'/edit')}}" class="btn btn-icon-only blue">
@@ -100,11 +108,10 @@
 				<div class="paginate" style="text-align: center;">
 					{{ $students->links() }}
 				</div>
-				<p class="text-left">
-					Tổng số sinh viên: <strong>{{$students->count()}}</strong>
-				</p>
 			</div>
 		</div>
 	</div>
 </div>
+<script src="/js/typeahead.bundle.js"></script>
+<script src="assets/js/student/index.js"></script>
 @endsection

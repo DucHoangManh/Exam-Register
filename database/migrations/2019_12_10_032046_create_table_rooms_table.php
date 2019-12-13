@@ -18,11 +18,6 @@ class CreateTableRoomsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('location_id');
             $table->timestamps();
-
-            $table->foreign('location_id')
-                ->references('id')
-                ->on('locations')
-                ->delete('cascade');
         });
     }
 

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\User;
 use App\Repositories\StudentRepository;
 use App\Imports\StudentImport;
+use App\Imports\StudentBanedImport;
 use App\Exports\StudentExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Alert;
 
 class StudentController extends Controller
 {   
@@ -27,6 +30,11 @@ class StudentController extends Controller
         return redirect('admin/student');
     }
 
+    public function importBan() {
+        $import = Excel::import(new StudentBanedImport, request()->file('ban_file'));
+        return redirect()->back();
+    }
+
     public function export() {
         $export = Excel::download(new StudentExport, 'student.xlsx');
         return $export;
@@ -34,18 +42,25 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     '' => 'required|max:100',
-        //     ''  => 'required',
-        // ]);
-        $student = Student::create($request->only('name', 'code', 'gender', 'birthday'));
-        return redirect()->route('student.index');
+        if(Student::where('code', '=', $request['code'])->get()->first() == null) {
+            $student = Student::create($request->only('name', 'code', 'gender', 'birthday'));
+            $user = new User;
+            $user->username = $request['code'];
+            $user->email = $request['code'].'@vnu.edu.vn';
+            $user->type = 0;
+            $user->save();
+            return redirect()->route('student.show', $student->id)->with('success', 'Sinh viên '.$student->name.' đã được tạo thành công');
+        } else {
+            alert()->error('','Sinh viên có mã số '.$request['code'].'đã tồn tại');
+            return redirect()->back();
+        }
+       
     }
 
     public function show($id)
     {
-        $students = Student::findOrFail($id);
-        return view('admin.student.edit', compact('student'));
+        $student = Student::findOrFail($id);
+        return view('admin.student.show', compact('student'));
     }
 
     public function edit($id)

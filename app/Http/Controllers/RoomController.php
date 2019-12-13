@@ -41,8 +41,17 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $room = Room::create(request()->only('name', 'location_id'));
-        return redirect()->route('room.index');
+        $room = Room::where([
+            ['name', '=', $request['name']], 
+            ['location_id', '=', $request['location_id']]
+        ])->get()->first();
+        if($room == null) {
+            $room = Room::create(request()->only('name', 'location_id'));
+            return redirect()->route('room.index')->with('success', 'Phòng thi '.$room->name.' đã được tạo thành công');
+        } else {
+            alert()->error('','Phòng thi '.$request['name'].' đã tồn tại');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -53,8 +62,8 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $rooms = Room::orderBy('name')->paginate(10);
-        return redirect()->route('room.index')->compact('rooms');
+        $room = Room::findOrFail($id);
+        return view('admin.room.show', ['room' => $room]);
     }
 
     /**

@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(10); 
+        $users = User::where('type', '=', '0')->orderBy('created_at', 'desc')->paginate(10); 
         return view('admin.user.index', compact('users'));
     }
 
@@ -45,7 +45,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.user.edit', compact('user'));
+        return view('admin.user.show', compact('user'));
     }
 
     public function edit($id)

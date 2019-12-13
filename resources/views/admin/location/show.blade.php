@@ -27,7 +27,9 @@
 						@foreach($location->room as $room)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
-							<td>{{$room->name}}</td>
+							<td>
+								<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
+							</td>
 							<td>{{$room->shift()->count()}}</td>
 							<td></td>
 						</tr>
@@ -42,7 +44,7 @@
 		<div class="portlet light bordered">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="icon-flag font-blue"></i>
+					<i class="fa fa-plus font-blue"></i>
 					<span class="caption-subject font-blue bold uppercase">Thêm phòng thi</span>
 				</div>
 			</div>
@@ -54,12 +56,6 @@
 							<label class="col-md-4 control-label">Tên phòng thi</label>
 							<div class="col-md-8">
 								<input type="text" name="name" class="form-control input-inline input-medium" placeholder="Enter text">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-4 control-label">Tên điểm thi</label>
-							<div class="col-md-8">
-								<input type="text" name="location_id" class="form-control input-inline input-medium location" placeholder="Enter text">
 							</div>
 						</div>
 					</div>

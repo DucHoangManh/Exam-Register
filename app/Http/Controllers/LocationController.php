@@ -40,8 +40,14 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $location = Location::create(request()->only('name'));
-        return redirect()->route('location.index');
+        if(Location::where('name', '=', $request['name'])->get()->first() == null) {
+            $location = Location::create(request()->only('name'));
+            return redirect()->route('location.index')->with('success', 'Điểm thi '.$location->name.' đã được tạo thành công');
+        } else {
+            alert()->error('','Điểm thi '.$request['name'].' đã tồn tại');
+            return redirect()->back();
+        }
+
     }
 
     /**

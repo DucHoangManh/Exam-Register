@@ -7,13 +7,15 @@ use App\Models\ClassSubject;
 use App\Repositories\ClassRepository;
 use App\Imports\ClassImport;
 use App\Imports\ClassStudentImport;
+use App\Exports\ClassDetailExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class ClassController extends Controller
 {
     public function index()
     {
-        $classes = ClassSubject::orderBy('name')->paginate(10); 
+        $classes = ClassSubject::orderBy('code')->paginate(10); 
         return view('admin.class.index', compact('classes'));
     }
 
@@ -27,6 +29,23 @@ class ClassController extends Controller
         return redirect('admin/class');
     }
 
+    public function exportDetailExcel($id) {
+        $class = ClassSubject::findOrFail($id);
+        $file = Excel::download(new ClassDetailExport($id), $class->code.'.xlsx');
+        return $file;
+    }
+
+    public function exportDetailPdf($id) {
+        $class = ClassSubject::findOrFail($id); 
+        $pdf = PDF::loadView('admin.class.details.pdf', compact('class'));
+        return $pdf->download($class->code.'.pdf');
+    }
+
+    public function test() {
+        $class = ClassSubject::findOrFail(1); 
+        return view('admin.class.details.pdf', compact('class'));
+    }
+
     public function store(Request $request)
     {
         $class = ClassSubject::create($request->only('name'));
@@ -36,7 +55,7 @@ class ClassController extends Controller
     public function show($id)
     {
         $class = ClassSubject::findOrFail($id);
-        return view('admin.class.edit', compact('class'));
+        return view('admin.class.show', compact('class'));
     }
 
     public function edit($id)

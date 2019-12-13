@@ -41,7 +41,7 @@ class TeacherController extends Controller
     public function show($id)
     {
         $teacher = Teacher::findOrFail($id);
-        return view('admin.teacher.edit', compact('teacher'));
+        return view('admin.teacher.show', compact('teacher'));
     }
 
     public function edit($id)

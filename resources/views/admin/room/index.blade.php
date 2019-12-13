@@ -29,7 +29,14 @@
 			<div class="portlet-body">
 				<div class="table-toolbar">
 					<div class="row">
-						
+						<div class="col-md-8">
+						</div>
+						<div class="col-md-4" style="float: right; width: 270px">
+							<div class="input-icon right">
+								<i class="fa fa-search tooltips" data-original-title="Search" data-container="body"></i>
+								<input type="text" class="form-control search" placeholder="Search...">
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="table-scrollable">
@@ -49,9 +56,11 @@
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td> {{$room->name}} </td>
 								<td>
-									{{$room->location->name}}
+									<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
+								</td>
+								<td>
+									<a href="{{route('location.show', $room->location->id)}}">{{$room->location->name}}</a>
 								</td>
 
 								<td>
@@ -80,4 +89,5 @@
 		</div>
 	</div>
 </div>
+<script src="assets/js/room/index.js"></script>
 @endsection

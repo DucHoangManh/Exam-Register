@@ -24,7 +24,14 @@
 			<div class="portlet-body">
 				<div class="table-toolbar">
 					<div class="row">
-						
+						<div class="col-md-8">
+						</div>
+						<div class="col-md-4" style="float: right; width: 270px">
+							<div class="input-icon right">
+								<i class="fa fa-search tooltips" data-original-title="Search" data-container="body"></i>
+								<input type="text" class="form-control search" placeholder="Search...">
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="table-scrollable">
@@ -47,15 +54,17 @@
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td> {{$class->code}} </td>
 								<td>
-									{{$class->subject->name}}
+									<a href="{{route('class.show', $class->id)}}">{{$class->code}}</a>
+								</td>
+								<td>
+									<a href="{{route('subject.show', $class->subject->id)}}">{{$class->subject->name}}</a>
 								</td>
 								<td>
 									{{$class->subject->credit}}
 								</td>
 								<td>
-									{{$class->teacher->name}}
+									<a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a>
 								</td>
 								<td>
 									{{$class->student->count()}}
@@ -63,7 +72,7 @@
 
 								<td>
 									<div class="btn-group">
-										<a href="{{URL::to('admin/class/'.$class->id.'/edit')}}" class="btn btn-icon-only blue">
+										<a href="{{route('class.edit', $class->id)}}" class="btn btn-icon-only blue">
 											<i class="icon-pencil"></i>
 										</a>
 										<a href="{{URL::to('admin/class/delete/'.$class->id)}}" class="btn btn-icon-only red ml-10">
@@ -87,4 +96,5 @@
 		</div>
 	</div>
 </div>
+<script src="assets/js/class/index.js"></script>
 @endsection

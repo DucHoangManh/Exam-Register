@@ -18,7 +18,7 @@ class SubjectImport implements ToModel, WithHeadingRow
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function model(array $row)
-    {
+    {   
         return new Subject([
             'name' => $row['name'] ?? $row["ten_mon_hoc"] ?? null,
             'credit' => $row['credit'] ?? $row['so_tin_chi'] ?? null,

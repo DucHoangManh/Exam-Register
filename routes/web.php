@@ -27,6 +27,7 @@ Route::get('calendar', function () {
 /*
 * Login
 */
+Route::get('/', 'LoginController@getLogin')->name('loginG');
 Route::get('/loginn', 'LoginController@getLogin')->name('loginG');
 Route::post('/loginn', 'LoginController@postLogin')->name('loginn');
 
@@ -44,6 +45,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		return view('admin.home');
 	});
 
+
 	/*
 	*	Resource
 	*/
@@ -54,6 +56,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::resource('subject', 'SubjectController');
 	Route::resource('location', 'LocationController');
 	Route::resource('room', 'RoomController');
+	Route::resource('shift', 'ShiftController');
 
 	/*
 	*	Import
@@ -66,6 +69,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		Route::post('subject', 'SubjectController@import');
 		Route::post('location', 'LocationController@import');
 		Route::post('room', 'RoomController@import');
+		Route::post('shift', 'ShiftController@import');
+		Route::post('studentBaned', 'StudentController@importBan');
 	});
 	
 
@@ -77,19 +82,18 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::get('subject/delete/{class}', 'SubjectController@destroy');
 	Route::get('location/delete/{location}', 'LocationController@destroy');
 	Route::get('room/delete/{room}', 'RoomController@destroy');
+	Route::get('shift/delete/{room}', 'ShiftController@destroy');
 
 	
-
-	Route::get('search/teacher/{name}', 'SearchController@teacher');
-	Route::get('search/subject/{name}', 'SearchController@subject');
-	Route::get('search/student/{name}', 'SearchController@student');
-	Route::get('search/location/{name}', 'SearchController@location');
-
 	Route::group(['prefix'=>'search'], function() {
 		Route::get('teacher/{name}', 'SearchController@teacher');
 		Route::get('subject/{name}', 'SearchController@subject');
 		Route::get('student/{name}', 'SearchController@student');
 		Route::get('location/{name}', 'SearchController@location');
+		Route::get('class/{code}', 'SearchController@class');
+		Route::get('room/{name}', 'SearchController@room');
+		Route::get('shift/{code}', 'SearchController@shift');
+		Route::get('user/{username}', 'SearchController@user');
 	});
 
 	Route::group(['prefix' => 'export'], function() {
@@ -99,7 +103,19 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		Route::get('subject', 'SubjectController@export')->name('export.subject');
 		Route::get('location', 'LocationController@export')->name('export.location');
 		Route::get('room', 'RoomController@export')->name('export.room');
+		Route::get('shift', 'ShiftController@export')->name('export.shift');
+
+		Route::group(['prefix' => 'excel'], function() {
+			Route::get('class/{class}', 'ClassController@exportDetailExcel')->name('export.classDetailExcel');
+		});
+
+		Route::group(['prefix' => 'pdf'], function() {
+			Route::get('class/{class}', 'ClassController@exportDetailPdf')->name('export.classDetailPdf');
+		});
+		
 	});
 
 });
+
+Route::get('test', 'ClassController@test');
 
