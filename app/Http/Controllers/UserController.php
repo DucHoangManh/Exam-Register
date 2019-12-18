@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Repositories\Facades\UserRepository;
 use App\Imports\UserImport;
 use App\Exports\UserExport;
 use Maatwebsite\Excel\Facades\Excel;

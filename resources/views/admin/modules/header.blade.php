@@ -2,7 +2,7 @@
     <div class="page-header-inner ">
         <div class="page-logo">
             <a href="{{URL::to('admin/home')}}">
-            <img src="https://uet.vnu.edu.vn/wp-content/uploads/2019/03/logo-outline.png" alt="logo" class="logo-default" height="65px"> </a>
+            <img src="/media/logos/uet.png" alt="logo" class="logo-default" height="65px"> </a>
             <div class="menu-toggler sidebar-toggler">
             </div>
         </div>

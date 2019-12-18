@@ -8,7 +8,7 @@ use App\Models\Location;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\RoomImport;
 use App\Exports\RoomExport;
-use App\Repositories\RoomRepository;
+use App\Repositories\Facades\RoomRepository;
 
 class RoomController extends Controller
 {

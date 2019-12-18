@@ -7,7 +7,7 @@ use App\Models\Location;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\LocationImport;
 use App\Exports\LocationExport;
-use App\Repositories\LocationRepository;
+use App\Repositories\Facades\LocationRepository;
 
 class LocationController extends Controller
 {
@@ -18,7 +18,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::orderBy('name')->paginate(10);
+        $locations = LocationRepository::orderBy('name')->paginate(10);
         return view('admin.location.index', compact('locations'));
     }
 
@@ -58,7 +58,7 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        $location = Location::findOrFail($id);
+        $location = LocationRepository::findOrFail($id);
         return view('admin.location.show', ['location' => $location]);
     }
 
@@ -70,7 +70,7 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        $location = Location::findOrFail($id);
+        $location = LocationRepository::findOrFail($id);
         return view('admin.location.edit', compact('location'));
     }
 
@@ -83,10 +83,11 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $location = Location::findOrFail($id);
-        $location->name = $request['name'];
-        $location->save();
-        return redirect()->route('location.index');
+        $data = [
+            'name' => $request['name']
+        ];
+        $result = LocationRepository::update($id, $data);
+        return redirect()->route('location.show', $id);
     }
 
     /**
@@ -97,8 +98,7 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        $location = Location::findOrFail($id);
-        $location->delete();
+        $result = LocationRepository::delete($id);
         return redirect()->route('location.index');
     }
 

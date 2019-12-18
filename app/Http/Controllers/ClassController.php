@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ClassSubject;
-use App\Repositories\ClassRepository;
+use App\Repositories\Facades\ClassRepository;
 use App\Imports\ClassImport;
 use App\Imports\ClassStudentImport;
 use App\Exports\ClassDetailExport;
@@ -15,7 +15,7 @@ class ClassController extends Controller
 {
     public function index()
     {
-        $classes = ClassSubject::orderBy('code')->paginate(10); 
+        $classes = ClassRepository::orderBy('code')->paginate(10); 
         return view('admin.class.index', compact('classes'));
     }
 
@@ -54,28 +54,28 @@ class ClassController extends Controller
 
     public function show($id)
     {
-        $class = ClassSubject::findOrFail($id);
+        $class = ClassRepository::findOrFail($id);
         return view('admin.class.show', compact('class'));
     }
 
     public function edit($id)
     {
-        $class = ClassSubject::findOrFail($id);
+        $class = ClassRepository::findOrFail($id);
         return view('admin.class.edit', compact('class'));
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $class = ClassSubject::findOrFail($id);
-        $class->code = request('code');
-        $class->save();
-        return redirect()->route('class.index');
+        $data = [
+            'code' => $request['code']
+        ];
+        $result = ClassRepository::update($id, $data);
+        return redirect()->route('class.show', $id);
     }
 
     public function destroy($id)
     {
-        $class = ClassSubject::findOrFail($id);
-        $class->delete();
+        $result = ClassRepository::delete($id);
         return redirect()->route('class.index');
     }
 }

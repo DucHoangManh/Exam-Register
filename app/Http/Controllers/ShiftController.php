@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shift;
-use App\Repositories\ShiftRepository;
+use App\Repositories\Facades\ShiftRepository;
 use App\Imports\ShiftImport;
 use App\Exports\ShiftExport;
 use Maatwebsite\Excel\Facades\Excel;

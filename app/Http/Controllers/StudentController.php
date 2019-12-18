@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
-use App\Repositories\StudentRepository;
+use App\Repositories\Facades\StudentRepository;
 use App\Imports\StudentImport;
 use App\Imports\StudentBanedImport;
 use App\Exports\StudentExport;
@@ -16,7 +16,7 @@ class StudentController extends Controller
 {   
     public function index()
     {
-        $students = Student::orderBy('created_at', 'desc')->paginate(10); 
+        $students = StudentRepository::orderBy('created_at', 'desc')->paginate(10); 
         return view('admin.student.index', compact('students'));
     }
 
@@ -59,31 +59,31 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        $student = Student::findOrFail($id);
+        $student = StudentRepository::findOrFail($id);
         return view('admin.student.show', compact('student'));
     }
 
     public function edit($id)
     {
-        $student = Student::findOrFail($id);
+        $student = StudentRepository::findOrFail($id);
         return view('admin.student.edit', compact('student'));
     }
 
     public function update(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
-        $student->name = $request['name'];
-        $student->code  = $request['code'];
-        $student->gender  = $request['gender'];
-        $student->birthday  = $request['birthday'];
-        $student->save();
-        return redirect()->route('student.index');
+        $data = [
+            'name' => $request['name'],
+            'code' => $request['code'],
+            'gender' => $request['gender'],
+            'birthday' => $request['birthday']
+        ];
+        $result = StudentRepository::update($id, $data);
+        return redirect()->route('student.show', $id);
     }
 
     public function destroy($id)
     {
-        $student = Student::findOrFail($id);
-        $student->delete();
+        $result = StudentRepository::delete($id);
         return redirect()->route('student.index');
     }
 }

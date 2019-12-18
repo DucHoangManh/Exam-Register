@@ -13,10 +13,6 @@ class ClassSubject extends Model
 
     protected $hidden = [];
 
-    public function shift() {
-        return $this->hasMany('App\Models\Shift', 'class_id');
-    }
-
     public function teacher() {
     	return $this->belongsTo('App\Models\Teacher', 'teacher_id');
     }
@@ -25,7 +21,7 @@ class ClassSubject extends Model
     	return $this->belongsTo('App\Models\Subject', 'subject_id');
     }
 
-    public function student() {
+    public function students() {
     	return $this->belongsToMany('App\Models\Student', 'student_class', 'class_id', 'student_id');
     }
 }

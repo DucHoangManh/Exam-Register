@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Teacher;
-use App\Repositories\TeacherRepository;
+use App\Repositories\Facades\TeacherRepository;
 use App\Imports\TeacherImport;
 use App\Exports\TeacherExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -13,7 +13,7 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::orderBy('name')->paginate(10); 
+        $teachers = TeacherRepository::orderBy('name')->paginate(10); 
         return view('admin.teacher.index', compact('teachers'));
     }
 
@@ -40,28 +40,29 @@ class TeacherController extends Controller
 
     public function show($id)
     {
-        $teacher = Teacher::findOrFail($id);
+        $teacher = TeacherRepository::findOrFail($id);
         return view('admin.teacher.show', compact('teacher'));
     }
 
     public function edit($id)
     {
-        $teacher = Teacher::findOrFail($id);
+        $teacher = TeacherRepository::findOrFail($id);
         return view('admin.teacher.edit', compact('teacher'));
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $teacher = Teacher::findOrFail($id);
-        $teacher->name = request('name');
-        $teacher->save();
+        $data = [
+            'name' => $request['name'],
+            'email' => $request['email']
+        ];
+        $result = TeacherRepository::update($id, $data);
         return redirect()->route('teacher.index');
     }
 
     public function destroy($id)
     {
-        $teacher = Teacher::findOrFail($id);
-        $teacher->delete();
+        $result = TeacherRepository::delete($id);
         return redirect()->route('teacher.index');
     }
 }

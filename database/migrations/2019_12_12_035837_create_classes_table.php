@@ -17,13 +17,12 @@ class CreateClassesTable extends Migration
             $table->increments('id');
             $table->string('code');
             $table->unsignedInteger('teacher_id');
-            $table->unsignedInteger('subject_id');
+            $table->unsignedInteger('module_id');
             $table->timestamps();
         });
 
         Schema::create('shifts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('class_id');
             $table->string('code');
             $table->date('date');
             $table->time('start');
@@ -36,35 +35,25 @@ class CreateClassesTable extends Migration
             $table->unsignedInteger('class_id');
             $table->unsignedInteger('student_id');
             $table->smallInteger('is_baned')->default(0);
-            $table->timestamps();
-        });
-
-        Schema::create('student_shift', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('student_id');
-            $table->unsignedInteger('shift_id');
-            $table->timestamps();
-        });
-
-        Schema::create('student_room', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('student_id');
-            $table->unsignedInteger('room_id');
-            $table->smallInteger('seatNumber');
-            $table->timestamps();
+            $table->unsignedInteger('shift_room_id');
         });
 
         Schema::create('shift_room', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('shift_id');
             $table->unsignedInteger('room_id');
-            $table->timestamps();
         });
 
-        Schema::create('exam_subject', function (Blueprint $table) {
+        Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('exam_id');
             $table->unsignedInteger('subject_id');
+        });
+
+        Schema::create('module_shift', function(Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('module_id');
+            $table->unsignedInteger('shift_id');
         });
     }
 
@@ -78,9 +67,8 @@ class CreateClassesTable extends Migration
         Schema::dropIfExists('classes');
         Schema::dropIfExists('shifts');
         Schema::dropIfExists('student_class');
-        Schema::dropIfExists('student_room');
-        Schema::dropIfExists('student_shift');
         Schema::dropIfExists('shift_room');
-        Schema::dropIfExists('exam_subject');
+        Schema::dropIfExists('modules');
+        Schema::dropIfExists('module_shift');
     }
 }

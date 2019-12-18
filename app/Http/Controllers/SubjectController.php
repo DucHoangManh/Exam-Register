@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Subject;
 use App\Imports\SubjectImport;
 use App\Exports\SubjectExport;
+use App\Repositories\Facades\SubjectRepository;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SubjectController extends Controller
