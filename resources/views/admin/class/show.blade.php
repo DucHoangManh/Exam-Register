@@ -75,7 +75,7 @@
 								@if ($student->gender == 0) Nam @else Nữ @endif
 							</td>
 							<td>{{$student->birthday}}</td>
-							<td>@if($student->is_baned == 1) Cấm thi @endif</td>
+							<td>{{ $student->pivot->is_baned == 1 ? 'Cấm Thi' : '' }}</td>
 							<td></td>
 						</tr>
 						@endforeach

@@ -15,7 +15,7 @@ class Student extends Model
     ];
 
     public function class() {
-    	return $this->belongsToMany('App\Models\ClassSubject', 'student_class', 'student_id', 'class_id');
+    	return $this->belongsToMany('App\Models\ClassSubject', 'student_class', 'student_id', 'class_id')->withPivot('is_baned');;
     }
 
     public function shift() {
