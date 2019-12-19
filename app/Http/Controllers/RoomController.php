@@ -49,7 +49,7 @@ class RoomController extends Controller
         ])->get()->first();
         if($room == null) {
             $room = Room::create(request()->only('name', 'location_id'));
-            return redirect()->route('room.index')->with('success', 'Phòng thi '.$room->name.' đã được tạo thành công');
+            return redirect()->back()->with('success', 'Phòng thi '.$room->name.' đã được tạo thành công');
         } else {
             alert()->error('','Phòng thi '.$request['name'].' đã tồn tại');
             return redirect()->back();

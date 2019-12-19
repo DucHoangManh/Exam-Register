@@ -51,6 +51,7 @@
 			<div class="portlet-body">
 				<form action="{{URL::to('admin/room')}}" method="POST" class="form-horizontal" role="form">
 					{{ csrf_field() }}
+					<input type="hidden" name="location_id" value="{{$location->id}}">
 					<div class="form-body">
 						<div class="form-group">
 							<label class="col-md-4 control-label">Tên phòng thi</label>

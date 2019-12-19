@@ -115,6 +115,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		
 	});
 
+	Route::get('setExam/{exam}', 'ExamController@setCurrent');
+
 });
 
 Route::get('test', 'ClassController@test');

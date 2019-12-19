@@ -536,6 +536,7 @@ class ComposerStaticInit4fb78603e07966269aa8dc6714df5464
         'App\\Models\\Exam' => __DIR__ . '/../..' . '/app/Models/Exam.php',
         'App\\Models\\Location' => __DIR__ . '/../..' . '/app/Models/Location.php',
         'App\\Models\\Module' => __DIR__ . '/../..' . '/app/Models/Module.php',
+        'App\\Models\\Register' => __DIR__ . '/../..' . '/app/Models/Register.php',
         'App\\Models\\Room' => __DIR__ . '/../..' . '/app/Models/Room.php',
         'App\\Models\\Shift' => __DIR__ . '/../..' . '/app/Models/Shift.php',
         'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',

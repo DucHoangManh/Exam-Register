@@ -53,6 +53,7 @@ return array(
     'App\\Models\\Exam' => $baseDir . '/app/Models/Exam.php',
     'App\\Models\\Location' => $baseDir . '/app/Models/Location.php',
     'App\\Models\\Module' => $baseDir . '/app/Models/Module.php',
+    'App\\Models\\Register' => $baseDir . '/app/Models/Register.php',
     'App\\Models\\Room' => $baseDir . '/app/Models/Room.php',
     'App\\Models\\Shift' => $baseDir . '/app/Models/Shift.php',
     'App\\Models\\Student' => $baseDir . '/app/Models/Student.php',

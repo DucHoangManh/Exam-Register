@@ -20,7 +20,7 @@
 					</div>
 					<div class="col-md-6">
 						<p>Mã: <strong>{{$subject->code}}</strong></p>
-						<p>Số lớp: <strong>{{$subject->class->count()}}</strong></p>
+						<p>Số lớp: <strong>{{$subject->module->class->count()}}</strong></p>
 					</div>
 				</div>
 				<table class="table table-bordered">
@@ -43,7 +43,7 @@
 							<td>
 								<a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a>
 							</td>
-							<td>{{$class->student->count()}}</td>
+							<td>{{$class->students->count()}}</td>
 							<td></td>
 						</tr>
 						@endforeach

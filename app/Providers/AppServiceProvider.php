@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
+use App\Repositories\Facades\ExamRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->setFacadesRepositories();
         Schema::defaultStringLength(191);
+        View::share('exams', ExamRepository::all());
     }
 
     /**

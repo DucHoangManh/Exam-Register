@@ -17,16 +17,13 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    @foreach($exams as $exam)
                     <li class="nav-item start ">
-                        <a href="dashboard_2.html" class="nav-link ">
-                            <span class="title">Dashboard 2</span>
+                        <a href="{{URL::to('admin/setExam/'.$exam->id)}}" class="nav-link ">
+                            <span class="title">{{$exam->type.' - '.$exam->school_year}}</span>
                         </a>
                     </li>
-                    <li class="nav-item start ">
-                        <a href="dashboard_3.html" class="nav-link ">
-                            <span class="title">Dashboard 3</span>
-                        </a>
-                    </li>
+                    @endforeach
                 </ul>
             </li>
 
