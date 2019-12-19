@@ -10,6 +10,8 @@ use App\Imports\RoomImport;
 use App\Exports\RoomExport;
 use App\Repositories\Facades\RoomRepository;
 
+use App\Models\Module;
+
 class RoomController extends Controller
 {
     /**

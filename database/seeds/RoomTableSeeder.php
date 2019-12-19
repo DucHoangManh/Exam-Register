@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class LocationTableSeeder extends Seeder
+class RoomTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class LocationTableSeeder extends Seeder
      */
     public function run()
     {
-    	$count = 10;
-        factory(App\Models\Location::class, $count)->create();
+    	$count = 30;
+        factory(App\Models\Room::class, $count)->create();
     }
 }

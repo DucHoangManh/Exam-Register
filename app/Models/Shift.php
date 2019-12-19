@@ -12,15 +12,15 @@ class Shift extends Model
 
     protected $hidden = [];
 
-    public function class() {
-        return $this->belongsTo('App\Models\ClassSubject');
+    public function modules() {
+        return $this->belongsToMany('App\Models\Module', 'module_shift');
     }
 
-    public function student() {
-    	return $this->belongsToMany('App\Models\Student', 'student_shift', 'shift_id', 'student_id');
+    public function rooms() {
+    	return $this->belongsToMany('App\Models\Room', 'tests');
     }
 
-    public function room() {
-    	return $this->belongsToMany('App\Models\Room', 'shift_room', 'shift_id', 'room_id');
+    public function tests() {
+        return $this->hasMany('App\Models\Test');
     }
 }

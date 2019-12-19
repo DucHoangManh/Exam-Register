@@ -12,11 +12,15 @@ class Room extends Model
 
     protected $hidden = [];
 
-    public function shift() {
-    	return $this->belongsToMany('App\Models\Shift', 'shift_room', 'room_id', 'shift_id');
+    public function shifts() {
+    	return $this->belongsToMany('App\Models\Shift', 'tests');
     }
 
     public function location() {
         return $this->belongsTo('App\Models\Location');
+    }
+
+    public function tests() {
+        return $this->hasMany('App\Models\Test');
     }
 }

@@ -14,12 +14,12 @@ class Student extends Model
 
     ];
 
-    public function class() {
-    	return $this->belongsToMany('App\Models\ClassSubject', 'student_class', 'student_id', 'class_id');
+    public function classes() {
+    	return $this->belongsToMany('App\Models\ClassSubject', 'student_class', 'student_id', 'class_id')->withPivot('is_baned');
     }
 
-    public function shift() {
-    	return $this->belongsToMany('App\Models\Shift', 'student_shift', 'student_id', 'shift_id');
+    public function tests() {
+    	return $this->belongsToMany('App\Models\Test', 'student_test');
     }
 
     public function user() {

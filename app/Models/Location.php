@@ -12,7 +12,7 @@ class Location extends Model
     	'name'
     ];
 
-    public function room() {
+    public function rooms() {
     	return $this->hasMany('App\Models\Room');
     }
 }

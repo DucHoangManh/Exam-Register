@@ -14,14 +14,18 @@ class ClassSubject extends Model
     protected $hidden = [];
 
     public function teacher() {
-    	return $this->belongsTo('App\Models\Teacher', 'teacher_id');
+    	return $this->belongsTo('App\Models\Teacher');
     }
 
-    public function subject() {
-    	return $this->belongsTo('App\Models\Subject', 'subject_id');
+    public function module() {
+    	return $this->belongsTo('App\Models\Module');
     }
 
     public function students() {
-    	return $this->belongsToMany('App\Models\Student', 'student_class', 'class_id', 'student_id');
+    	return $this->belongsToMany('App\Models\Student', 'student_class', 'class_id', 'student_id')->withPivot('is_baned');
+    }
+
+    public function tests() {
+        return $this->hasMany('App\Models\Test', 'class_id');
     }
 }

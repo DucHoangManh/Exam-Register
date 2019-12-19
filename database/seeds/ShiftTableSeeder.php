@@ -13,7 +13,7 @@ class ShiftTableSeeder extends Seeder
     {
     	$count = 50;
         factory(App\Models\Shift::class, $count)->create()->each(function($shift){
-            $shift->room()->save(App\Models\Room::all()->random(1)[0]);
+            $shift->modules()->save(App\Models\Module::all()->random(1)[0]);
         });
     }
 }

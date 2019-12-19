@@ -12,11 +12,11 @@ class Subject extends Model
 
     protected $hidden = [];
 
-    public function exam() {
-    	return $this->belongsTo('App\Models\Exam');
+    public function exams() {
+    	return $this->belongsToMany('App\Models\Exam', 'modules');
     }
 
-    public function class() {
-    	return $this->hasMany('App\Models\ClassSubject');
+    public function modules() {
+        return $this->hasMany('App\Models\Modules');
     }
 }

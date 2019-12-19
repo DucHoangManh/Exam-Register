@@ -19,12 +19,16 @@ class DatabaseSeeder extends Seeder
 	        'remember_token' => str_random(10),
         ]);
         $this->call([
-        	StudentTableSeeder::class,
-        	TeacherTableSeeder::class,
-        	LocationTableSeeder::class,
+            ExamTableSeeder::class,
             SubjectTableSeeder::class,
+            ModuleTableSeeder::class,
+            TeacherTableSeeder::class,
+            LocationTableSeeder::class,
+            RoomTableSeeder::class,           
+        	StudentTableSeeder::class,
             ClassSubjectTableSeeder::class,
-            ShiftTableSeeder::class
+            ShiftTableSeeder::class,
+            TestTableSeeder::class 
         ]);
 
     }

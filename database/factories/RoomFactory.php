@@ -15,6 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Room::class, function (Faker $faker) {
     return [
-        'name' => $faker->state
+        'name' => $faker->state,
+        'location_id' => App\Models\Location::all()->random(1)[0]->id ?? 1
     ];
 });
