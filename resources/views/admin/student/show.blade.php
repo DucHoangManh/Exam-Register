@@ -42,16 +42,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($student->class as $class)
+						@foreach($student->classes as $class)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
-							<td>{{$class->subject->name}}</td>
+							<td>{{$class->module->subject->name}}</td>
 							<td>{{$class->code}}</td>
 							<td>{{$class->teacher->name}}</td>
-							<td>{{$class->subject->credit}}</td>
-							<td>Đủ dk</td>
-							<td>Chưa làm</td>
-							<td>Chưa làm</td>
+							<td>{{$class->module->subject->credit}}</td>
+							<td>{{($class->pivot->is_baned == 0) ? 'Đủ đk' : 'Cấm thi'}}</td>
+							<td>{{$student->tests->where('class_id', '=', $class->id)}}</td>
+							<td>{{$class->id}}</td>
 							<td>Chưa làm</td>
 							<td></td>
 						</tr>

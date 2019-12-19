@@ -35,6 +35,7 @@ class CreateClassesTable extends Migration
             $table->unsignedInteger('class_id');
             $table->unsignedInteger('student_id');
             $table->smallInteger('is_baned')->default(0);
+            $table->unsignedInteger('test_id');
         });
 
         Schema::create('tests', function (Blueprint $table) {

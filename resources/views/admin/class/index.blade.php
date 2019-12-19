@@ -45,6 +45,7 @@
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 100px;">Tín chỉ</th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 300px;">Giảng viên</th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 200px;">Sĩ số</th>
+								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 200px;">Số ca thi</th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 115px;"> Thao tác </th>
 							</tr>
 						</thead>
@@ -58,18 +59,20 @@
 									<a href="{{route('class.show', $class->id)}}">{{$class->code}}</a>
 								</td>
 								<td>
-									<a href="{{route('subject.show', $class->subject->id)}}">{{$class->subject->name}}</a>
+									<a href="{{route('subject.show', $class->module->subject->id)}}">{{$class->module->subject->name}}</a>
 								</td>
 								<td>
-									{{$class->subject->credit}}
+									{{$class->module->subject->credit}}
 								</td>
 								<td>
 									<a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a>
 								</td>
 								<td>
-									{{$class->student->count()}}
+									{{$class->students->count()}}
 								</td>
-
+								<td>
+									{{$class->tests->count()}}
+								</td>
 								<td>
 									<div class="btn-group">
 										<a href="{{route('class.edit', $class->id)}}" class="btn btn-icon-only blue">

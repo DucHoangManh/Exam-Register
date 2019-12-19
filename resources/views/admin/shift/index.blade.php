@@ -38,12 +38,15 @@
 							<tr role="row">
 								<th rowspan="1" colspan="1" style="width: 110px;">#</th>
 								<th rowspan="1" colspan="1" style="width: 225px;">Mã ca thi</th>
-								<th rowspan="1" colspan="1" style="width: 225px;">Môn thi</th>
-								<th rowspan="1" colspan="1" style="width: 115px;">Mã lớp</th>
-								<th rowspan="1" colspan="1" style="width: 200px;">Giảng viên</th>
+
+								<th rowspan="1" colspan="1" style="width: 225px;">Số môn thi</th>
+								<th rowspan="1" colspan="1" style="width: 115px;">Số phòng thi</th>
+
 								<th rowspan="1" colspan="1" style="width: 115px;">Ngày thi</th>
 								<th rowspan="1" colspan="1" style="width: 115px;">Thời gian</th>
+
 								<th rowspan="1" colspan="1" style="width: 115px;">Phòng thi</th>
+
 								<th rowspan="1" colspan="1" style="width: 115px;">Thao tác</th>
 							</tr>
 						</thead>
@@ -57,13 +60,10 @@
 									<a href="{{route('shift.show', $shift->id)}}">{{$shift->code}}</a>
 								</td>
 								<td>
-									<a href="{{route('subject.show', $shift->class->subject->id)}}">{{$shift->class->subject->name}}</a>
+									{{$shift->modules->count()}}
 								</td>
 								<td>
-									<a href="{{route('class.show', $shift->class->id)}}">{{$shift->class->code}}</a>
-								</td>
-								<td>
-									<a href="{{route('teacher.show', $shift->class->teacher->id)}}">{{$shift->class->teacher->name}}</a>
+									{{$shift->rooms->count()}}
 								</td>
 								<td>
 									{{$shift->date}}
@@ -72,8 +72,8 @@
 									{{$shift->start.' - '.$shift->end}}
 								</td>
 								<td>
-									@foreach($shift->room as $room)
-									{{$room->name.' - '.$room->location->name}}
+									@foreach($shift->rooms as $room)
+									{{$room->name.' ,'.$room->location->name}}
 									@endforeach
 								</td>
 

@@ -26,6 +26,7 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
+							<th scope="col">Ca thi</th>
 							<th scope="col">Môn thi</th>
 							<th scope="col">Mã lớp</th>
 							<th scope="col">Tên giảng viên</th>
@@ -37,22 +38,31 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($room->shift as $shift)
+						@foreach($room->tests as $test)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
-							<td>{{$shift->class->subject->name}}</td>
-							<td>{{$shift->class->code}}</td>
-							<td>{{$shift->class->teacher->name}}</td>
-							<td>{{$shift->class->student->count()}}</td>
-							<td>{{$shift->date}}</td>
-							<td>{{$shift->start}}</td>
-							<td>{{$shift->end}}</td>
+							<td>
+								<a href="{{route('shift.show', $test->shift->id)}}">{{$test->shift->code}}</a>
+							</td>
+							<td>
+								<a href="{{route('subject.show', $test->class->module->subject->id)}}">{{$test->class->module->subject->name}}</a>
+							</td>
+							<td>
+								<a href="{{route('class.show', $test->class->id)}}">{{$test->class->code}}</a>
+							</td>
+							<td>
+								<a href="{{route('teacher.show', $test->class->teacher->id)}}">{{$test->class->teacher->name}}</a>
+							</td>
+							<td>{{$test->class->students->count()}}</td>
+							<td>{{$test->shift->date}}</td>
+							<td>{{$test->shift->start}}</td>
+							<td>{{$test->shift->end}}</td>
 							<td></td>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
-				<p>Tổng số ca thi: <strong>{{$room->shift->count()}}</strong></p>
+				<p>Tổng số ca thi: <strong>{{$room->tests->count()}}</strong></p>
 			</div>
 		</div>
 	</div>

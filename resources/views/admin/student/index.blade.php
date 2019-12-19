@@ -53,6 +53,7 @@
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 242px;"> Giới tính </th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 242px;"> Ngày sinh </th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 171px;"> Số môn thi </th>
+								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 171px;"> Số ca thi đã đăng ký </th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 115px;"> Thao tác </th>
 							</tr>
 						</thead>
@@ -88,7 +89,8 @@
 									@endif
 								</td>
 								<td class="center"> {{$student->birthday}} </td>
-								<td class="center"> {{$student->class->count()}} </td>
+								<td class="center"> {{$student->classes->count()}} </td>
+								<td class="center"> {{$student->tests->count()}} </td>
 								<td>
 									<div class="btn-group">
 										<a href="{{URL::to('admin/student/'.$student->id.'/edit')}}" class="btn btn-icon-only blue">

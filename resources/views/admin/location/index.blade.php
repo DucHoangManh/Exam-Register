@@ -60,8 +60,8 @@
 									<a href="{{route('location.show', $location->id)}}">{{$location->name}}</a>
 								</td>
 								<td>
-									@if($location->room != null)
-									{{$location->room->count()}}
+									@if($location->rooms != null)
+									{{$location->rooms->count()}}
 									@else
 									0
 									@endif

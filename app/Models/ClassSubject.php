@@ -28,4 +28,8 @@ class ClassSubject extends Model
     public function tests() {
         return $this->hasMany('App\Models\Test', 'class_id');
     }
+
+    public function register() {
+        return $this->hasMany('App\Models\Register', 'class_id');
+    }
 }

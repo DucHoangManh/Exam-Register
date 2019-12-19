@@ -570,6 +570,7 @@ class ComposerStaticInit4fb78603e07966269aa8dc6714df5464
         'App\\Repositories\\Facades\\SubjectRepository' => __DIR__ . '/../..' . '/app/Repositories/Facades/SubjectRepository.php',
         'App\\Repositories\\Facades\\TeacherRepository' => __DIR__ . '/../..' . '/app/Repositories/Facades/TeacherRepository.php',
         'App\\Repositories\\Facades\\UserRepository' => __DIR__ . '/../..' . '/app/Repositories/Facades/UserRepository.php',
+        'App\\Repositories\\LocationRepository' => __DIR__ . '/../..' . '/app/Repositories/LocationRepository.php',
         'App\\Repositories\\RoomRepository' => __DIR__ . '/../..' . '/app/Repositories/RoomRepository.php',
         'App\\Repositories\\ShifttRepository' => __DIR__ . '/../..' . '/app/Repositories/ShiftRepository.php',
         'App\\Repositories\\StudentRepository' => __DIR__ . '/../..' . '/app/Repositories/StudentRepository.php',

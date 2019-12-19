@@ -15,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
         'Room', 
         'Shift', 
         'Subject',
-        'Teacher'
+        'Teacher',
+        'Location'
     ];
     /**
      * Bootstrap any application services.

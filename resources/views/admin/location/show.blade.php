@@ -24,19 +24,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($location->room as $room)
+						@foreach($location->rooms as $room)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
 							<td>
 								<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
 							</td>
-							<td>{{$room->shift()->count()}}</td>
+							<td>{{$room->shifts()->count()}}</td>
 							<td></td>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
-				<p>Tổng số phòng: <strong>{{$location->room->count()}}</strong></p>
+				<p>Tổng số phòng: <strong>{{$location->rooms->count()}}</strong></p>
 			</div>
 		</div>
 	</div>

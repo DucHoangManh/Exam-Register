@@ -68,7 +68,7 @@
 									{{$subject->credit}}
 								</td>
 								<td>
-									{{$subject->class->count()}}
+									{{$subject}}
 								</td>
 
 								<td>

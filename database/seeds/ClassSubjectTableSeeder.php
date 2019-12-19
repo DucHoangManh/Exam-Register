@@ -15,7 +15,7 @@ class ClassSubjectTableSeeder extends Seeder
         factory(App\Models\ClassSubject::class, $count)->create()->each(function($class) {
             $quantity = rand(30, 40);
             for($i = 0; $i < $quantity; $i++) {
-                $class->students()->save(App\Models\Student::all()->random(1)[0]);
+                $class->student()->save(App\Models\Student::all()->random(1)[0]);
             }
         });
     }

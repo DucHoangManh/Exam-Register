@@ -87,6 +87,7 @@ return array(
     'App\\Repositories\\Facades\\SubjectRepository' => $baseDir . '/app/Repositories/Facades/SubjectRepository.php',
     'App\\Repositories\\Facades\\TeacherRepository' => $baseDir . '/app/Repositories/Facades/TeacherRepository.php',
     'App\\Repositories\\Facades\\UserRepository' => $baseDir . '/app/Repositories/Facades/UserRepository.php',
+    'App\\Repositories\\LocationRepository' => $baseDir . '/app/Repositories/LocationRepository.php',
     'App\\Repositories\\RoomRepository' => $baseDir . '/app/Repositories/RoomRepository.php',
     'App\\Repositories\\ShifttRepository' => $baseDir . '/app/Repositories/ShiftRepository.php',
     'App\\Repositories\\StudentRepository' => $baseDir . '/app/Repositories/StudentRepository.php',

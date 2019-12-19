@@ -39,14 +39,16 @@
 			<div class="portlet-body">
 				<div class="row">
 					<div class="col-md-6">
-						<p>Tên môn học: <strong><a href="{{route('subject.show', $class->subject->id)}}">{{$class->subject->name}}</a></strong></p>
+						<p>Tên môn học: <strong><a href="{{route('subject.show', $class->module->subject->id)}}">{{$class->module->subject->name}}</a></strong></p>
 						<p>Giảng viên: <strong><a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a></strong></p>
-						<p>Số tín chỉ: <strong>{{$class->subject->credit}}</strong></p>
+						<p>Học kỳ: <strong>{{$class->module->exam->type}}</strong></p>
+						<p>Số tín chỉ: <strong>{{$class->module->subject->credit}}</strong></p>
 					</div>
 					<div class="col-md-6">
 						<p>Mã lớp: <strong>{{$class->code}}</strong></p>
 						<p>Email: <strong>{{$class->teacher->email}}</strong></p>
-						<p>Sĩ số:  <strong>{{$class->student->count()}}</strong></p>
+						<p>Năm học: <strong>{{$class->module->exam->school_year}}</strong></p>
+						<p>Sĩ số:  <strong>{{$class->students->count()}}</strong></p>
 					</div>
 				</div>
 				<table class="table table-bordered">
@@ -63,7 +65,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($class->student as $student)
+						@foreach($class->students as $student)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
 							<td>
@@ -98,18 +100,20 @@
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Ngày thi</th>
+							<th scope="col">Phòng thi</th>
 							<th scope="col">Bắt đầu</th>
 							<th scope="col">Kết thúc</th>
 							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($class->shift as $shift)
+						@foreach($class->tests as $test)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
-							<td>{{$shift->date}}</td>
-							<td>{{$shift->start}}</td>
-							<td>{{$shift->end}}</td>
+							<td>{{$test->shift->date}}</td>
+							<td>{{$test->room->name.' - '.$test->room->location->name}}</td>
+							<td>{{$test->shift->start}}</td>
+							<td>{{$test->shift->end}}</td>
 							<td></td>
 						</tr>
 						@endforeach

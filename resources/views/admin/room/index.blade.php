@@ -56,7 +56,7 @@
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td>
+								<td> 
 									<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
 								</td>
 								<td>

@@ -16,12 +16,11 @@
 				<div class="row">
 					<div class="col-md-6">
 						<p>Ngày thi: <strong>{{$shift->date}}</strong></p>
-						<p>Số lớp thi: <strong>{{$shift->class->count()}}</strong></p>
-						<p>Số phòng thi: <strong>{{$shift->room->count()}}</strong></p>
+						<p>Số lớp thi: <strong>{{$shift->modules->count()}}</strong></p>
+						<p>Số phòng thi: <strong>{{$shift->tests->count()}}</strong></p>
 					</div>
 					<div class="col-md-6">
 						<p>Thời gian: <strong>{{$shift->start.' - '.$shift->end}}</strong></p>
-						<p>Số sinh viên đăng ký: <strong>{{$shift->student->count()}}</strong></p>
 						<p>Số sinh viên chưa đăng ký: <strong>{{rand(10, 25)}}</strong></p>
 					</div>
 				</div>
@@ -39,18 +38,28 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for($i = 0; $i < 10; $i++)
+						@foreach($shift->tests as $test)
 						<tr>
-							<th scope="row">{{$i+1}}</th>
-							<td>Chưa làm</td>
-							<td>Chưa làm</td>
-							<td>Chưa làm</td>
-							<td>Chưa làm</td>
-							<td>Chưa làm</td>
-							<td>Chưa làm</td>
+							<th scope="row">{{$loop->index+1}}</th>
+							<td>
+								<a href="{{route('room.show', $test->room->id)}}">{{$test->room->name}}</a>
+							</td>
+							<td>
+								<a href="{{route('location.show', $test->room->location->id)}}">{{$test->room->location->name}}</a>
+							</td>
+							<td>
+								<a href="{{route('subject.show', $test->class->module->subject->id)}}">{{$test->class->module->subject->name}}</a>
+							</td>
+							<td>
+								<a href="{{route('class.show', $test->class->id)}}">{{$test->class->code}}</a>
+							</td>
+							<td>
+								<a href="{{route('student.show', $test->class->teacher->id)}}">{{$test->class->teacher->name}}</a>
+							</td>
+							<td>{{$test->class->students->count()}}</td>
 							<td></td>
 						</tr>
-						@endfor
+						@endforeach
 					</tbody>
 				</table>
 				<p>Tổng số sinh viên đang học: <strong></strong></p>
