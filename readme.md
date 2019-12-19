@@ -17,3 +17,5 @@ Hệ thống có 2 vai trò sử dụng: Quản trị viên và sinh viên
 - Sinh viên đăng ký ca thi mà sinh viên đủ điều kiện dự thi và đang còn chỗ trống (chưa đủ số lượng đăng ký theo số máy).
 - Sinh viên download/in phiếu báo dự thi sau khi đăng ký thành công.
 
+Database:
+![alt text](https://raw.githubusercontent.com/namduong3699/Exam-Register/master/public/db.png)
