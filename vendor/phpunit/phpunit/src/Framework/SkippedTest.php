@@ -10,6 +10,9 @@
 
 namespace PHPUnit\Framework;
 
+/**
+ * A marker interface for marking a unit test as being skipped.
+ */
 interface SkippedTest
 {
 }

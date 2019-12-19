@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     protected $fillable = [
-    	'name', 'credit'
+    	'name', 'credit', 'code'
     ];
 
     protected $hidden = [];
@@ -17,6 +17,6 @@ class Subject extends Model
     }
 
     public function class() {
-    	return $this->hasMany('App\Models\Class');
+    	return $this->hasMany('App\Models\ClassSubject');
     }
 }

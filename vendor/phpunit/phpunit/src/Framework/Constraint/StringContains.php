@@ -52,15 +52,11 @@ class StringContains extends Constraint
      */
     protected function matches($other)
     {
-        if ('' === $this->string) {
-            return true;
-        }
-
         if ($this->ignoreCase) {
-            return \mb_stripos($other, $this->string) !== false;
+            return mb_stripos($other, $this->string) !== false;
+        } else {
+            return mb_strpos($other, $this->string) !== false;
         }
-
-        return \mb_strpos($other, $this->string) !== false;
     }
 
     /**
@@ -71,12 +67,12 @@ class StringContains extends Constraint
     public function toString()
     {
         if ($this->ignoreCase) {
-            $string = \mb_strtolower($this->string);
+            $string = mb_strtolower($this->string);
         } else {
             $string = $this->string;
         }
 
-        return \sprintf(
+        return sprintf(
             'contains "%s"',
             $string
         );

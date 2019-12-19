@@ -28,7 +28,7 @@ class TestFailure
     protected $failedTest;
 
     /**
-     * @var Throwable
+     * @var Exception
      */
     protected $thrownException;
 
@@ -43,7 +43,7 @@ class TestFailure
         if ($failedTest instanceof SelfDescribing) {
             $this->testName = $failedTest->toString();
         } else {
-            $this->testName = \get_class($failedTest);
+            $this->testName = get_class($failedTest);
         }
 
         if (!$failedTest instanceof TestCase || !$failedTest->isInIsolation()) {
@@ -60,7 +60,7 @@ class TestFailure
      */
     public function toString()
     {
-        return \sprintf(
+        return sprintf(
             '%s: %s',
             $this->testName,
             $this->thrownException->getMessage()
@@ -80,35 +80,31 @@ class TestFailure
     /**
      * Returns a description for an exception.
      *
-     * @param Throwable $e
+     * @param Exception $e
      *
      * @return string
      */
-    public static function exceptionToString(Throwable $e)
+    public static function exceptionToString(Exception $e)
     {
         if ($e instanceof SelfDescribing) {
             $buffer = $e->toString();
 
             if ($e instanceof ExpectationFailedException && $e->getComparisonFailure()) {
-                $buffer .= $e->getComparisonFailure()->getDiff();
+                $buffer = $buffer . $e->getComparisonFailure()->getDiff();
             }
 
             if (!empty($buffer)) {
-                $buffer = \trim($buffer) . "\n";
+                $buffer = trim($buffer) . "\n";
             }
-
-            return $buffer;
+        } elseif ($e instanceof Error) {
+            $buffer = $e->getMessage() . "\n";
+        } elseif ($e instanceof ExceptionWrapper) {
+            $buffer = $e->getClassName() . ': ' . $e->getMessage() . "\n";
+        } else {
+            $buffer = get_class($e) . ': ' . $e->getMessage() . "\n";
         }
 
-        if ($e instanceof Error) {
-            return $e->getMessage() . "\n";
-        }
-
-        if ($e instanceof ExceptionWrapper) {
-            return $e->getClassName() . ': ' . $e->getMessage() . "\n";
-        }
-
-        return \get_class($e) . ': ' . $e->getMessage() . "\n";
+        return $buffer;
     }
 
     /**
@@ -139,7 +135,7 @@ class TestFailure
     /**
      * Gets the thrown exception.
      *
-     * @return Throwable
+     * @return Exception
      */
     public function thrownException()
     {

@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Shift extends Model
 {
     protected $fillable = [
-    	'room_id', 'subject_id', 'date', 'start', 'end'
+    	'date', 'start', 'end', 'code'
     ];
 
     protected $hidden = [];
 
     public function class() {
-    	return $this->belongsTo('App\Models\Class');
+        return $this->belongsTo('App\Models\ClassSubject');
     }
 
     public function student() {

@@ -42,55 +42,33 @@ class LogicalNot extends Constraint
      */
     public static function negate($string)
     {
-        $positives = [
-            'contains ',
-            'exists',
-            'has ',
-            'is ',
-            'are ',
-            'matches ',
-            'starts with ',
-            'ends with ',
-            'reference ',
-            'not not '
-        ];
-
-        $negatives = [
-            'does not contain ',
-            'does not exist',
-            'does not have ',
-            'is not ',
-            'are not ',
-            'does not match ',
-            'starts not with ',
-            'ends not with ',
-            'don\'t reference ',
-            'not '
-        ];
-
-        \preg_match('/(\'[\w\W]*\')([\w\W]*)("[\w\W]*")/i', $string, $matches);
-
-        if (\count($matches) > 0) {
-            $nonInput = $matches[2];
-
-            $negatedString = \str_replace(
-                $nonInput,
-                \str_replace(
-                    $positives,
-                    $negatives,
-                    $nonInput
-                ),
-                $string
-            );
-        } else {
-            $negatedString = \str_replace(
-                $positives,
-                $negatives,
-                $string
-            );
-        }
-
-        return $negatedString;
+        return str_replace(
+            [
+                'contains ',
+                'exists',
+                'has ',
+                'is ',
+                'are ',
+                'matches ',
+                'starts with ',
+                'ends with ',
+                'reference ',
+                'not not '
+            ],
+            [
+                'does not contain ',
+                'does not exist',
+                'does not have ',
+                'is not ',
+                'are not ',
+                'does not match ',
+                'starts not with ',
+                'ends not with ',
+                'don\'t reference ',
+                'not '
+            ],
+            $string
+        );
     }
 
     /**
@@ -136,7 +114,7 @@ class LogicalNot extends Constraint
      */
     protected function failureDescription($other)
     {
-        switch (\get_class($this->constraint)) {
+        switch (get_class($this->constraint)) {
             case LogicalAnd::class:
             case self::class:
             case LogicalOr::class:
@@ -156,7 +134,7 @@ class LogicalNot extends Constraint
      */
     public function toString()
     {
-        switch (\get_class($this->constraint)) {
+        switch (get_class($this->constraint)) {
             case LogicalAnd::class:
             case self::class:
             case LogicalOr::class:
@@ -176,6 +154,6 @@ class LogicalNot extends Constraint
      */
     public function count()
     {
-        return \count($this->constraint);
+        return count($this->constraint);
     }
 }

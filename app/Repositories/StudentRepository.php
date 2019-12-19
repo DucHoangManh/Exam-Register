@@ -3,9 +3,10 @@
 namespace App\Repositories;
 
 use App\Models\Student;
+use App\Repositories\BaseRepository;
 use App\Repositories\Contracts\StudentInterface;
 
-abstract class StudentRepository extends BaseRepository implements StudentInterface
+class StudentRepository extends BaseRepository implements StudentInterface
 {
 	public function __construct(Student $student) {
         parent::__construct($student);

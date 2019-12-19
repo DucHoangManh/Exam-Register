@@ -30,7 +30,6 @@ use PHPUnit\TextUI\ResultPrinter;
  *          columns="80"
  *          colors="false"
  *          stderr="false"
- *          convertDeprecationsToExceptions="true"
  *          convertErrorsToExceptions="true"
  *          convertNoticesToExceptions="true"
  *          convertWarningsToExceptions="true"
@@ -47,7 +46,6 @@ use PHPUnit\TextUI\ResultPrinter;
  *          extensionsDirectory="tools/phpunit.d"
  *          printerClass="PHPUnit\TextUI\ResultPrinter"
  *          testSuiteLoaderClass="PHPUnit\Runner\StandardTestSuiteLoader"
- *          defaultTestSuite=""
  *          beStrictAboutChangesToGlobalState="false"
  *          beStrictAboutCoversAnnotation="false"
  *          beStrictAboutOutputDuringTests="false"
@@ -55,7 +53,6 @@ use PHPUnit\TextUI\ResultPrinter;
  *          beStrictAboutTestsThatDoNotTestAnything="false"
  *          beStrictAboutTodoAnnotatedTests="false"
  *          enforceTimeLimit="false"
- *          ignoreDeprecatedCodeUnitsFromCodeCoverage="false"
  *          timeoutForSmallTests="1"
  *          timeoutForMediumTests="10"
  *          timeoutForLargeTests="60"
@@ -171,7 +168,6 @@ class Configuration
     }
 
     /**
-     * @codeCoverageIgnore
      */
     final private function __clone()
     {
@@ -186,11 +182,11 @@ class Configuration
      */
     public static function getInstance($filename)
     {
-        $realpath = \realpath($filename);
+        $realpath = realpath($filename);
 
         if ($realpath === false) {
             throw new Exception(
-                \sprintf(
+                sprintf(
                     'Could not read "%s".',
                     $filename
                 )
@@ -223,14 +219,10 @@ class Configuration
     {
         $addUncoveredFilesFromWhitelist     = true;
         $processUncoveredFilesFromWhitelist = false;
-        $includeDirectory                   = [];
-        $includeFile                        = [];
-        $excludeDirectory                   = [];
-        $excludeFile                        = [];
 
         $tmp = $this->xpath->query('filter/whitelist');
 
-        if ($tmp->length === 1) {
+        if ($tmp->length == 1) {
             if ($tmp->item(0)->hasAttribute('addUncoveredFilesFromWhitelist')) {
                 $addUncoveredFilesFromWhitelist = $this->getBoolean(
                     (string) $tmp->item(0)->getAttribute(
@@ -248,22 +240,6 @@ class Configuration
                     false
                 );
             }
-
-            $includeDirectory = $this->readFilterDirectories(
-                'filter/whitelist/directory'
-            );
-
-            $includeFile = $this->readFilterFiles(
-                'filter/whitelist/file'
-            );
-
-            $excludeDirectory = $this->readFilterDirectories(
-                'filter/whitelist/exclude/directory'
-            );
-
-            $excludeFile = $this->readFilterFiles(
-                'filter/whitelist/exclude/file'
-            );
         }
 
         return [
@@ -271,12 +247,20 @@ class Configuration
                 'addUncoveredFilesFromWhitelist'     => $addUncoveredFilesFromWhitelist,
                 'processUncoveredFilesFromWhitelist' => $processUncoveredFilesFromWhitelist,
                 'include'                            => [
-                    'directory' => $includeDirectory,
-                    'file'      => $includeFile
+                    'directory' => $this->readFilterDirectories(
+                        'filter/whitelist/directory'
+                    ),
+                    'file' => $this->readFilterFiles(
+                        'filter/whitelist/file'
+                    )
                 ],
                 'exclude' => [
-                    'directory' => $excludeDirectory,
-                    'file'      => $excludeFile
+                    'directory' => $this->readFilterDirectories(
+                        'filter/whitelist/exclude/directory'
+                    ),
+                    'file' => $this->readFilterFiles(
+                        'filter/whitelist/exclude/file'
+                    )
                 ]
             ]
         ];
@@ -350,7 +334,9 @@ class Configuration
                 if ($node instanceof DOMElement && $node->tagName == 'arguments') {
                     foreach ($node->childNodes as $argument) {
                         if ($argument instanceof DOMElement) {
-                            if ($argument->tagName == 'file' || $argument->tagName == 'directory') {
+                            if ($argument->tagName == 'file' ||
+                                $argument->tagName == 'directory'
+                            ) {
                                 $arguments[] = $this->toAbsolutePath((string) $argument->textContent);
                             } else {
                                 $arguments[] = Xml::xmlToVariable($argument);
@@ -464,14 +450,14 @@ class Configuration
             $name  = (string) $ini->getAttribute('name');
             $value = (string) $ini->getAttribute('value');
 
-            $result['ini'][$name]['value'] = $value;
+            $result['ini'][$name] = $value;
         }
 
         foreach ($this->xpath->query('php/const') as $const) {
             $name  = (string) $const->getAttribute('name');
             $value = (string) $const->getAttribute('value');
 
-            $result['const'][$name]['value'] = $this->getBoolean($value, $value);
+            $result['const'][$name] = $this->getBoolean($value, $value);
         }
 
         foreach (['var', 'env', 'post', 'get', 'cookie', 'server', 'files', 'request'] as $array) {
@@ -479,23 +465,16 @@ class Configuration
                 $name     = (string) $var->getAttribute('name');
                 $value    = (string) $var->getAttribute('value');
                 $verbatim = false;
-                $force    = false;
 
                 if ($var->hasAttribute('verbatim')) {
-                    $verbatim                          = $this->getBoolean($var->getAttribute('verbatim'), false);
-                    $result[$array][$name]['verbatim'] = $verbatim;
-                }
-
-                if ($var->hasAttribute('force')) {
-                    $force                          = $this->getBoolean($var->getAttribute('force'), false);
-                    $result[$array][$name]['force'] = $force;
+                    $verbatim = $this->getBoolean($var->getAttribute('verbatim'), false);
                 }
 
                 if (!$verbatim) {
                     $value = $this->getBoolean($value, $value);
                 }
 
-                $result[$array][$name]['value'] = $value;
+                $result[$array][$name] = $value;
             }
         }
 
@@ -510,29 +489,25 @@ class Configuration
         $configuration = $this->getPHPConfiguration();
 
         if (!empty($configuration['include_path'])) {
-            \ini_set(
+            ini_set(
                 'include_path',
-                \implode(PATH_SEPARATOR, $configuration['include_path']) .
+                implode(PATH_SEPARATOR, $configuration['include_path']) .
                 PATH_SEPARATOR .
-                \ini_get('include_path')
+                ini_get('include_path')
             );
         }
 
-        foreach ($configuration['ini'] as $name => $data) {
-            $value = $data['value'];
-
-            if (\defined($value)) {
-                $value = (string) \constant($value);
+        foreach ($configuration['ini'] as $name => $value) {
+            if (defined($value)) {
+                $value = constant($value);
             }
 
-            \ini_set($name, $value);
+            ini_set($name, $value);
         }
 
-        foreach ($configuration['const'] as $name => $data) {
-            $value = $data['value'];
-
-            if (!\defined($name)) {
-                \define($name, $value);
+        foreach ($configuration['const'] as $name => $value) {
+            if (!defined($name)) {
+                define($name, $value);
             }
         }
 
@@ -541,40 +516,27 @@ class Configuration
             switch ($array) {
                 case 'var':
                     $target = &$GLOBALS;
-
                     break;
 
                 case 'server':
                     $target = &$_SERVER;
-
                     break;
 
                 default:
-                    $target = &$GLOBALS['_' . \strtoupper($array)];
-
+                    $target = &$GLOBALS['_' . strtoupper($array)];
                     break;
             }
 
-            foreach ($configuration[$array] as $name => $data) {
-                $target[$name] = $data['value'];
+            foreach ($configuration[$array] as $name => $value) {
+                $target[$name] = $value;
             }
         }
 
-        foreach ($configuration['env'] as $name => $data) {
-            $value = $data['value'];
-            $force = isset($data['force']) ? $data['force'] : false;
-
-            if ($force || false === \getenv($name)) {
-                \putenv("{$name}={$value}");
+        foreach ($configuration['env'] as $name => $value) {
+            if (false === getenv($name)) {
+                putenv("{$name}={$value}");
             }
-
-            $value = \getenv($name);
-
             if (!isset($_ENV[$name])) {
-                $_ENV[$name] = $value;
-            }
-
-            if (true === $force) {
                 $_ENV[$name] = $value;
             }
         }
@@ -644,13 +606,6 @@ class Configuration
         if ($root->getAttribute('bootstrap')) {
             $result['bootstrap'] = $this->toAbsolutePath(
                 (string) $root->getAttribute('bootstrap')
-            );
-        }
-
-        if ($root->hasAttribute('convertDeprecationsToExceptions')) {
-            $result['convertDeprecationsToExceptions'] = $this->getBoolean(
-                (string) $root->getAttribute('convertDeprecationsToExceptions'),
-                true
             );
         }
 
@@ -758,12 +713,6 @@ class Configuration
             );
         }
 
-        if ($root->hasAttribute('defaultTestSuite')) {
-            $result['defaultTestSuite'] = (string) $root->getAttribute(
-                'defaultTestSuite'
-            );
-        }
-
         if ($root->getAttribute('testSuiteLoaderFile')) {
             $result['testSuiteLoaderFile'] = $this->toAbsolutePath(
                 (string) $root->getAttribute('testSuiteLoaderFile')
@@ -831,13 +780,6 @@ class Configuration
             );
         }
 
-        if ($root->hasAttribute('ignoreDeprecatedCodeUnitsFromCodeCoverage')) {
-            $result['ignoreDeprecatedCodeUnitsFromCodeCoverage'] = $this->getBoolean(
-                (string) $root->getAttribute('ignoreDeprecatedCodeUnitsFromCodeCoverage'),
-                false
-            );
-        }
-
         if ($root->hasAttribute('timeoutForSmallTests')) {
             $result['timeoutForSmallTests'] = $this->getInteger(
                 (string) $root->getAttribute('timeoutForSmallTests'),
@@ -894,8 +836,6 @@ class Configuration
     /**
      * Returns the test suite configuration.
      *
-     * @param string|null $testSuiteFilter
-     *
      * @return TestSuite
      */
     public function getTestSuiteConfiguration($testSuiteFilter = null)
@@ -910,16 +850,17 @@ class Configuration
             return $this->getTestSuite($testSuiteNodes->item(0), $testSuiteFilter);
         }
 
-        //if ($testSuiteNodes->length > 1) { there cannot be a negative number of Nodes
-        $suite = new TestSuite;
+        if ($testSuiteNodes->length > 1) {
+            $suite = new TestSuite;
 
-        foreach ($testSuiteNodes as $testSuiteNode) {
-            $suite->addTestSuite(
-                $this->getTestSuite($testSuiteNode, $testSuiteFilter)
-            );
+            foreach ($testSuiteNodes as $testSuiteNode) {
+                $suite->addTestSuite(
+                    $this->getTestSuite($testSuiteNode, $testSuiteFilter)
+                );
+            }
+
+            return $suite;
         }
-
-        return $suite;
     }
 
     /**
@@ -939,8 +880,7 @@ class Configuration
     }
 
     /**
-     * @param DOMElement  $testSuiteNode
-     * @param string|null $testSuiteFilter
+     * @param DOMElement $testSuiteNode
      *
      * @return TestSuite
      */
@@ -964,10 +904,10 @@ class Configuration
         }
 
         $fileIteratorFacade = new File_Iterator_Facade;
-        $testSuiteFilter    = $testSuiteFilter ? \explode(self::TEST_SUITE_FILTER_SEPARATOR, $testSuiteFilter) : [];
+        $testSuiteFilter    = $testSuiteFilter ? explode(self::TEST_SUITE_FILTER_SEPARATOR, $testSuiteFilter) : [];
 
         foreach ($testSuiteNode->getElementsByTagName('directory') as $directoryNode) {
-            if (!empty($testSuiteFilter) && !\in_array($directoryNode->parentNode->getAttribute('name'), $testSuiteFilter)) {
+            if (!empty($testSuiteFilter) && !in_array($directoryNode->parentNode->getAttribute('name'), $testSuiteFilter)) {
                 continue;
             }
 
@@ -989,7 +929,7 @@ class Configuration
                 $phpVersionOperator = '>=';
             }
 
-            if (!\version_compare(PHP_VERSION, $phpVersion, $phpVersionOperator)) {
+            if (!version_compare(PHP_VERSION, $phpVersion, $phpVersionOperator)) {
                 continue;
             }
 
@@ -1015,7 +955,7 @@ class Configuration
         }
 
         foreach ($testSuiteNode->getElementsByTagName('file') as $fileNode) {
-            if (!empty($testSuiteFilter) && !\in_array($fileNode->parentNode->getAttribute('name'), $testSuiteFilter)) {
+            if (!empty($testSuiteFilter) && !in_array($fileNode->parentNode->getAttribute('name'), $testSuiteFilter)) {
                 continue;
             }
 
@@ -1048,7 +988,7 @@ class Configuration
                 $phpVersionOperator = '>=';
             }
 
-            if (!\version_compare(PHP_VERSION, $phpVersion, $phpVersionOperator)) {
+            if (!version_compare(PHP_VERSION, $phpVersion, $phpVersionOperator)) {
                 continue;
             }
 
@@ -1059,22 +999,16 @@ class Configuration
     }
 
     /**
-     * if $value is 'false' or 'true', this returns the value that $value represents.
-     * Otherwise, returns $default, which may be a string in rare cases.
-     * See PHPUnit\Util\ConfigurationTest::testPHPConfigurationIsReadCorrectly
+     * @param string $value
+     * @param bool   $default
      *
-     * @param string      $value
-     * @param string|bool $default
-     *
-     * @return string|bool
+     * @return bool
      */
     protected function getBoolean($value, $default)
     {
-        if (\strtolower($value) == 'false') {
+        if (strtolower($value) == 'false') {
             return false;
-        }
-
-        if (\strtolower($value) == 'true') {
+        } elseif (strtolower($value) == 'true') {
             return true;
         }
 
@@ -1083,13 +1017,13 @@ class Configuration
 
     /**
      * @param string $value
-     * @param int    $default
+     * @param bool   $default
      *
-     * @return int
+     * @return bool
      */
     protected function getInteger($value, $default)
     {
-        if (\is_numeric($value)) {
+        if (is_numeric($value)) {
             return (int) $value;
         }
 
@@ -1169,7 +1103,7 @@ class Configuration
      */
     protected function toAbsolutePath($path, $useIncludePath = false)
     {
-        $path = \trim($path);
+        $path = trim($path);
 
         if ($path[0] === '/') {
             return $path;
@@ -1183,20 +1117,22 @@ class Configuration
         //  - C:\windows
         //  - C:/windows
         //  - c:/windows
-        if (\defined('PHP_WINDOWS_VERSION_BUILD') &&
-            ($path[0] === '\\' || (\strlen($path) >= 3 && \preg_match('#^[A-Z]\:[/\\\]#i', \substr($path, 0, 3))))) {
+        if (defined('PHP_WINDOWS_VERSION_BUILD') &&
+            ($path[0] === '\\' ||
+                (strlen($path) >= 3 && preg_match('#^[A-Z]\:[/\\\]#i', substr($path, 0, 3))))
+        ) {
             return $path;
         }
 
         // Stream
-        if (\strpos($path, '://') !== false) {
+        if (strpos($path, '://') !== false) {
             return $path;
         }
 
-        $file = \dirname($this->filename) . DIRECTORY_SEPARATOR . $path;
+        $file = dirname($this->filename) . DIRECTORY_SEPARATOR . $path;
 
-        if ($useIncludePath && !\file_exists($file)) {
-            $includePathFile = \stream_resolve_include_path($path);
+        if ($useIncludePath && !file_exists($file)) {
+            $includePathFile = stream_resolve_include_path($path);
 
             if ($includePathFile) {
                 $file = $includePathFile;
