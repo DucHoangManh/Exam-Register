@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $fillable = [
-    	'name', 'location_id'
+    	'name', 'location_id', 'computer_number'
     ];
 
     protected $hidden = [];

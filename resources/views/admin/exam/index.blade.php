@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Phòng thi')
-@section('page-title', 'Phòng thi')
+@section('title', 'Kỳ thi')
+@section('page-title', 'Kỳ thi')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
 <div class="row">
@@ -9,18 +9,13 @@
 			<div class="portlet-title">
 				<div class="caption font-dark">
 					<i class="icon-settings font-dark"></i>
-					<span class="caption-subject bold uppercase">Quản lý phòng thi</span>
+					<span class="caption-subject bold uppercase">Quản lý kỳ thi</span>
 				</div>
 				<div class="actions">
 					<div class="btn-group">
-						<a href="{{route('room.create')}}">
+						<a href="{{route('exam.create')}}">
 							<button id="sample_editable_1_new" class="btn sbold green"> Add New
 							<i class="fa fa-plus"></i>
-							</button>
-						</a>
-						<a href="{{route('export.room')}}">
-							<button id="sample_editable_1_new" class="btn sbold blue-madison"> Export
-							<i class="fa fa-cloud-download"></i>
 							</button>
 						</a>
 					</div>
@@ -43,34 +38,40 @@
 					<table class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer" id="sample_1" role="grid" aria-describedby="sample_1_info">
 						<thead>
 							<tr role="row">
-								<th>#</th>
-								<th> Tên phòng thi </th>
-								<th>Điểm thi</th>
-								<th>Số lượng máy</th>
+								<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 110px;">#
+								</th>
+								<th> Học kỳ </th>
+								<th> Năm học </th>
+								<th> Số môn học </th>
+								<th> Số lớp học </th>
 								<th> Thao tác </th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($rooms as $room)
+							@foreach($exams as $exam)
 							<tr class="gradeX odd" role="row">
 								<td>
 									{{$loop->index+1}}
 								</td>
-								<td> 
-									<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
+								<td>
+									<a href="{{route('exam.show', $exam->id)}}">{{$exam->type}}</a>
 								</td>
 								<td>
-									<a href="{{route('location.show', $room->location->id)}}">{{$room->location->name}}</a>
+									{{$exam->school_year}}
 								</td>
-
-								<td>{{$room->computer_quantity}}</td>
+								<td>
+									{{$exam->modules->count()}}
+								</td>
+								<td>
+									----
+								</td>
 
 								<td>
 									<div class="btn-group">
-										<a href="{{URL::to('admin/room/'.$room->id.'/edit')}}" class="btn btn-icon-only blue">
+										<a href="{{route('exam.edit', $exam->id)}}" class="btn btn-icon-only blue">
 											<i class="icon-pencil"></i>
 										</a>
-										<a href="{{URL::to('admin/room/delete/'.$room->id)}}" class="btn btn-icon-only red ml-10">
+										<a href="{{URL::to('admin/exam/delete/'.$exam->id)}}" class="btn btn-icon-only red ml-10">
 											<i class="icon-ban"></i>
 										</a>
 										
@@ -82,14 +83,11 @@
 					</table>
 				</div>
 				<div class="paginate" style="text-align: center;">
-					{{ $rooms->links() }}
+					{{ $exams->links() }}
 				</div>
-				<p class="text-left">
-					Tổng số phòng thi: <strong>{{$rooms->count()}}</strong>
-				</p>
 			</div>
 		</div>
 	</div>
 </div>
-<script src="assets/js/room/index.js"></script>
+<script src="assets/js/teacher/index.js"></script>
 @endsection

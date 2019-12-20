@@ -13,7 +13,9 @@ class TestTableSeeder extends Seeder
     {
     	$count = 50;
         factory(App\Models\Test::class, $count)->create()->each(function($test){
-            $test->students()->save(App\Models\Student::all()->random(1)[0]);
+            // $student = App\Models\Student::all()->random(1)[0];
+            // $test->students()->save($student);
+            // $test->register
         });
     }
 }

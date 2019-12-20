@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exam extends Model
 {
+    public $table = 'exams';
     protected $fillable = [
-    	'name', 'start_date', 'end_date'
+    	'type', 'school_year', 'deadline'
     ];
 
     protected $hidden = [];

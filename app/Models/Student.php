@@ -19,10 +19,14 @@ class Student extends Model
     }
 
     public function tests() {
-    	return $this->belongsToMany('App\Models\Test', 'student_test');
+    	return $this->belongsToMany('App\Models\Test', 'student_class');
     }
 
     public function user() {
         return $this->hasOne('App\Models\User', 'username', 'code');
+    }
+
+    public function registers() {
+        return $this->hasMany('App\Models\Register');
     }
 }

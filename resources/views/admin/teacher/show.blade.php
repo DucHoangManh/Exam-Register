@@ -26,22 +26,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($teacher->class as $class)
+						@foreach($teacher->classes as $class)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
 							<td>
-								<a href="{{route('subject.show', $class->subject->id)}}">{{$class->subject->name}}</a>
+								<a href="{{route('subject.show', $class->module->subject->id)}}">{{$class->module->subject->name}}</a>
 							</td>
 							<td>
 								<a href="{{route('class.show', $class->id)}}">{{$class->code}}</a>
 							</td>
-							<td>{{$class->subject->credit}}</td>
+							<td>{{$class->module->subject->credit}}</td>
 							<td></td>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
-				<p>Tổng số lớp: <strong>{{$teacher->class->count()}}</strong></p>
+				<p>Tổng số lớp: <strong>{{$teacher->classes->count()}}</strong></p>
 			</div>
 		</div>
 	</div>

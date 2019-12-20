@@ -34,6 +34,7 @@ class CreateClassesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('class_id');
             $table->unsignedInteger('student_id');
+            $table->unsignedInteger('test_id')->nullable();
             $table->smallInteger('is_baned')->default(0);
         });
 
@@ -56,12 +57,12 @@ class CreateClassesTable extends Migration
             $table->unsignedInteger('shift_id');
         });
 
-        Schema::create('student_test', function(Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('student_id');
-            $table->unsignedInteger('test_id');
-            $table->smallInteger('status')->default(0);
-        });
+        // Schema::create('student_test', function(Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->unsignedInteger('student_id');
+        //     $table->unsignedInteger('test_id');
+        //     $table->smallInteger('status')->default(0);
+        // });
     }
 
     /**

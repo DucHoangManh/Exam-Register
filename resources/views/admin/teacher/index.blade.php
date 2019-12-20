@@ -45,7 +45,8 @@
 							<tr role="row">
 								<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 110px;">#
 								</th>
-								<th class="sorting_asc" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" aria-sort="ascending" style="width: 225px;"> Tên giảng viên </th>
+								<th rowspan="1" colspan="1" style="width: 225px;"> Tên giảng viên </th>
+								<th rowspan="1" colspan="1" style="width: 225px;"> Email </th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 431px;">Số lớp đang dạy</th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 200px;">Mã lớp</th>
 								<th class="sorting" tabindex="0" aria-controls="sample_1" rowspan="1" colspan="1" style="width: 115px;"> Thao tác </th>
@@ -61,11 +62,19 @@
 									<a href="{{route('teacher.show', $teacher->id)}}">{{$teacher->name}}</a>
 								</td>
 								<td>
-									{{$teacher->class->count()}}
+									{{$teacher->email}}
 								</td>
 								<td>
-									@if($teacher->class->count() != 0)
-									{{$teacher->class->count()}}
+									{{$teacher->classes->count()}}
+								</td>
+								<td>
+									@if($teacher->classes->count() != 0)
+										@foreach($teacher->classes as $class)
+											@if($loop->index != 0)
+											, 
+											@endif
+											{{$class->code}}
+										@endforeach
 									@else
 									Trống
 									@endif

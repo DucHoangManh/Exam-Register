@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,12 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
+	$username = $faker->numberBetween(15, 18) * 1000000 + $faker->unique()->numberBetween(0, 100000);
     return [
-        'username' => 17000000 + $faker->unique()->numberBetween(0, 100000),
-        'email' => $faker->unique()->safeEmail,
+        'username' => $username,
+        'email' => $username.'@vnu.edu.vn',
         'type' => '0',
-        'password' => '$2y$10$SN5KWocLYGC6l6oF./fHmOFiIsFE7SYWJC7j47HquyoOJRThzt2em', // secret: 111111
+        'password' => Hash::make('111111'), // secret: 111111
         'remember_token' => str_random(10),
     ];
 });

@@ -19,6 +19,7 @@
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Tên phòng thi</th>
+							<th scope="col">Số máy</th>
 							<th scope="col">Số ca thi</th>
 							<th scope="col">Xóa</th>
 						</tr>
@@ -30,6 +31,7 @@
 							<td>
 								<a href="{{route('room.show', $room->id)}}">{{$room->name}}</a>
 							</td>
+							<td>{{$room->computer_quantity}}</td>
 							<td>{{$room->shifts()->count()}}</td>
 							<td></td>
 						</tr>

@@ -20,9 +20,12 @@
 					</div>
 					<div class="col-md-6">
 						<p>Mã: <strong>{{$subject->code}}</strong></p>
-						<p>Số lớp: <strong>{{$subject->module->class->count()}}</strong></p>
+						<p>Số lớp: <strong>{{$subject->modules->count()}}</strong></p>
 					</div>
 				</div>
+				<br><br>
+				@foreach($subject->modules as $module)
+				<p>Học kỳ <strong>{{$module->exam->type}}</strong> năm học <strong>{{$module->exam->school_year}}</strong></p>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -34,7 +37,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($subject->class as $class)
+						@foreach($module->classes as $class)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
 							<td>
@@ -47,16 +50,21 @@
 							<td></td>
 						</tr>
 						@endforeach
+						
 						<tr>
 							<th scope="row"></th>
 							<td></td>
 							<td></td>
-							<td><strong>90</strong></td>
+							<td>
+								<strong>
+									Chiu
+								</strong>
+							</td>
 							<td></td>
 						</tr>
 					</tbody>
 				</table>
-				<p>Tổng số sinh viên đang học: <strong></strong></p>
+				@endforeach
 			</div>
 		</div>
 	</div>

@@ -53,30 +53,30 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($modules as $module)
+							@foreach($subjects as $subject)
 							<tr class="gradeX odd" role="row">
 								<td>
 									{{$loop->index+1}}
 								</td>
 								<td>
-									<a href="{{route('subject.show', $module->subject->id)}}">{{$module->subject->name}}</a>
+									<a href="{{route('subject.show', $subject->id)}}">{{$subject->name}}</a>
 								</td>
 								<td>
-									{{$module->subject->code}}
+									{{$subject->code}}
 								</td>
 								<td>
-									{{$module->subject->credit}}
+									{{$subject->credit}}
 								</td>
 								<td>
-									{{$module->classes->count()}}
+									{{$subject->classes}}
 								</td>
 
 								<td>
 									<div class="btn-group">
-										<a href="{{URL::to('admin/subject/'.$module->subject->id.'/edit')}}" class="btn btn-icon-only blue">
+										<a href="{{URL::to('admin/subject/'.$subject->id.'/edit')}}" class="btn btn-icon-only blue">
 											<i class="icon-pencil"></i>
 										</a>
-										<a href="{{URL::to('admin/subject/delete/'.$module->subject->id)}}" class="btn btn-icon-only red ml-10">
+										<a href="{{URL::to('admin/subject/delete/'.$subject->id)}}" class="btn btn-icon-only red ml-10">
 											<i class="icon-ban"></i>
 										</a>
 										
@@ -88,10 +88,10 @@
 					</table>
 				</div>
 				<div class="paginate" style="text-align: center;">
-					{{ $modules->links() }}
+					{{ $subjects->links() }}
 				</div>
 				<p class="text-left">
-					Tổng số môn học: <strong>{{$modules->count()}}</strong>
+					Tổng số môn học: <strong>{{$subjects->count()}}</strong>
 				</p>
 			</div>
 		</div>

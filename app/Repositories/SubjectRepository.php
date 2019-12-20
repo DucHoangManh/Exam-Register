@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Subject;
+use App\Models\Module;
 use App\Repositories\BaseRepository;
 use App\Repositories\Contracts\SubjectInterface;
 

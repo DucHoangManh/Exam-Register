@@ -34,25 +34,32 @@
 							<th scope="col">Mã lớp</th>
 							<th scope="col">Giáo viên</th>
 							<th scope="col">Số tín chỉ</th>
-							<th scope="col">Điều kiện dự thi</th>
 							<th scope="col">Ngày thi</th>
 							<th scope="col">Thời gian</th>
 							<th scope="col">Địa điểm</th>
+							<th scope="col">Ghi chú</th>
 							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($student->classes as $class)
+						@foreach($student->registers as $register)
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
-							<td>{{$class->module->subject->name}}</td>
-							<td>{{$class->code}}</td>
-							<td>{{$class->teacher->name}}</td>
-							<td>{{$class->module->subject->credit}}</td>
-							<td>{{($class->pivot->is_baned == 0) ? 'Đủ đk' : 'Cấm thi'}}</td>
-							<td>{{$student->tests->where('class_id', '=', $class->id)}}</td>
-							<td>{{$class->id}}</td>
-							<td>Chưa làm</td>
+							<td>{{$register->class->module->subject->name}}</td>
+							<td>{{$register->class->code}}</td>
+							<td>{{$register->class->teacher->name}}</td>
+							<td>{{$register->class->module->subject->credit}}</td>
+							
+							@if($register->test == null) 
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							@else
+								<td> {{$register->test->shift->date}} </td>
+								<td> {{$register->test->shift->start.' - '.$register->test->shift->end}} </td>
+								<td> {{$register->test->room->name.' - '.$register->test->room->location->name}} </td>
+							@endif
+							<td>{{($register->is_baned == 0) ? '' : 'Cấm thi'}}</td>
 							<td></td>
 						</tr>
 						@endforeach

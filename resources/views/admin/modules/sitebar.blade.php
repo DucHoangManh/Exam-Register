@@ -10,7 +10,7 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item start active open">
-                        <a href="index-2.html" class="nav-link ">
+                        <a href="{{route('exam.index')}}" class="nav-link ">
                             <i class="icon-bar-chart"></i>
                             <span class="title">Tất cả</span>
                             <span class="badge badge-success">1</span>
@@ -20,7 +20,7 @@
                     @foreach($exams as $exam)
                     <li class="nav-item start ">
                         <a href="{{URL::to('admin/setExam/'.$exam->id)}}" class="nav-link ">
-                            <span class="title">{{$exam->type.' - '.$exam->school_year}}</span>
+                            <span class="title">Học kỳ {{$exam->type.' - '.$exam->school_year}}</span>
                         </a>
                     </li>
                     @endforeach
@@ -141,7 +141,12 @@
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
                         <a href="{{URL::to('admin/class')}}" class="nav-link ">
-                            <span class="title">Show</span>
+                            <span class="title">Tất cả</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{route('class.exam', session('exam')->id)}}" class="nav-link ">
+                            <span class="title">Học kỳ hiện tại</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
@@ -160,8 +165,13 @@
                 </a>
                 <ul class="sub-menu" style="display: none;">
                     <li class="nav-item  ">
-                        <a href="{{URL::to('admin/subject')}}" class="nav-link ">
-                            <span class="title">Show</span>
+                        <a href="{{route('subject.index')}}" class="nav-link ">
+                            <span class="title">Tất cả</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{route('subject.exam', session('exam')->id)}}" class="nav-link ">
+                            <span class="title">Môn học kỳ hiện tại</span>
                         </a>
                     </li>
                     <li class="nav-item  ">

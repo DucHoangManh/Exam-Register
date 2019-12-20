@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subject;
 use App\Models\Module;
+use App\Models\Exam;
 use App\Imports\SubjectImport;
 use App\Exports\SubjectExport;
 use App\Repositories\Facades\SubjectRepository;
@@ -14,8 +15,14 @@ class SubjectController extends Controller
 {
     public function index()
     {
-        $modules = Module::where('exam_id', '=', session('exam')->id)->paginate(10);
-        return view('admin.subject.index', compact('modules'));
+        $subjects = SubjectRepository::paginate(10);
+        return view('admin.subject.index', compact('subjects'));
+    }
+
+    public function indexByExam($id) {
+        // $subjects = Module::where('exam_id', '=', session('exam')->id)->paginate(10);
+        $subjects = Exam::findOrFail($id)->subjects()->paginate(10);
+        return view('admin.subject.index', compact('subjects'));
     }
 
     public function create()

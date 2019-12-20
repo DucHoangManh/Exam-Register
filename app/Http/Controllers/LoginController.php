@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
+use App\Repositories\Facades\ExamRepository;
 
 class LoginController extends Controller
 {
@@ -38,6 +39,8 @@ class LoginController extends Controller
         	$username = $request->input('username');
 	        $password = $request->input('password');
         	if (Auth::attempt(['username' => $username, 'password' => $password,'type'=>2])) {
+                $exam = ExamRepository::last();
+                session(['exam' => $exam]);
 	        	return redirect('/admin/home');
         	}
 	        else if(Auth::attempt(['username' => $username, 'password' => $password,'type'=>1]))         {

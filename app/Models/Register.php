@@ -8,11 +8,15 @@ class Register extends Model
 {
     protected $table = "student_class";
 
-    protected $fillable = [
-    	'name'
-    ];
-
     public function test() {
     	return $this->belongsTo('App\Models\Test');
+    }
+
+    public function student() {
+    	return $this->belongsTo('App\Models\Student');
+    }
+
+    public function class() {
+    	return $this->belongsTo('App\Models\ClassSubject');
     }
 }

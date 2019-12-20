@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ClassSubject;
 use App\Repositories\Facades\ClassRepository;
+use App\Models\Module;
 use App\Imports\ClassImport;
 use App\Imports\ClassStudentImport;
 use App\Exports\ClassDetailExport;
@@ -16,6 +17,11 @@ class ClassController extends Controller
     public function index()
     {
         $classes = ClassRepository::orderBy('code')->paginate(10); 
+        return view('admin.class.index', compact('classes'));
+    }
+
+    public function indexByExam($id) {
+        $classes = ClassRepository::findByExamPaginate($id, 10);
         return view('admin.class.index', compact('classes'));
     }
 

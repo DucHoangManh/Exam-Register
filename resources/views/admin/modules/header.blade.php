@@ -10,7 +10,7 @@
         <div class="page-actions">
             <div class="btn-group">
                 <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                <span class="hidden-sm hidden-xs">{{session('exam')->type.' - '.session('exam')->school_year}}&nbsp;</span>
+                <span class="hidden-sm hidden-xs"> Học kỳ  {{ session('exam')->type.' - '.session('exam')->school_year }}&nbsp;</span>
                 <i class="fa fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu" role="menu">

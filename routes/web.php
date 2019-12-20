@@ -43,7 +43,7 @@ Route::get('/welcome', function() {
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::get('home', function (){
 		return view('admin.home');
-	});
+	})->name('admin.home');
 
 
 	/*
@@ -57,6 +57,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::resource('location', 'LocationController');
 	Route::resource('room', 'RoomController');
 	Route::resource('shift', 'ShiftController');
+	Route::resource('exam', 'ExamController');
 
 	/*
 	*	Import
@@ -117,6 +118,9 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
 	Route::get('setExam/{exam}', 'ExamController@setCurrent');
 
+	Route::get('class/exam/{exam}', 'ClassController@indexByExam')->name('class.exam');
+	Route::get('subject/exam/{exam}', 'SubjectController@indexByExam')->name('subject.exam');
+	Route::post('examm/addSubject', 'ExamController@addSubject')->name('exam.addSubject');
 });
 
 Route::get('test', 'ClassController@test');

@@ -17,10 +17,14 @@ class Test extends Model
     }
 
     public function students() {
-    	return $this->belongsToMany('App\Models\Student', 'student_test');
+    	return $this->belongsToMany('App\Models\Student', 'student_class');
     }
 
     public function class() {
         return $this->belongsTo('App\Models\ClassSubject', 'class_id');
+    }
+
+    public function registers() {
+        return $this->hasMany('App\Models\Register');
     }
 }

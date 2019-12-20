@@ -141,4 +141,8 @@ abstract class BaseRepository implements BaseInterface
         return $this->model->whereIn('id', $values)
             ->orderByRaw("FIND_IN_SET($column, '$valuesString')");
     }
+
+    public function last() {
+        return $this->model->orderBy('created_at', 'desc')->first();
+    }
 }
