@@ -46,7 +46,9 @@ class LoginController extends Controller
 	        else if(Auth::attempt(['username' => $username, 'password' => $password,'type'=>1]))         {
 	            return redirect()->back();
 	        }  else if(Auth::attempt(['username' => $username, 'password' => $password,'type'=>0])) {
-	            return redirect()->back();
+                $exam = ExamRepository::last();
+                session(['exam' => $exam]);
+	            return redirect('home');
 	        } else {
 	            $errors = new MessageBag(['errorlogin' => 'Tên đăng nhập hoặc mật khẩu không đúng']);
 	            return redirect()->back()->withInput()->withErrors($errors);

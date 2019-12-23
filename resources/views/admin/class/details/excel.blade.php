@@ -4,7 +4,7 @@
             <td colspan="7">THÔNG TIN LỚP HỌC</td>
         </tr>
         <tr>
-            <td colspan="4">Tên môn học: {{$class->subject->name}}</td>
+            <td colspan="4">Tên môn học: {{$class->module->subject->name}}</td>
             <td colspan="3">Mã lớp: {{$class->code}}</td>
         </tr>
         <tr>
@@ -12,8 +12,8 @@
             <td colspan="3">Email: {{$class->teacher->email}}</td>
         </tr>
         <tr>
-            <td colspan="4">Số tín chỉ: {{$class->subject->credit}}</td>
-            <td colspan="3">Sĩ số: {{$class->student->count()}}</td>
+            <td colspan="4">Số tín chỉ: {{$class->module->subject->credit}}</td>
+            <td colspan="3">Sĩ số: {{$class->students->count()}}</td>
         </tr>
     </tbody>
 </table>
@@ -30,7 +30,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($class->student as $student)
+        @foreach($class->students as $student)
         <tr>
             <th>{{$loop->index+1}}</th>
             <td>
@@ -49,7 +49,7 @@
                 {{$student->birthday}}
             </td>
             <td>
-                @if ($student->is_baned != 0) Cấm thi @endif
+                @if ($student->pivot->is_baned != 0) Cấm thi @endif
             </td>
         </tr>
         @endforeach

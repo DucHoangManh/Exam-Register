@@ -2,9 +2,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                </button>
+                <h5 class="modal-title" id="exampleModalLongTitle">Đăng ký ca thi</h5>
             </div>
             <div class="modal-body">
                 <div class="kt-portlet__body">
@@ -16,18 +14,23 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Thứ</th>
+                                        <th>Ngày thi</th>
                                         <th>Giờ thi</th>
-                                        <th>Giảng đường</th>
+                                        <th>Ca thi</th>
+                                        <th>Phòng thi</th>
+                                        <th>Địa điểm</th>
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @for ($i=0; $i<5; $i++)
-                                    <tr>
-                                        <th scope="row">{{$i+1}}</th>
-                                        <td>6</td>
-                                        <td>14:00 - 16:00</td>
-                                        <td>107 - G2</td>
+                                <tbody class="test-table">
+                                    <tr class="test-row" style="display:none">
+                                        <th scope="row" class="test-index"></th>
+                                        <td class="test-thu"></td>
+                                        <td class="test-date"></td>
+                                        <td class="test-time"></td>
+                                        <td class="test-shift"></td>
+                                        <td class="test-room"></td>
+                                        <td class="test-location"></td>
                                         <td>
                                             <label class="kt-radio kt-radio--bold kt-radio--brand">
                                                 <input type="radio" name="radio6">
@@ -35,7 +38,6 @@
                                             </label>
                                         </td>
                                     </tr>
-                                    @endfor
                                 </tbody>
                             </table>
                         </div>

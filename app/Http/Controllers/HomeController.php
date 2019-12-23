@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Facades\StudentRepository;
+use App\Repositories\Facades\ExamRepository;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -13,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('student');
     }
 
     /**
@@ -23,6 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $student = Auth::user()->student;
+        $lastExam = ExamRepository::last();
+        $courses = $student->classes->each(function ($class) {
+            
+        });
+        return view('user.home', compact('student'));
+    }
+
+    public function registration() {
+        $student = Auth::user()->student;
+        return view('user.registration', compact('student'));
     }
 }

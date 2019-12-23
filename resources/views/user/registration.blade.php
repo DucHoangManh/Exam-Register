@@ -34,7 +34,7 @@
 					<ul class="nav nav-pills nav-pills-sm nav-pills-label nav-pills-bold" role="tablist">
 						<li class="nav-item">
 							<a class="nav-link" data-toggle="tab" href="#kt_widget31_tab2_content" role="tab">					
-								Hạn đăng ký: 01/01/2020
+								Hạn đăng ký: {{session('exam')->deadline}}
 							</a>
 						</li>
 					</ul>
@@ -46,7 +46,7 @@
 						Nếu qua thời gian đăng ký mà sinh viên chưa đăng ký lịch thi phù hợp thì hệ thống sẽ chọn ngẫu nhiên ca thi.
 					</span>
 					<div class="kt-section__content">
-						<table class="table" style="text-align: center;">
+						<table class="table">
 						  	<thead class="thead-light">
 						    	<tr>
 						      		<th>#</th>
@@ -54,47 +54,53 @@
 						      		<th>TC</th>
 						      		<th>Mã học phần</th>
 						      		<th>Giảng viên</th>
+									<th>Trạng thái</th>
 						      		<th>Thứ</th>
 						      		<th>Giờ thi</th>
 						      		<th>Giảng đường</th>
 						      		<th>Số TT</th>
-						      		<th>Trạng thái</th>
 						      		<th>Sửa</th>
 						    	</tr>
 						  	</thead>
 						  	<tbody>
-						  		@for($i = 0; $i < 6; $i++)
+						  		@foreach($student->registers as $register)
 						    	<tr>
-							      	<th scope="row">{{$i + 1}}</th>
-							      	<td>Phát triển ứng dụng web</td>
-							      	<td>3</td>
-							      	<td>INT3306 10</td>
-							      	<td>TS. Lê Đình Thanh</td>
-							      	<td>4</td>
-							      	<td>11:00 - 13:00</td>
-							      	<td>Phòng 101-G2</td>
-									<td>36</td>
+							      	<th scope="row">{{$loop->index + 1}}</th>
+							      	<td>{{$register->class->module->subject->name}}</td>
+							      	<td>{{$register->class->module->subject->credit}}</td>
+							      	<td>{{$register->class->code}}</td>
+							      	<td>{{$register->class->teacher->name}}</td>
 									<td>
-										<div class="kt-widget31__progress">
+										<div class="kt-widget31__progress" style="text-align:center">
 											<a href="#" class="kt-widget31__stats">
-												<span>33%</span>					    							 
+												<span>{{$register->class->registerStatus()}}%</span>					    							 
 											</a>
 											<div class="progress progress-sm">
-												<div class="progress-bar bg-warning" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+												<div class="progress-bar bg-warning" role="progressbar" style="width: {{$register->class->registerStatus()}}%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
 											</div>
 										</div>
 									</td>
+									@if($register->test == null) 
+									<td> - </td>
+									<td> - </td>
+									<td> - </td>
+									<td> - </td>
 									<td>
-										@if ($i == 4)
-										<button type="button" class="btn btn-info btn-icon" data-toggle="modal" data-target="#kt_modal_6">
+										<button type="button" class="btn btn-info btn-icon add-test" data-class="{{$register->class->id}}" data-toggle="modal" data-target="#kt_modal_6">
 											<i class="flaticon2-add-circular-button"></i>
 										</button>
-										@else
-										<button type="button" class="btn btn-outline-danger btn-elevate btn-icon"><i class="flaticon2-trash"></i></button>
-										@endif
 									</td>
+									@else
+							      	<td>{{$register->test->shift->date}}</td>
+							      	<td>{{$register->test->shift->start.' - '.$register->test->shift->end}}</td>
+							      	<td>{{$register->test->room->name.' - '.$register->test->room->location->name}}</td>
+									<td>Lam sau</td>
+									<td>
+										<button type="button" class="btn btn-outline-danger btn-elevate btn-icon"><i class="flaticon2-trash"></i></button>
+									</td>
+									@endif
 						    	</tr>
-						    	@endfor
+						    	@endforeach
 						  	</tbody>
 						</table>
 					</div>
@@ -106,6 +112,8 @@
 		<!--end:: Widgets/User Progress -->	
 	</div>
 </div>
+
+<script src="user/js/registration.js"></script>
 <!--End::Row-->
 @endsection
 

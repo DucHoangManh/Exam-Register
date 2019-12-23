@@ -11,19 +11,6 @@
 |
 */
 
-
-Route::get('home', function () {
-    return view('user.home');
-})->middleware('student');
-
-Route::get('registration', function () {
-    return view('user.registration');
-});
-
-Route::get('calendar', function () {
-    return view('user.calendar');
-});
-
 /*
 * Login
 */
@@ -35,10 +22,6 @@ Route::get('logout', function() {
 	Auth::logout();
 	return redirect()->back();
 })->name('logout');
-
-Route::get('/welcome', function() {
-	return view('welcome');
-})->name('welcome');
 
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::get('home', function (){
@@ -123,5 +106,16 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::post('examm/addSubject', 'ExamController@addSubject')->name('exam.addSubject');
 });
 
-Route::get('test', 'ClassController@test');
+Route::group(['middleware' => 'student'], function() {
+	Route::get('home', 'HomeController@index');
+	Route::get('registration', 'HomeController@registration');
+	
+	Route::get('calendar', function () {
+		return view('user.calendar');
+	});
+
+	Route::group(['prefix' => 'api'], function() {
+		Route::get('class/get-test/{class}', 'ClassController@getTestsJson');
+	});
+});
 

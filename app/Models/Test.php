@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Facades\TestRepository;
 
 class Test extends Model
 {
@@ -26,5 +27,13 @@ class Test extends Model
 
     public function registers() {
         return $this->hasMany('App\Models\Register');
+    }
+
+    public function isFull() {
+        return TestRepository::isFull($this->id);
+    }
+
+    public function status() {
+        return TestRepository::status($this->id);
     }
 }

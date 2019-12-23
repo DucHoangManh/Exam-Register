@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Facades\ClassRepository;
 
 class ClassSubject extends Model
 {
@@ -31,5 +32,9 @@ class ClassSubject extends Model
 
     public function register() {
         return $this->hasMany('App\Models\Register', 'class_id');
+    }
+
+    public function registerStatus() {
+        return ClassRepository::registerStatus($this->id);
     }
 }

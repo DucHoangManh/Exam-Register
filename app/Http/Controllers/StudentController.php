@@ -30,8 +30,8 @@ class StudentController extends Controller
         return redirect('admin/student');
     }
 
-    public function importBan() {
-        $import = Excel::import(new StudentBanedImport, request()->file('ban_file'));
+    public function importBan(Request $request) {
+        $import = Excel::import(new StudentBanedImport($request['class_id']), request()->file('ban_file'));
         return redirect()->back();
     }
 

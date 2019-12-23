@@ -17,6 +17,7 @@
 	<!--end::Layout Skins -->
 
 	<link rel="shortcut icon" href="media/logos/favicon.ico" />
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 </head>
 <!-- end::Head -->

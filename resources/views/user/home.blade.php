@@ -78,19 +78,19 @@
 									<i class="kt-nav__link-icon flaticon-notes"></i>
 									<span class="kt-nav__link-text">Các khóa học đăng ký</span>
 									<span class="kt-nav__link-badge">
-										<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill kt-badge--rounded">3</span>
+										<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill kt-badge--rounded">{{$student->classes->count()}}</span>
 									</span>
 									<span class="kt-nav__link-arrow"></span>
 								</a>
 								<ul class="kt-nav__sub collapse show" id="kt_nav_sub_2" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#kt_nav" style="">
-									@for($i=0; $i<4; $i++)
+									@foreach($student->classes as $class)
 									<li class="kt-nav__item">
 										<a href="#" class="kt-nav__link">
 											<span class="kt-nav__link-bullet kt-nav__link-bullet--line"><span></span></span>
-											<span class="kt-nav__link-text">Replied</span>
+											<span class="kt-nav__link-text">{{$class->module->subject->name.' ('.$class->code.')'}}</span>
 										</a>
 									</li>
-									@endfor
+									@endforeach
 								</ul>
 							</li>
 						</ul>

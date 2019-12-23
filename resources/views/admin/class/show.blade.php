@@ -15,6 +15,7 @@
 					<div class="btn-group">
 						<form id="ban-form" action="{{URL::to('admin/import/studentBaned')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
 							{{ csrf_field() }}
+							<input type="hidden" name="class_id" value="{{$class->id}}">
 							<div id="sample_editable_1_new" class="btn sbold green btn-sm"> Import Ban
 								<i class="fa fa-plus"></i>
 							</div>
@@ -77,7 +78,7 @@
 								@if ($student->gender == 0) Nam @else Nữ @endif
 							</td>
 							<td>{{$student->birthday}}</td>
-							<td>@if($student->is_baned == 1) Cấm thi @endif</td>
+							<td>@if($student->pivot->is_baned == 1) Cấm thi @endif</td>
 							<td></td>
 						</tr>
 						@endforeach

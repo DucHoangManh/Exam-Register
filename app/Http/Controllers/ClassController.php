@@ -84,4 +84,9 @@ class ClassController extends Controller
         $result = ClassRepository::delete($id);
         return redirect()->route('class.index');
     }
+
+    public function getTestsJson($id) {
+        $tests = ClassRepository::getTestsJson($id);
+        return $tests;
+    }
 }
