@@ -19,8 +19,6 @@ class CreateTableExamsTable extends Migration
             $table->year('school_year');
             $table->dateTime('deadline')->nullable();
             $table->timestamps();
-
-            $table->unique(['type', 'school_year']);
         });
     }
 
