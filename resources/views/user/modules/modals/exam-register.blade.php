@@ -33,7 +33,7 @@
                                         <td class="test-location"></td>
                                         <td>
                                             <label class="kt-radio kt-radio--bold kt-radio--brand">
-                                                <input type="radio" name="radio6">
+                                                <input class ="shift-check" type="radio" name="radio6" value="test">
                                                 <span></span>
                                             </label>
                                         </td>
@@ -47,7 +47,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary submit-registration">Save changes</button>
             </div>
         </div>
     </div>
