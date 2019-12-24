@@ -86,7 +86,7 @@
 									<td> - </td>
 									<td> - </td>
 									<td>
-										<button type="button" class="btn btn-info btn-icon add-test" data-class="{{$register->class->id}}" data-toggle="modal" data-target="#kt_modal_6">
+										<button type="button" class="btn btn-info btn-icon add-test" data-class="{{$register->class->id}}" data-student="{{$student->id}}" data-toggle="modal" data-target="#kt_modal_6">
 											<i class="flaticon2-add-circular-button"></i>
 										</button>
 									</td>
