@@ -39,12 +39,14 @@ class ClassRepository extends BaseRepository implements ClassInterface {
         $tests = collect([]);
         foreach($class->tests as $test) {
             $arr = [
-                'Thu' => 'Chua lam',
+                'thu' => substr($test->shift->code, 0, 2),
                 'date' => $test->shift->date,
-                'start' => $test->shift->start.' - '.$test->shift->end,
+                'time' => $test->shift->start.' - '.$test->shift->end,
                 'shift' => $test->shift->code,
                 'room' => $test->room->name,
-                'location' => $test->room->location->name
+                'location' => $test->room->location->name,
+                'test_id' => $test->id,
+                'status' => $test->studentCount().'/'.$test->room->computer_quantity
             ];
             $tests->push($arr);
         }

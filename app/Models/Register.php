@@ -8,6 +8,8 @@ class Register extends Model
 {
     protected $table = "student_class";
 
+    public $timestamps = false;
+
     public function test() {
     	return $this->belongsTo('App\Models\Test');
     }

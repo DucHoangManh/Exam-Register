@@ -80,4 +80,7 @@
   'open sans' => array(
     'normal' => $fontDir . '/f95c975b9cd22ad666e2872f0ffd1655',
   ),
+  'source sans pro' => array(
+    'normal' => $fontDir . '/9bbc93cd4eeb4c96ec714f118af1ef95',
+  ),
 ) ?>

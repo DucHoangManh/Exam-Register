@@ -42,9 +42,6 @@
 			</div>
 			<div class="kt-portlet__body">
 				<div class="kt-section">
-					<span class="kt-section__info">
-						Nếu qua thời gian đăng ký mà sinh viên chưa đăng ký lịch thi phù hợp thì hệ thống sẽ chọn ngẫu nhiên ca thi.
-					</span>
 					<div class="kt-section__content">
 						<table class="table">
 						  	<thead class="thead-light">
@@ -55,7 +52,8 @@
 						      		<th>Mã học phần</th>
 						      		<th>Giảng viên</th>
 									<th>Trạng thái</th>
-						      		<th>Thứ</th>
+									<th>Thứ</th>
+									<th>Ngày thi</th>
 						      		<th>Giờ thi</th>
 						      		<th>Giảng đường</th>
 						      		<th>Số TT</th>
@@ -73,10 +71,10 @@
 									<td>
 										<div class="kt-widget31__progress" style="text-align:center">
 											<a href="#" class="kt-widget31__stats">
-												<span>{{$register->class->registerStatus()}}%</span>					    							 
+												<span>{{round($register->class->registerStatus()*100)}}%</span>					    							 
 											</a>
 											<div class="progress progress-sm">
-												<div class="progress-bar bg-warning" role="progressbar" style="width: {{$register->class->registerStatus()}}%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+												<div class="progress-bar bg-warning" role="progressbar" style="width: {{round($register->class->registerStatus()*100)}}%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
 											</div>
 										</div>
 									</td>
@@ -85,18 +83,25 @@
 									<td> - </td>
 									<td> - </td>
 									<td> - </td>
+									<td> - </td>
 									<td>
-										<button type="button" class="btn btn-info btn-icon add-test" data-class="{{$register->class->id}}" data-toggle="modal" data-target="#kt_modal_6">
+										<button type="button" class="btn btn-info btn-icon add-test" data-class="{{$register->class->id}}" data-register="{{$register->id}}" data-toggle="modal" data-target="#kt_modal_6">
 											<i class="flaticon2-add-circular-button"></i>
 										</button>
 									</td>
 									@else
+									<td>{{substr($register->test->shift->code, 0, 2)}}</td>
 							      	<td>{{$register->test->shift->date}}</td>
 							      	<td>{{$register->test->shift->start.' - '.$register->test->shift->end}}</td>
 							      	<td>{{$register->test->room->name.' - '.$register->test->room->location->name}}</td>
-									<td>Lam sau</td>
+									<td> {{$register->id_number}}</td>
+									
 									<td>
-										<button type="button" class="btn btn-outline-danger btn-elevate btn-icon"><i class="flaticon2-trash"></i></button>
+										<form action="{{route('user.register')}}" method="post">
+											{{ csrf_field() }}
+											<input type="hidden" name="register_id" value="{{$register->id}}">
+											<button type="submit" class="btn btn-outline-danger btn-elevate btn-icon"><i class="flaticon2-trash"></i></button>
+										</form>
 									</td>
 									@endif
 						    	</tr>

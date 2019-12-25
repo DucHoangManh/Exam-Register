@@ -124,7 +124,7 @@
                 {{Auth::user()->student->name}}
             </div>
             <div class="kt-user-card__badge">
-                <span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
+                <span class="btn btn-success btn-sm btn-bold btn-font-md">{{Auth::user()->student->registers->count() - Auth::user()->student->registers->where('test_id', '<>', null)->count()}} môn <br> chưa đăng ký</span>
             </div>
         </div>
         <!--end: Head -->
@@ -158,7 +158,7 @@
                 </div>
             </a>
             <div class="kt-notification__custom kt-space-between">
-                <a href="{{url('logout')}}" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
+                <a href="{{url('logout')}}" class="btn btn-label btn-label-brand btn-sm btn-bold">Đăng xuất</a>
 
                 <!-- <a href="{{url('logout')}}" class="btn btn-clean btn-sm btn-bold">Sign Out</a> -->
             </div>

@@ -3,22 +3,19 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>@yield('title')</title>
-
-	<!--begin::Page Vendors Styles(used by this page) -->
-	<link href="vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-	<!--end::Page Vendors Styles -->
-
-	<!--begin::Global Theme Styles(used by all pages) -->
 	<link href="vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="css/demo3/style.bundle.css" rel="stylesheet" type="text/css" />
-	<!--end::Global Theme Styles -->
-
-	<!--begin::Layout Skins(used by all pages) -->
-	<!--end::Layout Skins -->
-
-	<link rel="shortcut icon" href="media/logos/favicon.ico" />
-	<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" href="media/logos/favicon.ico" />
+
+ 
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+ 
+
+	@yield('custom-head')
 </head>
 <!-- end::Head -->
 
@@ -62,9 +59,8 @@
             var KTAppOptions = {"colors":{"state":{"brand":"#2c77f4","light":"#ffffff","dark":"#282a3c","primary":"#5867dd","success":"#34bfa3","info":"#36a3f7","warning":"#ffb822","danger":"#fd3995"},"base":{"label":["#c5cbe3","#a1a8c3","#3d4465","#3e4466"],"shape":["#f0f3ff","#d9dffa","#afb4d4","#646c9a"]}}};
         </script>
 
-        <script src="vendors/global/vendors.bundle.js" type="text/javascript"></script>
+  
         <script src="js/demo3/scripts.bundle.js" type="text/javascript"></script>
-        <script src="vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
         <script src="http://maps.google.com/maps/api/js?key=AIzaSyBTGnKT7dt597vo9QgeQ7BFhvSRP4eiMSM" type="text/javascript"></script>
         <script src="vendors/custom/gmaps/gmaps.js" type="text/javascript"></script>
         <script src="js/demo3/pages/dashboard.js" type="text/javascript"></script>

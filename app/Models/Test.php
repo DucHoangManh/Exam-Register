@@ -36,4 +36,8 @@ class Test extends Model
     public function status() {
         return TestRepository::status($this->id);
     }
+
+    public function studentCount() {
+        return TestRepository::studentCount($this->id);
+    }
 }

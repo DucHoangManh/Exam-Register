@@ -23,4 +23,9 @@ class TestRepository extends BaseRepository implements TestInterface
         $test = Test::findOrFail($id);
         return ($this->status($id) >= 1) ? true : false;
     } 
+
+    public function studentCount($id) {
+        $test = Test::findOrFail($id);
+        return $test->students->count();
+    }
 }

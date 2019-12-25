@@ -17,22 +17,22 @@
 
 			<ul class="kt-menu__nav ">
 				<li class="kt-menu__item " aria-haspopup="true">
-					<a href="{{URL::to('home')}}" class="kt-menu__link ">
+					<a href="{{route('user.home')}}" class="kt-menu__link ">
 						<i class="kt-menu__link-icon flaticon-home-2"></i><span class="kt-menu__link-text">Trang chủ</span>
 					</a>
 				</li>
 				<li class="kt-menu__item " aria-haspopup="true">
-					<a href="{{URL::to('registration')}}" class="kt-menu__link ">
+					<a href="{{route('user.registration')}}" class="kt-menu__link ">
 						<i class="kt-menu__link-icon flaticon-edit-1"></i><span class="kt-menu__link-text">Đăng ký thi</span>
 					</a>
 				</li>
 				<li class="kt-menu__item " aria-haspopup="true">
-					<a href="{{URL::to('calendar')}}" class="kt-menu__link ">
+					<a href="{{route('user.calendar')}}" class="kt-menu__link ">
 						<i class="kt-menu__link-icon flaticon-clock-2"></i><span class="kt-menu__link-text">Lịch thi</span>
 					</a>
 				</li>
 				<li class="kt-menu__item " aria-haspopup="true">
-					<a href="#" class="kt-menu__link ">
+					<a href="{{route('user.result')}}" class="kt-menu__link ">
 						<i class="kt-menu__link-icon flaticon-interface-3"></i><span class="kt-menu__link-text">Kết quả</span>
 					</a>
 				</li>

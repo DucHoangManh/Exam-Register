@@ -106,16 +106,20 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::post('examm/addSubject', 'ExamController@addSubject')->name('exam.addSubject');
 });
 
+
+//User - Student
 Route::group(['middleware' => 'student'], function() {
-	Route::get('home', 'HomeController@index');
-	Route::get('registration', 'HomeController@registration');
+	Route::get('home', 'HomeController@index')->name('user.home');
+	Route::get('registration', 'HomeController@registration')->name('user.registration');
 	
-	Route::get('calendar', function () {
-		return view('user.calendar');
-	});
+	Route::get('calendar', 'HomeController@calendar')->name('user.calendar');
+	Route::get('result', 'HomeController@result')->name('user.result');
 
 	Route::group(['prefix' => 'api'], function() {
 		Route::get('class/get-test/{class}', 'ClassController@getTestsJson');
 	});
+	Route::post('test-register', 'HomeController@testRegister')->name('user.register');
+	Route::get('pdf', 'HomeController@exportResultPdf')->name('user.result.exportPdf');
+	Route::get('test', 'HomeController@test');
 });
 

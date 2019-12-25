@@ -30173,7 +30173,7 @@ td>.kt-radio.kt-radio--single, th>.kt-radio.kt-radio--single {
 }
 
 .fc-unthemed .fc-toolbar .fc-button .fc-icon.fc-icon-left-single-arrow:before {
-	content: 'http://www.w3.org/2000/svg'
+	content: 'Back'
 }
 
 .fc-unthemed .fc-toolbar .fc-button .fc-icon.fc-icon-right-single-arrow {
@@ -30187,7 +30187,7 @@ td>.kt-radio.kt-radio--single, th>.kt-radio.kt-radio--single {
 }
 
 .fc-unthemed .fc-toolbar .fc-button .fc-icon.fc-icon-right-single-arrow:before {
-	content: '0 0 4 5'
+	content: 'Foward'
 }
 
 .fc-unthemed .fc-axis>span {
@@ -47799,5 +47799,9 @@ body, html {
 
 body, html {
 	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.text-center {
+	text-align: center;
 }
 
