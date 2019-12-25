@@ -119,6 +119,7 @@
 </div>
 
 <script src="user/js/registration.js"></script>
+<script src="vendors/global/vendors.bundle.js" type="text/javascript"></script>
 <!--End::Row-->
 @endsection
 

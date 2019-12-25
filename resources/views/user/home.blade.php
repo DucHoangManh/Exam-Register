@@ -101,6 +101,7 @@
 	</div>
 </div>
 <!--End::Row-->
+<script src="vendors/global/vendors.bundle.js" type="text/javascript"></script>
 @endsection
 
 @section('footer')
