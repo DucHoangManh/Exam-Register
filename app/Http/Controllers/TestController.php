@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Facades\TestRepository;
+use App\Models\Test;
 
 class TestController extends Controller
 {
@@ -14,7 +15,9 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        $tests = TestRepository::paginate(10);
+        $count = TestRepository::all()->count();
+        return view('admin.test.index', compact('tests', 'count'));
     }
 
     /**
@@ -24,7 +27,7 @@ class TestController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.test.create');
     }
 
     /**
@@ -35,7 +38,18 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $test = Test::where([
+            ['room_id', '=', $request['room_id']], 
+            ['shift_id', '=', $request['shift_id']],
+            ['class_id', '=', $request['class_id']]
+        ])->get()->first();
+        if($test == null) {
+            $test = Test::create(request()->only('room_id', 'shift_id', 'class_id'));
+            return redirect()->back()->with('success', 'Bài thi đã được tạo thành công');
+        } else {
+            alert()->error('','Bài thi đã tồn tại');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -47,7 +61,6 @@ class TestController extends Controller
     public function show($id)
     {
         $test = TestRepository::findOrFail($id);
-        dd($test);
         return view('admin.test.show', compact('test'));
     }
 

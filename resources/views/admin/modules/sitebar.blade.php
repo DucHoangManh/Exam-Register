@@ -87,6 +87,25 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-pointer"></i>
+                    <span class="title">Bài thi</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li class="nav-item  ">
+                        <a href="{{route('test.index')}}" class="nav-link ">
+                            <span class="title">Show</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{route('test.create')}}" class="nav-link ">
+                            <span class="title">Create</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             
             
             <li class="heading">

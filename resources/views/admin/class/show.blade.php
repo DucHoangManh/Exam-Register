@@ -3,6 +3,13 @@
 @section('page-title', 'Thông tin lớp học phần')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
+<style>
+	.hidden {
+		opacity: 0;
+		position: absolute;
+		z-index: 99;
+	}
+</style>	
 <div class="row">
 	<div class="col-md-8">
 		<div class="portlet light bordered">

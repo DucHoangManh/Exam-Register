@@ -7,6 +7,9 @@ use App\Repositories\Facades\TestRepository;
 
 class Test extends Model
 {
+    protected $fillable = [
+        'class_id', 'room_id', 'shift_id'
+    ];
     public $timestamps = false;
     
     public function shift() {
@@ -18,7 +21,7 @@ class Test extends Model
     }
 
     public function students() {
-    	return $this->belongsToMany('App\Models\Student', 'student_class');
+    	return $this->belongsToMany('App\Models\Student', 'student_class')->withPivot('id_number');;
     }
 
     public function class() {

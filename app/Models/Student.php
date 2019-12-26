@@ -19,7 +19,7 @@ class Student extends Model
     }
 
     public function tests() {
-    	return $this->belongsToMany('App\Models\Test', 'student_class');
+    	return $this->belongsToMany('App\Models\Test', 'student_class')->withPivot('id_number');;
     }
 
     public function user() {
