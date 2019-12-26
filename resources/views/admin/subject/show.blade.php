@@ -80,22 +80,22 @@
 				<form action="{{URL::to('admin/room')}}" method="POST" class="form-horizontal" role="form">
 					{{ csrf_field() }}
 					<div class="form-body">
-						<div class="form-group">
-							<label class="col-md-4 control-label">Tên lớp</label>
-							<div class="col-md-8">
-								<input type="text" name="name" class="form-control input-inline input-medium" placeholder="Enter text">
+						<div class="form-group row">
+							<label class="col-md-4 col-xs-12 control-label">Tên lớp</label>
+							<div class="col-md-6 col-xs-12">
+								<input type="text" name="name" class="form-control input-sm input-inline" placeholder="Enter text">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">Mã lớp</label>
 							<div class="col-md-8">
-								<input type="text" name="" class="form-control input-inline input-medium location" readonly="readonly">
+								<input type="text" name="" class="form-control input-inline input-sm location" readonly="readonly">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">Số tín chỉ</label>
 							<div class="col-md-8">
-								<input type="text" name="" class="form-control input-inline input-medium location" readonly="readonly">
+								<input type="text" name="" class="form-control input-inline input-sm location" readonly="readonly">
 							</div>
 						</div>
 					</div>
