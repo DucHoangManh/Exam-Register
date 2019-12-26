@@ -85,9 +85,14 @@
 									<td> - </td>
 									<td> - </td>
 									<td>
+										@if($register->is_baned == 0)
 										<button type="button" class="btn btn-info btn-icon add-test" data-class="{{$register->class->id}}" data-register="{{$register->id}}" data-toggle="modal" data-target="#kt_modal_6">
 											<i class="flaticon2-add-circular-button"></i>
 										</button>
+										@else
+										<span class="kt-badge kt-badge--inline kt-badge--warning">Cấm thi</span>
+										@endif
+
 									</td>
 									@else
 									<td>{{substr($register->test->shift->code, 0, 2)}}</td>

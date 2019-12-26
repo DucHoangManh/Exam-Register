@@ -37,6 +37,8 @@ class CreateClassesTable extends Migration
             $table->unsignedInteger('test_id')->nullable();
             $table->smallInteger('is_baned')->default(0);
             $table->smallInteger('id_number')->nullable();
+
+            // $table->unique(['class_id', 'student_id']);
         });
 
         Schema::create('tests', function (Blueprint $table) {
@@ -44,18 +46,24 @@ class CreateClassesTable extends Migration
             $table->unsignedInteger('shift_id');
             $table->unsignedInteger('room_id');
             $table->unsignedInteger('class_id');
+
+            // $table->unique(['shift_id', 'room_id']);
         });
 
         Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('exam_id');
             $table->unsignedInteger('subject_id');
+
+            // $table->unique('exam_id', 'subject_id');
         });
 
         Schema::create('module_shift', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('module_id');
             $table->unsignedInteger('shift_id');
+
+            // $table->unique(['module_id', 'shift_id']);
         });
     }
 

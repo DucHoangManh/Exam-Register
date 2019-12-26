@@ -89,12 +89,12 @@
 						</tbody>
 					</table>
 				</div>
+				<p class="text-left">
+					Tổng số lớp: <strong>{{$count}}</strong>
+				</p>
 				<div class="paginate" style="text-align: center;">
 					{{ $classes->links() }}
 				</div>
-				<p class="text-left">
-					Tổng số lớp: <strong>{{$classes->count()}}</strong>
-				</p>
 			</div>
 		</div>
 	</div>

@@ -101,7 +101,7 @@ class HomeController extends Controller
         if($request['test_id'] == null) {
             $register->test_id = null;
             $register->save();    
-        } else {
+        } else if($register->is_baned == 0) {
             $test = TestRepository::findOrFail($request['test_id']);
             if(!$test->isFull()) {
                 $register->test_id = $request['test_id'];

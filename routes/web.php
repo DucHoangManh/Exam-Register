@@ -41,6 +41,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::resource('room', 'RoomController');
 	Route::resource('shift', 'ShiftController');
 	Route::resource('exam', 'ExamController');
+	Route::resource('test', 'TestController');
 
 	/*
 	*	Import
@@ -58,7 +59,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	});
 	
 
-
+	//Delete
 	Route::get('student/delete/{student}', 'StudentController@destroy');
 	Route::get('user/delete/{user}', 'UserController@destroy');
 	Route::get('teacher/delete/{teacher}', 'TeacherController@destroy');
@@ -69,6 +70,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::get('shift/delete/{room}', 'ShiftController@destroy');
 
 	
+	//Search
 	Route::group(['prefix'=>'search'], function() {
 		Route::get('teacher/{name}', 'SearchController@teacher');
 		Route::get('subject/{name}', 'SearchController@subject');
@@ -80,6 +82,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		Route::get('user/{username}', 'SearchController@user');
 	});
 
+
+	//Export
 	Route::group(['prefix' => 'export'], function() {
 		Route::get('student', 'StudentController@export')->name('export.student');
 		Route::get('user', 'UserController@export')->name('export.user');

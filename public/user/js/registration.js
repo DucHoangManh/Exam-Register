@@ -28,7 +28,11 @@ $(document).ready(function() {
                   room = test.find('.test-room').html(item['room']);
                   loc = test.find('.test-location').html(item['location']);
                   status = test.find('.test-status').html(item['status']);
-                  test_id = test.find('input[name*="test_id"]').val(item['test_id']);
+                  if(item['is_baned'] == 0) {
+                    test_id = test.find('input[name*="test_id"]').val(item['test_id']);
+                  } else {
+                    test_id = test.find('input[name*="test_id"]').attr('disabled', 'disabled');
+                  }
                   $(test).appendTo('.test-table');
               });
           }

@@ -34,7 +34,7 @@
 							<th scope="col">Ngày thi</th>
 							<th scope="col">Bắt đầu</th>
 							<th scope="col">Kết thúc</th>
-							<th scope="col">Xóa</th>
+							<th scope="col">Chi tiết</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,7 +57,7 @@
 							<td>{{$test->shift->date}}</td>
 							<td>{{$test->shift->start}}</td>
 							<td>{{$test->shift->end}}</td>
-							<td></td>
+							<td><a href="{{route('test.show', $test->id)}}">Xem</a></td>
 						</tr>
 						@endforeach
 					</tbody>

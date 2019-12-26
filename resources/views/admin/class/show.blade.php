@@ -19,7 +19,7 @@
 							<div id="sample_editable_1_new" class="btn sbold green btn-sm"> Import Ban
 								<i class="fa fa-plus"></i>
 							</div>
-							<input id="class-file" type="file" name="ban_file" class="hidden" accept=".xlsx, .xls, .csv, .ods">
+							<input id="class-file" type="file" name="ban_file" class="" accept=".xlsx, .xls, .csv, .ods">
 						</form>
 					</div>
 					<div class="btn-group">

@@ -17,7 +17,8 @@ class ClassController extends Controller
     public function index()
     {
         $classes = ClassRepository::orderBy('code')->paginate(10); 
-        return view('admin.class.index', compact('classes'));
+        $count = ClassRepository::all()->count();
+        return view('admin.class.index', compact('classes', 'count'));
     }
 
     public function indexByExam($id) {

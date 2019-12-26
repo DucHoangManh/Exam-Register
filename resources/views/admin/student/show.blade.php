@@ -44,7 +44,7 @@
 					<tbody>
 						@foreach($student->registers as $register)
 						<tr>
-							<th scope="row">{{$loop->index+1}}</th>
+							<th scope="row">{{$register->class->id}}</th>
 							<td>{{$register->class->module->subject->name}}</td>
 							<td>{{$register->class->code}}</td>
 							<td>{{$register->class->teacher->name}}</td>
