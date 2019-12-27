@@ -132,7 +132,7 @@
                                     <td></td>
                                     @else
                                     <td>{{substr($register->test->shift->code, 0, 2)}}</td>
-                                    <td>{{substr($register->test->shift->code, 4, 4)}}</td>
+                                    <td>{{explode(')',explode('(',$register->test->shift->code)[1])[0]}}</td>
                                     <td>{{$register->test->room->name}}</td>
                                     <td>{{$register->test->room->location->name}}</td>
                                     @endif
