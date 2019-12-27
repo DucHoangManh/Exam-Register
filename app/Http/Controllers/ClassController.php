@@ -36,6 +36,11 @@ class ClassController extends Controller
         return redirect('admin/class');
     }
 
+    public function importStudent() {
+        $import = Excel::import(new ClassStudentImport(request('class_id')), request('student_file'));
+        return redirect('admin/class');
+    }
+
     public function exportDetailExcel($id) {
         $class = ClassSubject::findOrFail($id);
         $file = Excel::download(new ClassDetailExport($id), $class->code.'.xlsx');
@@ -55,8 +60,14 @@ class ClassController extends Controller
 
     public function store(Request $request)
     {
-        $class = ClassSubject::create($request->only('name'));
-        return redirect()->route('class.index');
+        $module = session('exam')->modules->where('subject_id', '=', $request['subject_id'])->first();
+        $code = $module->subject->code.'_'.($module->classes->count()+1);
+        $class = ClassSubject::create([
+            'teacher_id' => $request['teacher_id'],
+            'code' => $code,
+            'module_id' => $module->id
+        ]);
+        return redirect()->route('class.show', $class->id);
     }
 
     public function show($id)

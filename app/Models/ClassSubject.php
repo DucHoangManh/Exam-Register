@@ -9,7 +9,7 @@ class ClassSubject extends Model
 {
     protected $table = "classes";
     protected $fillable = [
-    	'code', 'teacher_id', 'subject_id'
+    	'code', 'teacher_id', 'module_id'
     ];
 
     protected $hidden = [];

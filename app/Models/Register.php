@@ -10,6 +10,10 @@ class Register extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'class_id', 'student_id', 'test_id', 'id_number', 'is_baned'
+    ];
+
     public function test() {
     	return $this->belongsTo('App\Models\Test');
     }

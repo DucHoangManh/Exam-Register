@@ -20,6 +20,23 @@
 				</div>
 				<div class="actions">
 					<div class="btn-group">
+						<form id="ban-form" action="{{route('import.classStudent')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
+							{{ csrf_field() }}
+							<input type="hidden" name="class_id" value="{{$class->id}}">
+							<!--old-->
+							<div id="sample_editable_1_new" class="btn sbold green btn-sm" style="display:none">
+								<i class="fa fa-plus"></i>
+							</div>
+							<!--fixed-->
+							<label class="btn sbold green btn-sm">Import Students
+								<i for="class-file" class="fa fa-plus"></i>
+								<input id="class-file" type="file" name="student_file" style="display:none" accept=".xlsx, .xls, .csv, .ods">
+								<input type="hidden" name="class_id" value="{{$class->id}}">
+							</label>
+							
+						</form>
+					</div>
+					<div class="btn-group">
 						<form id="ban-form" action="{{URL::to('admin/import/studentBaned')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
 							{{ csrf_field() }}
 							<input type="hidden" name="class_id" value="{{$class->id}}">

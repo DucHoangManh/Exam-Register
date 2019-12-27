@@ -56,6 +56,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 		Route::post('room', 'RoomController@import');
 		Route::post('shift', 'ShiftController@import');
 		Route::post('studentBaned', 'StudentController@importBan');
+		Route::post('classStudent', 'ClassController@importStudent')->name('import.classStudent');
 	});
 	
 
