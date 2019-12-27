@@ -23,10 +23,16 @@
 						<form id="ban-form" action="{{URL::to('admin/import/studentBaned')}}" method="POST" enctype="multipart/form-data" style="display: inline-block;">
 							{{ csrf_field() }}
 							<input type="hidden" name="class_id" value="{{$class->id}}">
-							<div id="sample_editable_1_new" class="btn sbold green btn-sm"> Import Ban
+							<!--old-->
+							<div id="sample_editable_1_new" class="btn sbold green btn-sm" style="display:none"> Import Ban
 								<i class="fa fa-plus"></i>
 							</div>
-							<input id="class-file" type="file" name="ban_file" class="" accept=".xlsx, .xls, .csv, .ods">
+							<!--fixed-->
+							<label class="btn sbold green btn-sm">Import Ban
+								<i for="class-file" class="fa fa-plus"></i>
+								<input id="class-file" type="file" name="ban_file" style="display:none" accept=".xlsx, .xls, .csv, .ods">
+							</label>
+							
 						</form>
 					</div>
 					<div class="btn-group">
@@ -69,7 +75,6 @@
 							<th scope="col">Giới tính</th>
 							<th scope="col">Ngày sinh</th>
 							<th scope="col">Chú thích</th>
-							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -86,7 +91,6 @@
 							</td>
 							<td>{{$student->birthday}}</td>
 							<td>@if($student->pivot->is_baned == 1) Cấm thi @endif</td>
-							<td></td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -111,7 +115,6 @@
 							<th scope="col">Phòng thi</th>
 							<th scope="col">Bắt đầu</th>
 							<th scope="col">Kết thúc</th>
-							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -122,7 +125,6 @@
 							<td>{{$test->room->name.' - '.$test->room->location->name}}</td>
 							<td>{{$test->shift->start}}</td>
 							<td>{{$test->shift->end}}</td>
-							<td></td>
 						</tr>
 						@endforeach
 					</tbody>

@@ -33,7 +33,6 @@
 							<th scope="col">Tên lớp</th>
 							<th scope="col">Giáo viên</th>
 							<th scope="col">Sĩ số</th>
-							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,7 +55,6 @@
 								<a href="{{route('student.show', $test->class->teacher->id)}}">{{$test->class->teacher->name}}</a>
 							</td>
 							<td>{{$test->class->students->count()}}</td>
-							<td></td>
 						</tr>
 						@endforeach
 					</tbody>

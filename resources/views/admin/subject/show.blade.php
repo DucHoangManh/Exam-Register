@@ -33,7 +33,6 @@
 							<th scope="col">Mã lớp</th>
 							<th scope="col">Giảng viên</th>
 							<th scope="col">Sĩ số</th>
-							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,7 +46,6 @@
 								<a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a>
 							</td>
 							<td>{{$class->students->count()}}</td>
-							<td></td>
 						</tr>
 						@endforeach
 						
@@ -57,10 +55,9 @@
 							<td></td>
 							<td>
 								<strong>
-									Chiu
+									Tổng
 								</strong>
 							</td>
-							<td></td>
 						</tr>
 					</tbody>
 				</table>

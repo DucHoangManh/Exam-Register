@@ -9,7 +9,7 @@
 			<div class="portlet-title">
 				<div class="caption font-dark">
 					<i class="icon-settings font-dark"></i>
-					<span class="caption-subject bold uppercase">Quản lý bài thi</span>
+					<span class="caption-subject bold uppercase">Quản lý danh sách thi</span>
 				</div>
 				<div class="actions">
 					<div class="btn-group">
