@@ -45,7 +45,7 @@
 							<td>
 								<a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a>
 							</td>
-							<td>{{$class->students->count()}}</td>
+							<td class ="student-count">{{$class->students->count()}}</td>
 						</tr>
 						@endforeach
 						
@@ -54,7 +54,7 @@
 							<td></td>
 							<td></td>
 							<td>
-								<strong>
+								<strong id="all-class-sum">
 									Tổng
 								</strong>
 							</td>
@@ -109,4 +109,13 @@
 		</div>
 	</div>
 </div>
+<script>
+ $(document).ready(function(){
+	let sum =0;
+	$('.student-count').each(function(){
+		sum+=parseInt($(this).html(),10);
+	});
+	$('#all-class-sum').html('Tổng: '+ sum);
+ })
+</script>
 @endsection
