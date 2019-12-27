@@ -40,7 +40,7 @@ class ShiftController extends Controller
      */
     public function store(Request $request)
     {
-        $shift = Shift::create($request->only('class_id', 'date', 'start', 'end'));
+        $shift = Shift::create($request->only('code', 'date', 'start', 'end'));
         return redirect()->route('shift.show', $shift->id);
     }
 

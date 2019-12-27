@@ -16,7 +16,13 @@ a[href]:after{
 				<div class="caption">
 					<i class="icon-pointer font-blue"></i>
 					<span class="caption-subject font-blue bold uppercase">Danh sách thi</span>
-					<button id="printContent" class="button btn btn-sm btn-info"><i class="fa fa-print"></i><strong>Print</strong></button>
+				</div>
+				<div class="actions">
+					<div class="btn-group">
+						<button id="printContent" class="btn sbold green"> Print
+						<i class="fa fa-print"></i>
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="portlet-body print-section">
