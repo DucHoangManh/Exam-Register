@@ -36,9 +36,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'type' => 0
         ]);
-        $user = User::create($request->only('username', 'email', 'password'));
+        $user = User::create($request->only('username', 'email', 'password', 'type'));
         return redirect()->route('user.index');
     }
 

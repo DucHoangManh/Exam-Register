@@ -20,7 +20,7 @@ class StudentImport implements ToModel, WithHeadingRow
             'code' => $row['code'] ?? $row['mssv'] ?? null,
             'gender' => $row['gender'] ?? $row['gioi_tinh'] ?? null,
             // 'birthday' => $row['birthday'] ?? $row['ngay sinh'] ?? null,
-            'birthday' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['birthday'] ?? $row['ngay_sinh'] ?? null)->format('Y-m-d')
+            'birthday' => $row['birthday'] ?? $row['ngay_sinh'] ?? null
             
         ]);
     }

@@ -15,10 +15,10 @@
 			</div>
 			<div class="portlet-body">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-6"> 
 						<p>Họ và tên: <strong>{{$student->name}}</strong></p>
 						<p>Ngày sinh: <strong>{{$student->birthday}}</strong></p>
-						<p>Email: <strong>{{$student->user->email}}</strong></p>
+						<p>Email: <strong>@if($student->user != null) $student->user->email @endif</strong></p>
 					</div>
 					<div class="col-md-6">
 						<p>Mã sinh viên: <strong>{{$student->code}}</strong></p>
