@@ -28,8 +28,8 @@ a[href]:after{
 			<div class="portlet-body print-section">
 				<div class="row">
 					<div class="col-md-6">
-						<p>Tên môn thi: <strong><a href="{{route('subject.show', $test->class->module->subject->id)}}">{{$test->class->module->subject->name}}</a></strong></p>
-						<p>Giảng viên: <strong><a href="{{route('teacher.show', $test->class->teacher->id)}}">{{$test->class->teacher->name}}</a></strong></p>
+						<p>Tên môn thi: <strong>{{$test->class->module->subject->name}}</a></strong></p>
+						<p>Giảng viên: <strong>{{$test->class->teacher->name}}</a></strong></p>
 						<p>Học kỳ: <strong>{{$test->class->module->exam->type}}</strong></p>
 						<p>Số tín chỉ: <strong>{{$test->class->module->subject->credit}}</strong></p>
 						<p>Phòng thi: <strong>{{$test->room->name}}</strong></p>
@@ -60,7 +60,7 @@ a[href]:after{
 						<tr>
 							<th scope="row">{{$loop->index+1}}</th>
 							<td>
-								<a href="{{route('student.show', $student->id)}}">{{$student->name}}</a>
+								{{$student->name}}
 							</td>
 							<td>{{$student->code}}</td>
 							<td>{{$student->user->email}}</td>
