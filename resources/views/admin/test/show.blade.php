@@ -28,8 +28,8 @@ a[href]:after{
 			<div class="portlet-body print-section">
 				<div class="row">
 					<div class="col-md-6">
-						<p>Tên môn thi: <strong>{{$test->class->module->subject->name}}</a></strong></p>
-						<p>Giảng viên: <strong>{{$test->class->teacher->name}}</a></strong></p>
+						<p>Tên môn thi: <strong>{{$test->class->module->subject->name}}</strong></p>
+						<p>Giảng viên: <strong>{{$test->class->teacher->name}}</strong></p>
 						<p>Học kỳ: <strong>{{$test->class->module->exam->type}}</strong></p>
 						<p>Số tín chỉ: <strong>{{$test->class->module->subject->credit}}</strong></p>
 						<p>Phòng thi: <strong>{{$test->room->name}}</strong></p>
