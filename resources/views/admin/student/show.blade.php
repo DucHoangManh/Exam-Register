@@ -38,7 +38,6 @@
 							<th scope="col">Thời gian</th>
 							<th scope="col">Địa điểm</th>
 							<th scope="col">Ghi chú</th>
-							<th scope="col">Xóa</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -60,7 +59,6 @@
 								<td> {{$register->test->room->name.' - '.$register->test->room->location->name}} </td>
 							@endif
 							<td>{{($register->is_baned == 0) ? '' : 'Cấm thi'}}</td>
-							<td></td>
 						</tr>
 						@endforeach
 					</tbody>
