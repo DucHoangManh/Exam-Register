@@ -137,7 +137,7 @@
                                     <td>{{$register->test->room->location->name}}</td>
                                     @endif
                                     <td>{{$register->id_number}}</td>
-                                    <td>Chua lam</td>
+                                    <td>{{($register->test->id %2==0) ? 'Tự luận' : 'Vấn đáp'}}</td>
                                     <td>{{($register->is_baned == 1) ? 'Cấm thi' : ''}}</td>
                                 </tr>
                                 @endforeach
