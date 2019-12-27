@@ -31,7 +31,7 @@
 							<div class="col-md-8">
 								<select class="form-control input-small" name="school_year">
 									@for($i = 2018; $i < 2050; $i++)
-									<option value="{{$i}}">{{$i}}</option>
+									<option value="{{$i.'-'.($i+1)}}">{{$i.'-'.($i+1)}}</option>
 									@endfor
 								</select>
 							</div>

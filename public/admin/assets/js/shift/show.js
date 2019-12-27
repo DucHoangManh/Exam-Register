@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
                 '<div class="list-group search-results-dropdown">'
             ],
             suggestion: function (data) {
-                return '<p class="list-group-item">' + data.name  + '</p>';
+                return '<p class="list-group-item">' + data.name + ' - ' + data.location.name + '</p>';
             }
         }
     });

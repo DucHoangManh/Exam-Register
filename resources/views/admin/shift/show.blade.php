@@ -15,13 +15,12 @@
 			<div class="portlet-body">
 				<div class="row">
 					<div class="col-md-6">
-						<p>Ngày thi: <strong>{{$shift->date}}</strong></p>
-						<p>Số lớp thi: <strong>{{$shift->modules->count()}}</strong></p>
+						<p>Mã ca thi: <strong>{{$shift->code}}</strong></p>
 						<p>Số phòng thi: <strong>{{$shift->tests->count()}}</strong></p>
 					</div>
 					<div class="col-md-6">
+						<p>Ngày thi: <strong>{{$shift->date}}</strong></p>
 						<p>Thời gian: <strong>{{$shift->start.' - '.$shift->end}}</strong></p>
-						<p>Số sinh viên chưa đăng ký: <strong>{{rand(10, 25)}}</strong></p>
 					</div>
 				</div>
 				<table class="table table-bordered">
@@ -75,25 +74,20 @@
 				</div>
 			</div>
 			<div class="portlet-body">
-				<form action="{{URL::to('admin/room')}}" method="POST" class="form-horizontal" role="form">
+				<form id="form" action="{{route('test.store')}}" method="POST" class="form-horizontal" role="form">
 					{{ csrf_field() }}
+					<input type="hidden" name="shift_id" value="{{$shift->id}}">
 					<div class="form-body">
-						<div class="form-group">
-							<label class="col-md-4 control-label">Tên lớp</label>
-							<div class="col-md-8">
-								<input type="text" name="name" class="form-control input-inline input-medium" placeholder="Enter text">
-							</div>
-						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">Mã lớp</label>
 							<div class="col-md-8">
-								<input type="text" name="" class="form-control input-inline input-medium location" readonly="readonly">
+								<input type="text" name="class_id" class="form-control input-inline input-medium class_code" placeholder="Enter text">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Số tín chỉ</label>
+							<label class="col-md-4 control-label">Phòng thi</label>
 							<div class="col-md-8">
-								<input type="text" name="" class="form-control input-inline input-medium location" readonly="readonly">
+								<input type="text" name="room_id" class="form-control input-inline input-medium room" placeholder="Enter text">
 							</div>
 						</div>
 					</div>
@@ -110,4 +104,5 @@
 		</div>
 	</div>
 </div>
+<script src="assets/js/shift/show.js"></script>
 @endsection

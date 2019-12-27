@@ -13,7 +13,7 @@
 				</div>
 				<div class="actions">
 					<div class="btn-group">
-						<a href="{{route('subject.create')}}">
+						<a href="{{route('shift.create')}}">
 							<button id="sample_editable_1_new" class="btn sbold green"> Add New
 							<i class="fa fa-plus"></i>
 							</button>

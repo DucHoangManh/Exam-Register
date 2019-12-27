@@ -53,6 +53,10 @@ class SearchController extends Controller
     public function room() {
         $name = request('name');
         $room = Room::where('name', 'like', '%'.$name.'%')->get();
+        $room->each(function($room) {
+            $room->location = $room->location->name;
+        });
+        // dd($room);
         return $room->toJson();
     }
 
