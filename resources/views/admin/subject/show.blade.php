@@ -45,7 +45,7 @@
 							<td>
 								<a href="{{route('teacher.show', $class->teacher->id)}}">{{$class->teacher->name}}</a>
 							</td>
-							<td class ="student-count">{{$class->students->count()}}</td>
+							<td class ="count-class{{$module->id}}">{{$class->students->count()}}</td>
 						</tr>
 						@endforeach
 						
@@ -54,7 +54,7 @@
 							<td></td>
 							<td></td>
 							<td>
-								<strong id="all-class-sum">
+								<strong id="all-class-sum{{$module->id}}">
 									Tổng
 								</strong>
 							</td>
@@ -109,13 +109,16 @@
 		</div>
 	</div>
 </div>
+@foreach($subject->modules as $module)
 <script>
  $(document).ready(function(){
 	let sum =0;
-	$('.student-count').each(function(){
+	let module = ({!! json_encode($module->toArray()) !!});
+	$('.count-class'+module.id).each(function(){
 		sum+=parseInt($(this).html(),10);
 	});
-	$('#all-class-sum').html('Tổng: '+ sum);
+	$('#all-class-sum'+module.id).html('Tổng: '+ sum);
  })
 </script>
+@endforeach
 @endsection
