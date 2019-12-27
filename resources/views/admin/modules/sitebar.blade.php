@@ -90,7 +90,7 @@
             <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-pointer"></i>
-                    <span class="title">Bài thi</span>
+                    <span class="title">Danh sách thi</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu" style="display: none;">
