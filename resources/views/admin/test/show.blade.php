@@ -1,8 +1,14 @@
 @extends('admin.layouts.app')
-@section('title', 'Thông tin bài thi')
-@section('page-title', 'Thông tin bài thi')
+@section('title', 'Danh sách thi')
+@section('page-title', 'Danh sách thi')
 @section('page-title-small', 'statistics, charts, recent events and reports')
 @section('content')
+<style type="text/css" media="print">
+a[href]:after{
+    content:"";
+}
+}
+</style>
 <div class="row">
 	<div class="col-md-12">
 		<div class="portlet light bordered">
@@ -10,9 +16,10 @@
 				<div class="caption">
 					<i class="icon-pointer font-blue"></i>
 					<span class="caption-subject font-blue bold uppercase">Danh sách thi</span>
+					<button id="printContent" class="button btn btn-sm btn-info"><i class="fa fa-print"></i><strong>Print</strong></button>
 				</div>
 			</div>
-			<div class="portlet-body">
+			<div class="portlet-body print-section">
 				<div class="row">
 					<div class="col-md-6">
 						<p>Tên môn thi: <strong><a href="{{route('subject.show', $test->class->module->subject->id)}}">{{$test->class->module->subject->name}}</a></strong></p>
@@ -66,6 +73,21 @@
 	</div>
 	
 </div>
+<script>
+    $(document).ready(function() {
+        $('#printContent').click(function() {
+
+            var printContents = $('.print-section').html();
+            var originalContents = $('body').html();
+
+            $('body').html(printContents);
+
+            window.print();
+
+            $('body').html(originalContents);
+        });
+    });
+</script>
 <script src="assets/js/class/show.js"></script>
 <script src="assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
